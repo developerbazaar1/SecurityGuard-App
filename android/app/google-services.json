@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "143894409222",
+    "project_id": "raynet-db11b",
+    "storage_bucket": "raynet-db11b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143894409222:android:e82078df9932c92b4d1387",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143894409222-f8dqn8elrhgnjr16bgpd7mi3h81uqg19.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.test",
+            "certificate_hash": "f8ae5d1a41cf03fab2a158c080f1b69f1ba91890"
+          }
+        },
+        {
+          "client_id": "143894409222-5lsglfcc2d2kq9j47fndoh83gv9hg7je.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyb1Oj_bV-K6C46cuzdkYstc6k8lDAjPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143894409222-5lsglfcc2d2kq9j47fndoh83gv9hg7je.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
