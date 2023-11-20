@@ -451,14 +451,15 @@ class PaymentPage extends StatelessWidget {
                                 ),
                                 Container(
                                   // frame529Jq (274:437)
-                                  width: double.infinity,
+                                  width: MediaQuery.of(context).size.width,
                                   height: 36*fem,
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
                                         // addcarddetailssEq (274:438)
-                                        margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 133*fem, 0*fem),
+                                        margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0*fem),
                                         child: Text(
                                           'Add Card Details',
                                           style: SafeGoogleFont (
@@ -472,7 +473,7 @@ class PaymentPage extends StatelessWidget {
                                       ),
                                       Container(
                                         // frame51NSV (274:439)
-                                        width: 76*fem,
+                                        width: 80*fem,
                                         height: double.infinity,
                                         decoration: BoxDecoration (
                                           color: ThemeColorBackgroundSelectSecurity,

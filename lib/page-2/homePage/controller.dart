@@ -22,12 +22,6 @@ class HomePageController extends GetxController {
   RxBool textSubmitted = false.obs;
   RxBool timeSelected = false.obs;
 
-
-
-
-
-
-
   RxMap ServicesData = Map().obs; //API data
   RxInt ServiceLength = 0.obs;
 
@@ -39,21 +33,20 @@ class HomePageController extends GetxController {
   var timeController = DateTime.now().obs;
   var isLocationEmpty = false.obs;
 
-
-
-  var text=RxString('00').obs;
+  var text = RxString('00').obs;
   /*-------------------------- time picker --------------------------*/
   Rx<TimeOfDay> startselectedTime = TimeOfDay(hour: 00, minute: 00).obs;
   Rx<TimeOfDay> endselectedTime = TimeOfDay(hour: 00, minute: 00).obs;
   RxBool isTimeNull = false.obs;
   var formatedDoubleTime = '00'.obs;
   var formatedTime = 'Choose'.obs;
-  RxInt formatedHour = 0.obs;
+  RxDouble formatedHour = 0.0.obs;
   RxInt formatedMinute = 0.obs;
 
   /* for checking first and second time*/
   RxBool isFirstTimeSelected = false.obs;
   RxBool isSecondTimeSelected = false.obs;
+
   updateNullTime() {
     isTimeNull.value = true;
     print(" nulll value${isTimeNull.value}");
@@ -63,6 +56,7 @@ class HomePageController extends GetxController {
     formatedDoubleTime.value = hours.value.toStringAsFixed(2);
     print('update method');
   }
+
   void setFloatingValue() {
     floatingButton.value = true;
     print("floating button ${floatingButton.value}");
@@ -76,7 +70,6 @@ class HomePageController extends GetxController {
       var second = startselectedTime.value.minute.obs;
       formatedDoubleTime = "${first}:${second.value}".obs;
       isFirstTimeSelected.value = true;
-
     }
     // if value is true method called for first time piker
     else {
@@ -91,8 +84,7 @@ class HomePageController extends GetxController {
         '${endselectedTime.value.hour.obs} and ${startselectedTime.value.hour.obs}');
 
     var hour = (endselectedTime.value.hour - startselectedTime.value.hour).obs;
-    timeSelected.value =true;
-
+    timeSelected.value = true;
 
     print('${hour.value} hours');
     if (hour.value < 0) {
@@ -116,11 +108,17 @@ class HomePageController extends GetxController {
     }
 
     formatedTime.value = "${hour}:${minute}";
-    formatedHour = hour;
+
+    formatedHour.value = hour.toDouble();
     formatedMinute = minute;
+    if (formatedMinute == 30) {
+      formatedHour.value = formatedHour.value + 0.5;
+
+    }
 
     print('${formatedTime.value} time value');
   }
+
   /*--------------------------first time picker --------------------------*/
   Rx<TimeOfDay> startselectedTime1 = TimeOfDay(hour: 00, minute: 00).obs;
   Rx<TimeOfDay> endselectedTime1 = TimeOfDay(hour: 00, minute: 00).obs;
@@ -129,22 +127,23 @@ class HomePageController extends GetxController {
   var formatedDoubleTime1 = '00'.obs;
   RxBool isFirstTimeSelected1 = false.obs;
   RxBool isSecondTimeSelected1 = false.obs;
-  RxInt formatedHour1 = 0.obs;
+  RxDouble formatedHour1 = 0.0.obs;
   RxInt formatedMinute1 = 0.obs;
 
   var formatedTime1 = 'Choose'.obs;
   updateNullTimeFisrt() {
     isTimeNull1.value = true;
-
   }
 
   void updateFormatedTimeFirst() {
     formatedDoubleTime1.value = hours.value.toStringAsFixed(2);
   }
+
   void setFloatingValueFirst() {
     floatingButton.value = true;
     print("floating button ${floatingButton.value}");
   }
+
   void setTimeFirst(TimeOfDay time, value) {
 // if value is true method called for first time piker
     if (value == true) {
@@ -166,7 +165,8 @@ class HomePageController extends GetxController {
     print(
         '${endselectedTime1.value.hour.obs} and ${startselectedTime1.value.hour.obs}');
 
-    var hour = (endselectedTime1.value.hour - startselectedTime1.value.hour).obs;
+    var hour =
+        (endselectedTime1.value.hour - startselectedTime1.value.hour).obs;
 
     print('${hour.value} hours');
     if (hour.value < 0) {
@@ -190,30 +190,32 @@ class HomePageController extends GetxController {
     }
 
     formatedTime1.value = "${hour}:${minute}";
-    formatedHour1= hour;
+    formatedHour1.value = hour.toDouble();
     formatedMinute1 = minute;
     print('${formatedTime1.value} time value');
+    if (formatedMinute1 == 30) {
+      formatedHour1.value = formatedHour1.value + 0.5;
+
+    }
   }
-    /*--------------------------second time picker --------------------------*/
+
+  /*--------------------------second time picker --------------------------*/
   Rx<TimeOfDay> startselectedTime2 = TimeOfDay(hour: 00, minute: 00).obs;
   Rx<TimeOfDay> endselectedTime2 = TimeOfDay(hour: 00, minute: 00).obs;
   RxBool isTimeNull2 = false.obs;
   var formatedDoubleTime2 = '00'.obs;
   var formatedTime2 = 'Choose'.obs;
-  RxInt formatedHour2 = 0.obs;
-  RxInt formatedMinute2= 0.obs;
-
+  RxDouble formatedHour2 = 0.0.obs;
+  RxInt formatedMinute2 = 0.obs;
 
   RxBool isFirstTimeSelected2 = false.obs;
   RxBool isSecondTimeSelected2 = false.obs;
   updateNullTimeSecond() {
     isTimeNull2.value = true;
-
   }
 
   void updateFormatedTimeSecond() {
     formatedDoubleTime2.value = hours.value.toStringAsFixed(2);
-
   }
 
   void setTimeSecond(TimeOfDay time, value) {
@@ -222,7 +224,7 @@ class HomePageController extends GetxController {
       startselectedTime2.value = time;
       var first = startselectedTime2.value.hour.obs;
       var second = startselectedTime2.value.minute.obs;
-      formatedDoubleTime2= "${first}:${second.value}".obs;
+      formatedDoubleTime2 = "${first}:${second.value}".obs;
       isFirstTimeSelected2.value = true;
     }
     // if value is true method called for first time piker
@@ -237,7 +239,8 @@ class HomePageController extends GetxController {
     print(
         '${endselectedTime2.value.hour.obs} and ${startselectedTime2.value.hour.obs}');
 
-    var hour = (endselectedTime2.value.hour - startselectedTime2.value.hour).obs;
+    var hour =
+        (endselectedTime2.value.hour - startselectedTime2.value.hour).obs;
 
     print('${hour.value} hours');
     if (hour.value < 0) {
@@ -261,16 +264,14 @@ class HomePageController extends GetxController {
     }
 
     formatedTime2.value = "${hour}:${minute}";
-    formatedHour2 = hour;
+    formatedHour2.value = hour.toDouble();
     formatedMinute2 = minute;
+    if (formatedMinute2 == 30) {
+      formatedHour2.value = formatedHour2.value + 0.5;
+
+    }
     print('${formatedTime2.value} time value');
   }
-
-
-
-
-
-
 
   var setSecurity;
 
@@ -285,18 +286,13 @@ class HomePageController extends GetxController {
 
   RxInt dropdownvalue = 0.obs;
   var selectedValue;
- // DropdownItem selectedValue = Get.put(DropdownItem(id: 0, title: '', charge: ''));
-
-
-
+  // DropdownItem selectedValue = Get.put(DropdownItem(id: 0, title: '', charge: ''));
 
   // *********************************Floating value**********************
   RxBool floatingButton = false.obs;
   RxInt floatingButtonValue = 0.obs;
   RxBool firstFloatingButton = false.obs;
   RxBool secondFloatingButton = false.obs;
-
-
 
 /*------------------------------- for first calender ----------------------*/
   RxString dateCount = ''.obs;
@@ -307,6 +303,7 @@ class HomePageController extends GetxController {
   var formattedDate = RxString('Choose Date');
   RxString startdateValue = ''.obs;
   RxString enddateValue = ''.obs;
+  Duration duration = Duration();
 
   RxBool isDateSelected = false.obs;
   void updateDate() {
@@ -315,11 +312,22 @@ class HomePageController extends GetxController {
 
   void onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     if (args.value is PickerDateRange) {
-      startdateValue.value = DateFormat('dd/MM/yyyy').format(args.value.startDate);
-      enddateValue.value = DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate);
+      startdateValue.value =
+          DateFormat('dd/MM/yyyy').format(args.value.startDate);
+      enddateValue.value = DateFormat('dd/MM/yyyy')
+          .format(args.value.endDate ?? args.value.startDate);
       range =
           '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} to ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}'
               .obs;
+      if (args.value is PickerDateRange) {
+        DateTime? startDate = args.value.startDate;
+        DateTime? endDate = args.value.endDate;
+
+        if (startDate != null && endDate != null) {
+          duration = endDate.difference(startDate);
+          print('Duration: ${duration.inDays} days');
+        }
+      }
     } else if (args.value is DateTime) {
       selectedDate = args.value.obs;
     } else if (args.value is List<DateTime>) {
@@ -338,20 +346,30 @@ class HomePageController extends GetxController {
   var formattedDate1 = RxString('Choose Date');
   RxString startdateValue1 = ''.obs;
   RxString enddateValue1 = ''.obs;
+  Duration duration1 = Duration();
 
   void updateDateFirst() {
-
     formattedDate1.value = range1.value;
-
   }
 
   void onSelectionChangedFirst(DateRangePickerSelectionChangedArgs args) {
     if (args.value is PickerDateRange) {
-      startdateValue1.value = DateFormat('dd/MM/yyyy').format(args.value.startDate);
-      enddateValue1.value = DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate);
+      startdateValue1.value =
+          DateFormat('dd/MM/yyyy').format(args.value.startDate);
+      enddateValue1.value = DateFormat('dd/MM/yyyy')
+          .format(args.value.endDate ?? args.value.startDate);
       range1 =
           '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} to ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}'
               .obs;
+      if (args.value is PickerDateRange) {
+        DateTime? startDate = args.value.startDate;
+        DateTime? endDate = args.value.endDate;
+
+        if (startDate != null && endDate != null) {
+          duration1 = endDate.difference(startDate);
+          print('Duration: ${duration1.inDays} days');
+        }
+      }
     } else if (args.value is DateTime) {
       selectedDate1 = args.value.obs;
     } else if (args.value is List<DateTime>) {
@@ -359,9 +377,8 @@ class HomePageController extends GetxController {
     } else {
       rangeCount1 = args.value.length.obs;
     }
-    print(range1);
+    print("range of first ${args.value}");
   }
-
 
 /*------------------------------- for third calender ----------------------*/
   RxString dateCount2 = ''.obs;
@@ -372,6 +389,7 @@ class HomePageController extends GetxController {
   var formattedDate2 = RxString('Choose Date');
   RxString startdateValue2 = ''.obs;
   RxString enddateValue2 = ''.obs;
+  Duration duration2 = Duration();
 
   void updateDateSecond() {
     formattedDate2.value = range2.value;
@@ -379,13 +397,23 @@ class HomePageController extends GetxController {
   }
 
   void onSelectionChangedSecond(DateRangePickerSelectionChangedArgs args) {
-
     if (args.value is PickerDateRange) {
-      startdateValue2.value = DateFormat('dd/MM/yyyy').format(args.value.startDate);
-      enddateValue2.value = DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate);
+      startdateValue2.value =
+          DateFormat('dd/MM/yyyy').format(args.value.startDate);
+      enddateValue2.value = DateFormat('dd/MM/yyyy')
+          .format(args.value.endDate ?? args.value.startDate);
       range2 =
           '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} to ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}'
               .obs;
+      if (args.value is PickerDateRange) {
+        DateTime? startDate = args.value.startDate;
+        DateTime? endDate = args.value.endDate;
+
+        if (startDate != null && endDate != null) {
+          duration2 = endDate.difference(startDate);
+          print('Duration: ${duration2.inDays} days');
+        }
+      }
     } else if (args.value is DateTime) {
       selectedDate2 = args.value.obs;
     } else if (args.value is List<DateTime>) {
@@ -397,7 +425,6 @@ class HomePageController extends GetxController {
   }
 
   RxBool isButtonTaped = false.obs;
-
 
   RxBool isButtonSelected = false.obs;
   RxBool isTimeSeelcted = false.obs;
@@ -452,14 +479,7 @@ class HomePageController extends GetxController {
     print(dateController.value.toString());
   }
 
-
-
   RxList Items = [].obs;
-
-
-
-
-
 
   Rx<Color> BackgroundSelectSecurityColor = Colors.white.obs;
   RxBool isSecurityButtonSelected = false.obs;
@@ -476,8 +496,6 @@ class HomePageController extends GetxController {
     formattedDate.value = formatted;
     print(formattedDate.value);
   }
-
-
 
   @override
   void onInit() {
@@ -547,18 +565,15 @@ class HomePageController extends GetxController {
         print('${Items.value} list ##############');
 
         for (int i = 0; i < ServicesData['services'].length; i++) {
-
           Items.value.add(DropdownItem(
             id: ServicesData['services'][i]['id'],
-              title:ServicesData['services'][i]['service_title'],
-            charge: ServicesData['services'][i]['charge'],  ));
-
-
+            title: ServicesData['services'][i]['service_title'],
+            charge: ServicesData['services'][i]['charge'],
+          ));
 
           //  print("Length ${ServicesData['services'][i]['service_title']}===========$i");
           //selectedValue= Items.first;
         }
-
 
         print('${Items.value} list');
       } else {
@@ -574,13 +589,10 @@ class HomePageController extends GetxController {
   void SetValue(value) {
     selectedValue = value;
 
-
     validator.value = true;
     print(validator.value);
 
-
     isSecurityChoosed.value = true;
-
   }
 }
 

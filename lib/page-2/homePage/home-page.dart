@@ -121,8 +121,10 @@ class Home extends StatelessWidget {
                                       },
 
                                       onFieldSubmitted: (value) {
-                                       homePageController.searchController.value.text = value;
-                                       print(homePageController.searchController.value.text);
+                                        homePageController.searchController
+                                            .value.text = value;
+                                        print(homePageController
+                                            .searchController.value.text);
                                         if (homePageController.searchController
                                                 .value.text.isEmpty ||
                                             homePageController.searchController
@@ -130,7 +132,6 @@ class Home extends StatelessWidget {
                                                 null) {
                                           if (_formKey.currentState!
                                               .validate()) {
-
                                             homePageController
                                                 .textSubmitted.value = false;
                                             homePageController
@@ -1136,45 +1137,8 @@ class Home extends StatelessWidget {
                                     TextButton(
                                       // frame30zTB (274:456)
                                       onPressed: () {
-                                        print(
-                                            '${homePageController.searchController.value} , '
-                                            '${homePageController.formattedDate.value} '
-                                            ' ${homePageController.formatedTime.value},'
-                                            ' ${homePageController.selectedValue}'
-                                            ' ${homePageController.startselectedTime.value}  '
-                                            '${homePageController.endselectedTime.value}  '
-                                            '${homePageController.dateController.value}');
-
                                         homePageController.setFloatingValue();
 
-                                        homePageController.isTimeNull.value =
-                                            false;
-
-                                        homePageController
-                                            .isSecurityChoosed.value = false;
-                                        homePageController.textSubmitted.value =
-                                            false;
-                                        homePageController
-                                            .isDateSelected.value = false;
-
-                                        //homePageController.selectedValue.id = null;
-                                        homePageController.formattedDate.value =
-                                            'Choose Date';
-                                        homePageController
-                                            .isFirstTimeSelected.value = false;
-                                        homePageController
-                                            .isSecondTimeSelected.value = false;
-                                        homePageController
-                                            .firstFloatingButton.value = false;
-                                        homePageController
-                                            .secondFloatingButton.value = false;
-                                        homePageController
-                                            .floatingButtonValue.value = 0;
-                                        homePageController
-                                            .floatingButton.value = false;
-                                        homePageController.validator.value =
-                                            false;
-                                        print('@@@@@@@@@@@@@@@${homePageController.endselectedTime2.value.hour.toString()}');
 
                                         Navigator.pushReplacement(
                                             context,
@@ -1226,6 +1190,7 @@ class Home extends StatelessWidget {
                       ),
                       SizedBox(width: 10 * fem),
                       FloatingActionButton(
+                        heroTag: null,
                         backgroundColor: Colors.white,
                         onPressed: () {
                           print(homePageController.floatingButtonValue);
@@ -1237,7 +1202,6 @@ class Home extends StatelessWidget {
                             homePageController.secondFloatingButton.value =
                                 true;
                             homePageController.floatingButtonValue++;
-
                           } else if (homePageController
                                   .floatingButtonValue.value ==
                               2)
@@ -1247,28 +1211,32 @@ class Home extends StatelessWidget {
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   title: const Center(child: Text('Alert!')),
-                                  content:
-                                      Container(
-                                        height: 100*fem,
-                                        child: Column(
-                                          children: [
-                                            const Text('For large booking please call\n Raynet on ',textAlign: TextAlign.center,style: TextStyle(
-                                              fontSize: 16,fontWeight: FontWeight.w500
-                                            ),),
-                                            TextButton(onPressed: (){}, child: const Text('02086371406'))
-                                          ],
+                                  content: Container(
+                                    height: 100 * fem,
+                                    child: Column(
+                                      children: [
+                                        const Text(
+                                          'For large booking please call\n Raynet on ',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500),
                                         ),
-                                      ),
+                                        TextButton(
+                                            onPressed: () {},
+                                            child: const Text('02086371406'))
+                                      ],
+                                    ),
+                                  ),
                                   actions: <Widget>[
                                     Center(
-                                      child: ElevatedButton(style: ElevatedButton.styleFrom(
-                                        backgroundColor: ThemeColortDark
-                                      ),
-
-
-                                        child: const Text('OK',style: TextStyle(
-                                          color: Colors.white
-                                        ),),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: ThemeColortDark),
+                                        child: const Text(
+                                          'OK',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                         onPressed: () {
                                           Navigator.of(context)
                                               .pop(); // Close the dialog
@@ -1385,11 +1353,9 @@ class Home extends StatelessWidget {
               height: 34,
               margin: EdgeInsets.only(top: 10),
               child: ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: ThemeColortDark),
                   onPressed: () {
-
-
                     if (homePageController.isFirstTimeSelected.value == false ||
                         homePageController.isSecondTimeSelected.value ==
                             false) {
@@ -1400,13 +1366,15 @@ class Home extends StatelessWidget {
                       homePageController.isTimeNull.value = false;
                       if (homePageController.isTimeNull.value == false)
                         Navigator.pop(context);
-
                     }
                   },
                   //   },
                   child: Text(
                     'Submit',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Colors.white),
                   )),
             )
           ],
@@ -1456,8 +1424,8 @@ class Home extends StatelessWidget {
               height: 34,
               margin: EdgeInsets.only(top: 10),
               child: ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: ThemeColortDark),
                   onPressed: () {
                     print(
                         '${homePageController.isFirstTimeSelected.value} value ${homePageController.isSecondTimeSelected.value}');
@@ -1475,7 +1443,10 @@ class Home extends StatelessWidget {
                   //   },
                   child: Text(
                     'Submit',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Colors.white),
                   )),
             )
           ],
@@ -1525,8 +1496,8 @@ class Home extends StatelessWidget {
               height: 34,
               margin: EdgeInsets.only(top: 10),
               child: ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: ThemeColortDark),
                   onPressed: () {
                     print(
                         '${homePageController.isFirstTimeSelected2.value} value ${homePageController.isSecondTimeSelected2.value}');
@@ -1545,7 +1516,10 @@ class Home extends StatelessWidget {
                   //   },
                   child: Text(
                     'Submit',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Colors.white),
                   )),
             )
           ],
@@ -1588,6 +1562,7 @@ class Home extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.only(top: 10, right: 40, left: 40),
+      color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -1609,7 +1584,8 @@ class Home extends StatelessWidget {
                 width: 65,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: ThemeColortDark)),
+                    border: Border.all(color: ThemeColortDark),
+                    color: Colors.white),
                 child: Center(
                   child: Text(
                     hour.hour.toString() + ':' + hour.minute.toString(),

@@ -24,13 +24,7 @@ class NextPageButton extends StatelessWidget {
       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5 * fem),
 
       child: TextButton(
-        onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => function,));
-
-
-
-
-        },
+        onPressed:function,
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
         ),

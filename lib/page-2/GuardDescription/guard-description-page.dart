@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/NextPageButtonModal.dart';
 import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/page-2/GuardDescription/GuardDescriptionController.dart';
 import 'package:myapp/page-2/HomeScreen/HomeScreen.dart';
 import 'package:myapp/page-2/Payment/payment-page.dart';
 import 'package:myapp/page-2/notification-list.dart';
 import 'package:myapp/utils.dart';
 
 class GuardDescription extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    GuardDescriptionController _controller = Get.put(GuardDescriptionController());
     double baseWidth = 393;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -824,10 +829,14 @@ class GuardDescription extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
 
-                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Cancel',function: Homescreen(selectedIndexValue: 0),BGColor: ThemeColorChatColor,),
+                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Cancel',function:(){
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  Homescreen(selectedIndexValue: 0,)));
+                    },BGColor: ThemeColorChatColor,),
                     NextPageButton(
 
-                      fem: fem, ffem: ffem,buttonText: 'Hire Now',function: PaymentPage(),BGColor: ThemeColortDark,),
+                      fem: fem, ffem: ffem,buttonText: 'Hire Now',function: (){
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  PaymentPage()));
+                    },BGColor: ThemeColortDark,),
                   ],
                 ),
               ),

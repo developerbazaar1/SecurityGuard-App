@@ -13,6 +13,7 @@ Color ThemeColorAppbarUnderline = Color(0xff3A3A3A);
 Color ThemeColorBackgroundBottomsheet = Color(0xffDFF4FF);
 Color ThemeColorBackgroundSelectSecurity = Color(0xff9ADDFF);
 Color ThemeColorChatColor = Color(0xff666668);
+Color ThemeColorBottomBorder = Color(0xffA0A0A0);
 var currency = '£';
 var defaultImageUrl = 'assets/page-2/images/Default Profile.png';
 

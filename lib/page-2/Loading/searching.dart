@@ -8,7 +8,7 @@ import 'package:myapp/page-2/ConfirmDetails/ConfirmDetails.dart';
 import 'package:myapp/Modals/NextPageButtonModal.dart';
 import 'package:myapp/Modals/constants.dart';
 import 'package:myapp/page-2/Loading/LoadingController.dart';
-import 'package:myapp/page-2/guard-description-page.dart';
+import 'package:myapp/page-2/GuardDescription/guard-description-page.dart';
 import 'package:myapp/page-2/notification-list.dart';
 import 'package:myapp/utils.dart';
 
