@@ -16,21 +16,33 @@ import 'package:myapp/utils.dart';
 import 'EditProfileController.dart';
 
 class ProfileUpdatePage extends StatelessWidget {
-  final ProfileImageController profileImageController = Get.put(ProfileImageController());
+  final String name, email, phone, address;
+  var image;
 
-  var _image;
-  final picker = ImagePicker();
-  @override
+  ProfileUpdatePage(
+      {super.key,
+      required this.name,
+      required this.email,
+      required this.phone,
+      required this.address,
+      this.image});
+
   Widget build(BuildContext context) {
+    final ProfileImageController profileImageController =
+        Get.put(ProfileImageController(name: name, address: address, phone:phone ));
 
-
+    final picker = ImagePicker();
+    @override
     double baseWidth = 393;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    print('this is $image');
     return Scaffold(
+
+
       appBar: Appbar(context, fem),
       body: Container(
-        // profileupdatepageAjK (303:2128)
+
         padding: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -42,7 +54,8 @@ class ProfileUpdatePage extends StatelessWidget {
             children: [
               Container(
                 // frame63Mcm (303:2129)
-                margin: EdgeInsets.fromLTRB(14 * fem, 0 * fem, 14 * fem, 0 * fem),
+                margin:
+                    EdgeInsets.fromLTRB(14 * fem, 0 * fem, 14 * fem, 0 * fem),
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,21 +114,50 @@ class ProfileUpdatePage extends StatelessWidget {
                               children: [
                                 Align(
                                   alignment: Alignment.center,
-                                  child: SizedBox(
-                                    width: 100 * fem,
-                                    height: 100 * fem,
-                                    child: Obx(() => Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(50 * fem),
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: profileImageController.profileImagePath.value.isEmpty?AssetImage('assets/page-1/images/ellipse-3-bg.png'):FileImage(File(profileImageController.profileImagePath.value)) as ImageProvider
+                                  child: Obx(
+                                        () {
+                                      final selectedImage = profileImageController.profileImagePath.value;
+                                      return selectedImage != null
+                                          ?  Container(
+                                        // ellipse3AK3 (303:2127)
+                                        margin: EdgeInsets.fromLTRB(
+                                            0 * fem, 0 * fem, 25 * fem, 0 * fem),
+                                        width: 100 * fem,
+                                        height: 100 * fem,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(50 * fem),
+                                          image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image:
 
+                                              FileImage(selectedImage)
 
+                                          ),
                                         ),
-                                      ),
-                                    )),
+                                      )
+
+
+                                      // Container(
+                                      //
+                                      //   decoration: BoxDecoration(
+                                      //     color: Colors.red,
+                                      //     shape: BoxShape.circle,
+                                      //     image: DecorationImage(
+                                      //       fit: BoxFit.cover,
+                                      //       image: FileImage(selectedImage),
+                                      //
+                                      //     )
+                                      //   ),)
+
+
+
+                                          : image==''?Image.asset(defaultImageUrl,height: 100,width: 100,):Image.network(image);
+                                        },
+
+
+
+
+
                                   ),
                                 ),
                                 Container(
@@ -132,11 +174,14 @@ class ProfileUpdatePage extends StatelessWidget {
                                                   child: Wrap(
                                                     children: [
                                                       ListTile(
-                                                        leading: Icon(
-                                                            Icons.photo_library),
+                                                        leading: Icon(Icons
+                                                            .photo_library),
                                                         title: Text('Gallery'),
                                                         onTap: () {
-                                                          profileImageController.pickImage(ImageSource.gallery);
+                                                          profileImageController
+                                                              .pickImage(
+                                                                  ImageSource
+                                                                      .gallery);
                                                           Get.back();
                                                         },
                                                       ),
@@ -145,7 +190,10 @@ class ProfileUpdatePage extends StatelessWidget {
                                                             Icons.camera_alt),
                                                         title: Text('Camera'),
                                                         onTap: () {
-                                                          profileImageController.pickImage(ImageSource.camera);
+                                                          profileImageController
+                                                              .pickImage(
+                                                                  ImageSource
+                                                                      .camera);
                                                           Get.back();
                                                         },
                                                       ),
@@ -170,8 +218,6 @@ class ProfileUpdatePage extends StatelessWidget {
                               ],
                             ),
                           ),
-
-
                         ],
                       ),
                     ),
@@ -190,7 +236,6 @@ class ProfileUpdatePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  // namenmw (303:2257)
                                   margin: EdgeInsets.fromLTRB(
                                       10 * fem, 0 * fem, 0 * fem, 5 * fem),
                                   child: Text(
@@ -205,23 +250,41 @@ class ProfileUpdatePage extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  // frame16tKB (303:2275)
+                                  height: 42*fem,
                                   padding: EdgeInsets.fromLTRB(
-                                      15 * fem, 10 * fem, 15 * fem, 10 * fem),
+                                      15 * fem, 0 * fem, 15 * fem, 0 * fem),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: Color(0xffdff4ff),
-                                    borderRadius: BorderRadius.circular(20 * fem),
+                                    borderRadius:
+                                        BorderRadius.circular(20 * fem),
                                   ),
-                                  child: Text(
-                                    'Allyson Rollins',
-                                    style: SafeGoogleFont(
-                                      'Nunito',
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.3625 * ffem / fem,
-                                      color: Color(0xff000000),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      contentPadding: EdgeInsets.only(bottom: 5),
+
+
                                     ),
+
+                                  controller: profileImageController.nameController.value,
+                                    style: SafeGoogleFont(
+                                          'Nunito',
+                                          fontSize: 16 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.3625 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
+
+                                  //   name==null||name==''?'':name,
+                                  //   style: SafeGoogleFont(
+                                  //     'Nunito',
+                                  //     fontSize: 16 * ffem,
+                                  //     fontWeight: FontWeight.w400,
+                                  //     height: 1.3625 * ffem / fem,
+                                  //     color: Color(0xff000000),
+                                  //   ),
+                                  // )
                                   ),
                                 ),
                               ],
@@ -237,8 +300,6 @@ class ProfileUpdatePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-
-
                                   margin: EdgeInsets.fromLTRB(
                                       10 * fem, 0 * fem, 0 * fem, 5 * fem),
                                   child: Text(
@@ -259,10 +320,12 @@ class ProfileUpdatePage extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: Color(0xffdff4ff),
-                                    borderRadius: BorderRadius.circular(20 * fem),
+                                    borderRadius:
+                                        BorderRadius.circular(20 * fem),
                                   ),
                                   child: Text(
-                                    'allyson@gmail.com',
+                                    email==null||email==''?'':email
+                                    ,
                                     style: SafeGoogleFont(
                                       'Nunito',
                                       fontSize: 16 * ffem,
@@ -302,14 +365,22 @@ class ProfileUpdatePage extends StatelessWidget {
                                 Container(
                                   // frame16ajj (303:2285)
                                   padding: EdgeInsets.fromLTRB(
-                                      15 * fem, 10 * fem, 15 * fem, 10 * fem),
+                                      15 * fem, 0 * fem, 15 * fem, 0 * fem),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: Color(0xffdff4ff),
-                                    borderRadius: BorderRadius.circular(20 * fem),
+                                    borderRadius:
+                                        BorderRadius.circular(20 * fem),
                                   ),
-                                  child: Text(
-                                    '90009-90009',
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      contentPadding: EdgeInsets.only(bottom: 5),
+
+
+                                    ),
+
+                                    controller: profileImageController.phoneController.value,
                                     style: SafeGoogleFont(
                                       'Nunito',
                                       fontSize: 16 * ffem,
@@ -317,6 +388,16 @@ class ProfileUpdatePage extends StatelessWidget {
                                       height: 1.3625 * ffem / fem,
                                       color: Color(0xff000000),
                                     ),
+
+                                    //   name==null||name==''?'':name,
+                                    //   style: SafeGoogleFont(
+                                    //     'Nunito',
+                                    //     fontSize: 16 * ffem,
+                                    //     fontWeight: FontWeight.w400,
+                                    //     height: 1.3625 * ffem / fem,
+                                    //     color: Color(0xff000000),
+                                    //   ),
+                                    // )
                                   ),
                                 ),
                               ],
@@ -334,10 +415,10 @@ class ProfileUpdatePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-
                                       margin: EdgeInsets.fromLTRB(
                                           10 * fem, 0 * fem, 0 * fem, 5 * fem),
                                       child: Text(
@@ -351,62 +432,85 @@ class ProfileUpdatePage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    IconButton(onPressed: (){
-                                      showDialog(context: context, builder: (context) {
-                                        return AlertDialog(
-                                          title: Text("Enter Address :"),
-                                          actions: [
-
-                                            Container(
-                                                margin:EdgeInsets.only(bottom: 20),
-                                              padding:EdgeInsets.only(bottom: 0,left: 10),
-
-                                              decoration: BoxDecoration(
-
-                                                borderRadius: BorderRadius.circular(20 * fem),
-                                                color:ThemeColorBackgroundBottomsheet,
-                                              ),
-
-
-
-                                                child: TextFormField(
-                                                  controller: profileImageController.addressController.value,
-
-                                                  maxLines: 3,
-
-                                                  decoration: InputDecoration(
-                                                    border: InputBorder.none
-                                                  ),
-                                                )),
-                                            Center(child: ElevatedButton(onPressed: (){
-                                              profileImageController.updateAddress(profileImageController.addressController.value);
-                                              Navigator.pop(context);
-                                            }, child: Text('Submit')))
-                                          ],
-
-                                        );
-
-                                      },);
-                                    }, icon: Icon(Icons.edit_outlined,color: ThemeColortDark,)),
-
+                                    IconButton(
+                                        onPressed: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                title: Text("Enter Address :"),
+                                                actions: [
+                                                  Container(
+                                                      margin: EdgeInsets.only(
+                                                          bottom: 20),
+                                                      padding: EdgeInsets.only(
+                                                          bottom: 0, left: 10),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    20 * fem),
+                                                        color:
+                                                            ThemeColorBackgroundBottomsheet,
+                                                      ),
+                                                      child: TextFormField(
+                                                        controller:
+                                                            profileImageController
+                                                                .addressController
+                                                                .value,
+                                                        maxLines: 3,
+                                                        decoration:
+                                                            InputDecoration(
+                                                                border:
+                                                                    InputBorder
+                                                                        .none),
+                                                      )),
+                                                  Center(
+                                                      child: ElevatedButton(
+                                                          onPressed: () {
+                                                            profileImageController
+                                                                .updateAddress(
+                                                                    profileImageController
+                                                                        .addressController
+                                                                        .value);
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child:
+                                                              Text('Submit')))
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.edit_outlined,
+                                          color: ThemeColortDark,
+                                        )),
                                   ],
                                 ),
                                 Container(
                                   height: 60,
-                                  // frame16ajj (303:2285)
+
                                   padding: EdgeInsets.fromLTRB(
                                       15 * fem, 10 * fem, 15 * fem, 10 * fem),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: Color(0xffdff4ff),
-                                    borderRadius: BorderRadius.circular(20 * fem),
+                                    borderRadius:
+                                        BorderRadius.circular(20 * fem),
                                   ),
-                                  child: Obx(() {
+                                  child: TextFormField(
+                                    readOnly: true,
+                                    decoration: InputDecoration(
+
+                                      border: InputBorder.none,
+                                      contentPadding: EdgeInsets.only(bottom: 5),
 
 
-                                    return Text(
-                                    profileImageController.addressController.value==null||profileImageController.addressController.value.text==''?
-                                    'Market Pl, Romsey SO51 8NB, United Kingdom':profileImageController.addressController.value.text,
+                                    ),
+
+                                    controller: profileImageController.addressController.value,
                                     style: SafeGoogleFont(
                                       'Nunito',
                                       fontSize: 16 * ffem,
@@ -414,9 +518,18 @@ class ProfileUpdatePage extends StatelessWidget {
                                       height: 1.3625 * ffem / fem,
                                       color: Color(0xff000000),
                                     ),
-                                  );},
-                                ),)
 
+                                    //   name==null||name==''?'':name,
+                                    //   style: SafeGoogleFont(
+                                    //     'Nunito',
+                                    //     fontSize: 16 * ffem,
+                                    //     fontWeight: FontWeight.w400,
+                                    //     height: 1.3625 * ffem / fem,
+                                    //     color: Color(0xff000000),
+                                    //   ),
+                                    // )
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -425,15 +538,21 @@ class ProfileUpdatePage extends StatelessWidget {
                     ),
                     Container(
                       // frame30KUM (303:2296)
-                      margin:
-                          EdgeInsets.fromLTRB(6 * fem, 0 * fem, 6 * fem, 0 * fem),
-                      child: TextButton(
+                      margin: EdgeInsets.fromLTRB(
+                          6 * fem, 0 * fem, 6 * fem, 0 * fem),
+                      child:profileImageController.isLoading.value==true?Center(child: CircularProgressIndicator(),): TextButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProfileUpdated(),
-                              ));
+                          var path = profileImageController.profileImagePath.value;
+                          var _image;
+
+                          profileImageController.profileImagePath.value!=null?
+                          _image= profileImageController.profileImagePath.value!.path:
+                          _image = image;
+
+
+
+
+                          profileImageController.UpdateProfileAPI(_image);
                         },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -483,42 +602,44 @@ class ProfileUpdatePage extends StatelessWidget {
         child: Container(
             decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(
-                    color: ThemeColorAppbarUnderline, // Choose your border color
-                    width: 1.0, // Choose the border width
-                  ),
-                ))),
+          bottom: BorderSide(
+            color: ThemeColorAppbarUnderline, // Choose your border color
+            width: 1.0, // Choose the border width
+          ),
+        ))),
       ),
       backgroundColor: Colors.white,
       elevation: 8,
-      leadingWidth: 70*fem,
-      title:Container(
-        margin: EdgeInsets.only(left: 0,top: 5,bottom: 5),
+      leadingWidth: 70 * fem,
+      title: Container(
+        margin: EdgeInsets.only(left: 0, top: 5, bottom: 5),
         child: Image(
           image: AssetImage('assets/page-2/images/logo.png'),
           height: 40,
           width: 52.35,
-        ),),
-
-
+        ),
+      ),
       leading: IconButton(
-        onPressed: (){
+        onPressed: () {
           Navigator.pop(context);
-        }
-        ,icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
-      ) ,
-
-
-
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.black,
+        ),
+      ),
       actions: [
-        IconButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationList()));
-        }, icon:  Image(
-          image: AssetImage('assets/page-2/images/notification.png'),
-          height: 30,
-          width: 30,
-        ),),
-
+        IconButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NotificationList()));
+          },
+          icon: Image(
+            image: AssetImage('assets/page-2/images/notification.png'),
+            height: 30,
+            width: 30,
+          ),
+        ),
         SizedBox(
           width: 30 * fem,
         ),

@@ -31,10 +31,18 @@ void main() async {
   runApp(
 
     GetMaterialApp(
-
+      title: 'Raynet Security',
       theme: ThemeData(
-        primarySwatch: primeColor,
-      ),
+        useMaterial3: true,
+
+
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: primeColor,
+          // ···
+          brightness: Brightness.light,
+        ),),
+
+
       debugShowCheckedModeBanner: false,
       initialRoute: '/splash',
 

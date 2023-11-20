@@ -118,7 +118,7 @@ class PaymentPage extends StatelessWidget {
                                         left: 1*fem,
                                         top: 0*fem,
                                         child: Container(
-                                          width: 151*fem,
+                                          width: MediaQuery.of(context).size.width,
                                           height: 22*fem,
                                           child: Row(
                                             crossAxisAlignment: CrossAxisAlignment.center,

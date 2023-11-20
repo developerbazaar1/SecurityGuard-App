@@ -10,7 +10,10 @@ import '../../main.dart';
 class ProfileController extends GetxController {
   RxMap LogoutData = Map().obs;
   RxMap ProfileData = Map().obs;
+  RxMap GetPageData = Map().obs;
   RxBool isLoading = false.obs;
+  RxInt GetPagesLength = 0.obs;
+
 
   void LogOutAPI() async {
     try {
@@ -55,33 +58,59 @@ print(e);
   @override
   void onInit() {
     ProfileAPI();
+    GetPagesAPI();
     super.onInit();
   }
   void ProfileAPI()async{
+
     try{
       var headers = {
-        'Authorization': 'Bearer Bearer ${tokenStorage.token}'
+        'Authorization': 'Bearer Bearer ${globalusertoken}'
       };
       var request = http.Request('GET', Uri.parse('http://pragya.dbtechserver.online/security/api/get-user'));
 
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
-      var data = await response.stream.bytesToString();
+     var data = await response.stream.bytesToString();
+     ProfileData.value = jsonDecode(data);
 
 
       if (response.statusCode == 200) {
-        ProfileData.value = jsonDecode(data);
-        print(data);
+        print(ProfileData.value);
 
       }
       else {
         print(response.reasonPhrase);
       }
 
+
     }catch(e){
       print(e);
     }
 
+  }
+  void GetPagesAPI()async{
+    try{
+      var request = http.Request('GET', Uri.parse('$APIurl/api/get-pages?limit=10&offset=0'));
+
+
+      http.StreamedResponse response = await request.send();
+      var data = await response.stream.bytesToString();
+      GetPageData.value = jsonDecode(data);
+
+      if (response.statusCode == 200) {
+        GetPagesLength.value=  GetPageData.value['pages'].length;
+        print(GetPagesLength.value);
+      }
+      else {
+        print(response.reasonPhrase);
+      }
+
+
+
+    }catch(e){
+      print(e);
+    }
   }
 }

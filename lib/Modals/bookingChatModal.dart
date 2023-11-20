@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/Modals/constants.dart';
 import 'package:myapp/page-2/booking-details.dart';
-import 'package:myapp/page-2/bookingDetails.dart';
+import 'package:myapp/page-2/Booking/BookingDetails/bookingDetails.dart';
 import 'package:myapp/utils.dart';
 class bookingChatModal extends StatelessWidget {
   const bookingChatModal({
@@ -13,22 +14,24 @@ class bookingChatModal extends StatelessWidget {
     required this.status,
     required this.statusColor,
     required this.image,
-    required this.date,   required this.statusheight, required this.textColor,
+    required this.date,   required this.statusheight, required this.textColor, required this.id,
 
   });
 
   final double fem;
   final double ffem;
   final int statusheight;
-  final String name, duration, time, status, image, date;
+  final String name, duration, time, status, image, date,id;
   final Color statusColor,textColor;
 
   @override
   Widget build(BuildContext context) {
+
     return TextButton(
       // component11jhT (605:1869)
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>bookingDetails(name: name, image: image,) ,));
+
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>bookingDetails(name: name, image: image,id: id,) ,));
       },
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,
@@ -136,6 +139,21 @@ class bookingChatModal extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         height: 1.3625 * ffem / fem,
                         color: Color(0xff898989),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // mminsbeforeSGR (I605:1869;605:309)
+                    margin: EdgeInsets.fromLTRB(
+                        0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                    child: Text(
+                      status,
+                      style: SafeGoogleFont(
+                        'Noto Sans',
+                        fontSize: 12 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.3625 * ffem / fem,
+                        color: ThemeColortDark,
                       ),
                     ),
                   ),

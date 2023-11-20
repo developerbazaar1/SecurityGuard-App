@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/DashedBorderPainter.dart';
 import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/page-2/Help&Support/Help&SupportController.dart';
 import 'package:myapp/page-2/HomeScreen/HomeScreen.dart';
 
 import 'package:myapp/utils.dart';
 
-import 'notification-list.dart';
+import '../notification-list.dart';
 
 class HelpSupport extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    HelpSupportController _controller = Get.put(HelpSupportController());
     double baseWidth = 393;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -180,19 +184,42 @@ class HelpSupport extends StatelessWidget {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        // writeusPSy (471:233)
-                                        margin: EdgeInsets.fromLTRB(19.22*fem, 0*fem, 0*fem, 5.5*fem),
-                                        child: Text(
-                                          'Write Us',
-                                          style: SafeGoogleFont (
-                                            'Noto Sans',
-                                            fontSize: 14*ffem,
-                                            fontWeight: FontWeight.w600,
-                                            height: 1.3625*ffem/fem,
-                                            color: Color(0xff000000),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            // writeusPSy (471:233)
+                                            margin: EdgeInsets.fromLTRB(19.22*fem, 0*fem, 0*fem, 5.5*fem),
+                                            child: Text(
+                                              'Write Us',
+                                              style: SafeGoogleFont (
+                                                'Noto Sans',
+                                                fontSize: 14*ffem,
+                                                fontWeight: FontWeight.w600,
+                                                height: 1.3625*ffem/fem,
+                                                color: Color(0xff000000),
+                                              ),
+                                            ),
                                           ),
-                                        ),
+
+                                          Obx(() {
+                                            return _controller.errorValue.value ==true?
+                                            Container(
+                                                margin: EdgeInsets.only(right: 10),
+                                                child: Text('* Please enter message',style: TextStyle(
+                                                  color: ThemeColorError,
+
+
+
+                                                  fontFamily:' Nunito',
+                                                  fontSize: 12,
+
+                                                  fontWeight: FontWeight.w700,
+                                                  // Customize the error text font size
+                                                ),))
+                                                :SizedBox();
+                                          })
+                                        ],
                                       ),
                                       Container(
                                         // group504JD (471:230)
@@ -205,6 +232,7 @@ class HelpSupport extends StatelessWidget {
                                           borderRadius: BorderRadius.circular(10*fem),
                                         ),
                                         child: TextFormField(
+                                          controller: _controller.messageController.value,
                                           maxLines: 5,
                                           style:  SafeGoogleFont (
                                             'Nunito',
@@ -231,40 +259,50 @@ class HelpSupport extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                TextButton(
-                                  // frame32h6H (471:234)
-                                  onPressed: () {
-                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen(selectedIndexValue: 0),));
-                                  },
-                                  style: TextButton.styleFrom (
-                                    padding: EdgeInsets.zero,
-                                  ),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 53*fem,
-                                    decoration: BoxDecoration (
-                                      color: Color(0xff000000),
-                                      borderRadius: BorderRadius.circular(10*fem),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'Submit',
-                                        textAlign: TextAlign.center,
-                                        style: SafeGoogleFont (
-                                          'Nunito',
-                                          fontSize: 24*ffem,
-                                          fontWeight: FontWeight.w600,
+                                Obx(() {
 
-                                          height: 1.3625*ffem/fem,
-                                          color: Color(0xffffffff),
+                                  return _controller.isLoading.value==true?Center(child: CircularProgressIndicator(),):TextButton(
+                                    // frame32h6H (471:234)
+                                    onPressed: () {
+                                      if(_controller.messageController.value.text.isEmpty||_controller.messageController.value.text==null){
+                                        _controller.errorValue.value = true;
+                                      }else{
+                                        _controller.HelpSupportAPI();
+                                        _controller.errorValue.value = false;
+                                      }
+
+                                    },
+                                    style: TextButton.styleFrom (
+                                      padding: EdgeInsets.zero,
+                                    ),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 53*fem,
+                                      decoration: BoxDecoration (
+                                        color: Color(0xff000000),
+                                        borderRadius: BorderRadius.circular(10*fem),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          'Submit',
+                                          textAlign: TextAlign.center,
+                                          style: SafeGoogleFont (
+                                            'Nunito',
+                                            fontSize: 24*ffem,
+                                            fontWeight: FontWeight.w600,
+
+                                            height: 1.3625*ffem/fem,
+                                            color: Color(0xffffffff),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                }),
                               ],
                             ),
                           ),
+
                         ],
                       ),
                     ),

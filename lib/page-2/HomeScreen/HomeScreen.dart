@@ -7,7 +7,7 @@ import 'package:myapp/page-2/Profile/profilePage.dart';
 import 'package:myapp/page-2/profile-page.dart';
 
 
-import '../booking.dart';
+import '../Booking/booking.dart';
 import '../chats.dart';
 import '../homePage/home-page.dart';
 

@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/DashedBorderPainter.dart';
 import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/page-2/GetPages/GetPagesController.dart';
 import 'package:myapp/utils.dart';
 
-import 'notification-list.dart';
+import '../notification-list.dart';
 
-class TermsCondition extends StatelessWidget {
+class GetPageScreen extends StatelessWidget {
+
+
+   GetPageScreen({super.key,required this.id });
+   final int id ;
   @override
   Widget build(BuildContext context) {
+    GetPagesController _controller = Get.put(GetPagesController(id: id));
     double baseWidth = 393;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
       appBar: Appbar(context, fem),
 
-      body: Container(
+      body:_controller.GetPageData.value.isEmpty?Center(child: CircularProgressIndicator(),): Container(
         padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0*fem),
         width: double.infinity,
         decoration: BoxDecoration (
@@ -47,7 +54,7 @@ class TermsCondition extends StatelessWidget {
                       child: Center(
                         child: Text(
                           // termsconditionsLL1 (319:2224)
-                          'Terms & Conditions',
+                          _controller.GetPageData.value['page'][0]['page_name'],
                           style: SafeGoogleFont (
                             'Noto Sans',
                             fontSize: 24*ffem,
@@ -100,7 +107,7 @@ class TermsCondition extends StatelessWidget {
                               ),
                               children: [
                                 TextSpan(
-                                  text: 'Terms & Condition:\n\n',
+                                  text: _controller.GetPageData.value['page'][0]['page_name']+':\n\n',
                                   style: SafeGoogleFont (
                                     'Nunito',
                                     fontSize: 20*ffem,
@@ -110,7 +117,7 @@ class TermsCondition extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: 'Lorem ipsum dolor sit amet consectetur. Tincidunt mi justo eget ac amet lacus dolor cursus in. Aliquam condimentum consequat ut consectetur. Sapien interdum pulvinar enim tincidunt sit. Ut laoreet amet nec elementum vel proin facilisi pellentesque. Duis sit sit turpis ornare euismod elementum leo sapien. Et risus tempor eget donec. Arcu commodo fringilla facilisi nunc egestas. Leo ut posuere mauris amet amet nibh fames posuere. Amet nec sociis ornare commodo nascetur eu vitae proin. Mauris neque enim elementum vel nullam nunc laoreet elementum.\n\n',
+                                  text: _controller.GetPageData.value['page'][0]['page_description'],
                                   style: SafeGoogleFont (
                                     'Noto Sans',
                                     fontSize: 16*ffem,
@@ -119,16 +126,7 @@ class TermsCondition extends StatelessWidget {
                                     color: Color(0xff000000),
                                   ),
                                 ),
-                                TextSpan(
-                                  text: 'Lorem ipsum dolor sit amet consectetur. Tincidunt mi justo eget ac amet lacus dolor cursus in. Aliquam condimentum consequat ut consectetur. ',
-                                  style: SafeGoogleFont (
-                                    'Noto Sans',
-                                    fontSize: 18*ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.3625*ffem/fem,
-                                    color: Color(0xff000000),
-                                  ),
-                                ),
+
                               ],
                             ),
                           ),

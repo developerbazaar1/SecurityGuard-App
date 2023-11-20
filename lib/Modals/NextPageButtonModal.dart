@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 class NextPageButton extends StatelessWidget {
-  const NextPageButton({
+   NextPageButton({
     super.key,
     required this.fem,
-    required this.ffem, required this.buttonText, this.function, required this.BGColor,
+    required this.ffem, required this.buttonText, this.function, required this.BGColor
   });
 
   final double fem;
@@ -12,6 +12,8 @@ class NextPageButton extends StatelessWidget {
   final String buttonText;
   final dynamic function;
   final Color BGColor;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,9 @@ class NextPageButton extends StatelessWidget {
       child: TextButton(
         onPressed: () {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => function,));
+
+
+
 
         },
         style: TextButton.styleFrom(

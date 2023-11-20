@@ -487,7 +487,7 @@ class GuardDescription extends StatelessWidget {
                                 Container(
                                   // frame47Wg9 (223:382)
                                   margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 12 * fem, 0 * fem),
+                                      0 * fem, 0 * fem, 0 * fem, 0 * fem),
                                   width: double.infinity,
                                   child: Row(
                                     crossAxisAlignment:
@@ -825,7 +825,9 @@ class GuardDescription extends StatelessWidget {
                   children: [
 
                     NextPageButton(fem: fem, ffem: ffem,buttonText: 'Cancel',function: Homescreen(selectedIndexValue: 0),BGColor: ThemeColorChatColor,),
-                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Hire Now',function: PaymentPage(),BGColor: ThemeColortDark,),
+                    NextPageButton(
+
+                      fem: fem, ffem: ffem,buttonText: 'Hire Now',function: PaymentPage(),BGColor: ThemeColortDark,),
                   ],
                 ),
               ),

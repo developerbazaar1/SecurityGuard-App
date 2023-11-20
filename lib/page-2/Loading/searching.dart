@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/Modals/ConfirmDetails.dart';
+import 'package:myapp/page-2/ConfirmDetails/ConfirmDetails.dart';
 import 'package:myapp/Modals/NextPageButtonModal.dart';
 import 'package:myapp/Modals/constants.dart';
 import 'package:myapp/page-2/Loading/LoadingController.dart';

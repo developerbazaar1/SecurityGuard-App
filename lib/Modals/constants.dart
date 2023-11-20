@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+String APIurl = 'http://pragya.dbtechserver.online/security';
+
 Color ThemeSpashColor = Color(0xffdff4ff);
 Color ThemeColortDark = Color(0xff005272);
 Color ThemeColor = Color(0xff016699);
@@ -11,6 +13,8 @@ Color ThemeColorAppbarUnderline = Color(0xff3A3A3A);
 Color ThemeColorBackgroundBottomsheet = Color(0xffDFF4FF);
 Color ThemeColorBackgroundSelectSecurity = Color(0xff9ADDFF);
 Color ThemeColorChatColor = Color(0xff666668);
+var currency = '£';
+var defaultImageUrl = 'assets/page-2/images/Default Profile.png';
 
 TextStyle hintStyle = TextStyle(
   color: Colors.black87,

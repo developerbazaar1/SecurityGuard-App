@@ -73,25 +73,28 @@ class AppSetting extends StatelessWidget {
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [SwitchBar(fem: fem, ffem: ffem, value:  Obx(() =>   Switch(value: appSettingController.isNotificationSwitchOn.value, onChanged: (value){
+                      children: [
+                        SwitchBar(
+                            fem: fem,
+                            ffem: ffem,
+                            value: Obx(() => Switch(
+                                value: appSettingController
+                                    .isNotificationSwitchOn.value,
+                                onChanged: (value) {
+                                  appSettingController.valueChanger(value);
 
-                        appSettingController.valueChanger(value);
-
-
-
-                      })), text: 'Notification'),
-                        SwitchBar(fem: fem, ffem: ffem, value: Obx(() =>   Switch(value: appSettingController.isUpdateSwitchOn.value, onChanged: (value){
-
-                          appSettingController.valueUpdate
-                            (value);
-
-
-
-                        })), text:'Update' )
-
-
-
-
+                                })),
+                            text: 'Notification'),
+                        SwitchBar(
+                            fem: fem,
+                            ffem: ffem,
+                            value: Obx(() => Switch(
+                                value:
+                                    appSettingController.isUpdateSwitchOn.value,
+                                onChanged: (value) {
+                                  appSettingController.valueUpdate(value);
+                                })),
+                            text: 'Update')
                       ],
                     ),
                   ),
@@ -111,42 +114,44 @@ class AppSetting extends StatelessWidget {
         child: Container(
             decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(
-                    color: ThemeColorAppbarUnderline, // Choose your border color
-                    width: 1.0, // Choose the border width
-                  ),
-                ))),
+          bottom: BorderSide(
+            color: ThemeColorAppbarUnderline, // Choose your border color
+            width: 1.0, // Choose the border width
+          ),
+        ))),
       ),
       backgroundColor: Colors.white,
       elevation: 8,
-      leadingWidth: 70*fem,
-      title:Container(
-        margin: EdgeInsets.only(left: 0,top: 5,bottom: 5),
+      leadingWidth: 70 * fem,
+      title: Container(
+        margin: EdgeInsets.only(left: 0, top: 5, bottom: 5),
         child: Image(
           image: AssetImage('assets/page-2/images/logo.png'),
           height: 40,
           width: 52.35,
-        ),),
-
-
+        ),
+      ),
       leading: IconButton(
-        onPressed: (){
+        onPressed: () {
           Navigator.pop(context);
-        }
-        ,icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
-      ) ,
-
-
-
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.black,
+        ),
+      ),
       actions: [
-        IconButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationList()));
-        }, icon:  Image(
-          image: AssetImage('assets/page-2/images/notification.png'),
-          height: 30,
-          width: 30,
-        ),),
-
+        IconButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NotificationList()));
+          },
+          icon: Image(
+            image: AssetImage('assets/page-2/images/notification.png'),
+            height: 30,
+            width: 30,
+          ),
+        ),
         SizedBox(
           width: 30 * fem,
         ),
