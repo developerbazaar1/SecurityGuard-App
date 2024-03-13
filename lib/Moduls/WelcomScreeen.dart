@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../Modals/Background.dart';
 import '../Modals/Logo.dart';
 import '../Modals/buttonModal.dart';
-import '../Modals/constants.dart';
+import '../app/theme/constant/constants.dart';
 import '../Modals/heading.dart';
 import '../utils.dart';
 import 'SignUp/sign-up.dart';

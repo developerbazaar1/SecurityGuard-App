@@ -10,7 +10,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:myapp/Modals/DashedBorderPainter.dart';
-import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/app/theme/constant/constants.dart';
 
 import 'package:myapp/utils.dart';
 

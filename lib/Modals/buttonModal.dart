@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/app/theme/constant/constants.dart';
 import 'package:myapp/utils.dart';
 class buttomModal extends StatelessWidget {
   const buttomModal({

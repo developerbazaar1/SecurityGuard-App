@@ -11,7 +11,7 @@ import 'package:myapp/Modals/buttonModal.dart';
 import 'package:myapp/Modals/heading.dart';
 import 'package:myapp/Moduls/UploadDocument/upload-your-picture.dart';
 
-import '../../Modals/constants.dart';
+import '../../app/theme/constant/constants.dart';
 import '../../utils.dart';
 import 'SignUpController.dart';
 

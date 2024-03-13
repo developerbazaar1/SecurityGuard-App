@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/app/theme/constant/constants.dart';
 
 import '../Moduls/UploadDocument/uploadDocumentController.dart';
 import '../utils.dart';

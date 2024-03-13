@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/app/theme/constant/constants.dart';
 import 'package:myapp/Moduls/Homepage/Home.dart';
 
 

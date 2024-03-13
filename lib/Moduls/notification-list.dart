@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
 import '../Modals/DashedBorderPainter.dart';
-import '../Modals/constants.dart';
+import '../app/theme/constant/constants.dart';
 
 class NotificationList extends StatelessWidget {
   @override

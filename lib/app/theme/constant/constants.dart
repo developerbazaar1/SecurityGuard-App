@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/Utils/sizeUtils.dart';
+import '../../../utils.dart';
+ var width = SizeUtils.instance.screenWidth;
+ var height = SizeUtils.instance.screenHeight;
 Color kSpashColor = Color(0xffdff4ff);
 Color kThemeColorDark = Color(0xff005272);
 Color kbuttonBgColor = Color(0xff016699);
@@ -16,6 +20,15 @@ Color kChatColor = Color(0xff666668);
 Color kUploadBorderColor = Color(0xff3A3A3A);
 Color kEmojiColor = Color(0xff2C2C2E);
 Color kIconSend = Color(0xff8E8E93);
+ Color  kSecondary =const Color(0xff000000);
+ Color  kInverseSecondary = const Color(0xffFFFFFF);
+ Color  kText=const Color(0xff000000);
+ Color  kborderColor=const Color(0xff000000);
+ Color  ktextGrayColor=const Color(0xff6F6F6F) ;
+ Color kOnSecondary =const Color(0xff424242);
+ Color KdarkAppBar=const Color(0xff323232);
+ Color  kTextGrayColor=const Color(0xff6F6F6F) ;
+ Color  kDarkBlue=const Color(0xff005E91);
 
 TextStyle hintStyle = TextStyle(
   color: Colors.black87,
@@ -45,6 +58,7 @@ TextStyle docHeadingStyle = TextStyle(
   fontWeight: FontWeight.w400,
   letterSpacing: 0,
 );
+
 TextStyle InputStyle = TextStyle(
   color: kThemeColorDark,
   fontFamily: 'Nunito',
@@ -52,6 +66,22 @@ TextStyle InputStyle = TextStyle(
   fontWeight: FontWeight.w400,
   letterSpacing: 0,
 );
+
+TextStyle buttonStyle = SafeGoogleFont(
+  'Nunito',
+  fontSize: width*0.04,
+  fontWeight: FontWeight.w600,
+
+  color: Color(0xffffffff),
+);
+TextStyle rejectButtonStyle = SafeGoogleFont(
+  'Nunito',
+  fontSize: width*0.04,
+  fontWeight: FontWeight.w600,
+
+  color: kSecondary,
+);
+
 
 
 final InputDecoration customInputDecoration = InputDecoration(

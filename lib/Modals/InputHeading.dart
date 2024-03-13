@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import '../app/theme/constant/constants.dart';
 class InputHeading extends StatelessWidget {
   const InputHeading({
     super.key, required this.text, required this.image,

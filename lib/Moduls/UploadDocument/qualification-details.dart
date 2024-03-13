@@ -11,7 +11,7 @@ import '../../Modals/Background.dart';
 import '../../Modals/Logo.dart';
 import '../../Modals/UploadDocModal.dart';
 import '../../Modals/buttonModal.dart';
-import '../../Modals/constants.dart';
+import '../../app/theme/constant/constants.dart';
 import '../../Modals/heading.dart';
 import '../HomeScreen/HomeScreen.dart';
 

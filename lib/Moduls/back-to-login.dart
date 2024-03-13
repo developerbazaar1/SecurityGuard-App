@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/Background.dart';
 import 'package:myapp/Modals/Logo.dart';
 import 'package:myapp/Modals/buttonModal.dart';
-import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/app/theme/constant/constants.dart';
 import 'package:myapp/Modals/heading.dart';
 
 import 'package:myapp/utils.dart';

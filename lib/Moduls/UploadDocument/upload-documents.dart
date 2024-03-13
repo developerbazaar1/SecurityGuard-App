@@ -9,7 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/buttonModal.dart';
-import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/app/theme/constant/constants.dart';
 import 'package:myapp/Moduls/UploadDocument/qualification-details.dart';
 import 'package:myapp/Moduls/UploadDocument/uploadDocumentController.dart';
 import 'package:myapp/utils.dart';

@@ -38,7 +38,7 @@ void main() {
 			initialRoute: '/splash',
 			getPages: [
 				GetPage(name: '/splash', page: () => SplashScreen(), binding: SplashBinding()),
-				GetPage(name: '/main', page: () => WelcomeScreen(), binding: MainBinding()),
+				GetPage(name: '/main', page: () => Homescreen(selectedIndexValue: 0), binding: MainBinding()),
 			],
 		),
 	);

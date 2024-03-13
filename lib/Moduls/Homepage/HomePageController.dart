@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/app/theme/constant/constants.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../../app/theme/common_method/common_method.dart';
 
 class HomePageController extends GetxController {
   RxDouble size = 200.0.obs;
@@ -13,6 +16,16 @@ class HomePageController extends GetxController {
   RxString buttonText = "Go".obs;
   RxString text =
       "Please click the 'GO' button to access our online platform.".obs;
+ void clickOnShareButton() async {
+    CM.unFocsKeyBoard();
+
+    Share.share(
+      'Check out this awesome content!',
+      subject: 'Subject Here',
+      sharePositionOrigin: Rect.fromLTRB(0, 0, 10, 10),
+    );
+
+  }
 
   void updateSize() {
     srink.value = true;
