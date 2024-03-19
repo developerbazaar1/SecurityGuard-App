@@ -53,7 +53,7 @@ class GuardDescription extends StatelessWidget {
 
                           image: DecorationImage(
                             image: AssetImage(
-                              'assets/modules/images/roundProfileBig.png',
+                              'assets/images/roundProfileBig.png',
 
                             ),
 

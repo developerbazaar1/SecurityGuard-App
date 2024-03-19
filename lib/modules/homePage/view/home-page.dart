@@ -49,7 +49,7 @@ class Home extends StatelessWidget {
       SecurityIcon(
           CI.imgDog, CT.dog_unit, DogSecurityInfo()),
       SecurityIcon(CI.imgDoorSupervisors,
-          CT.dog_supervisiors, SuprevisorInfo()),
+          CT.door_supervisiors, SuprevisorInfo()),
       SecurityIcon(CI.imgSecuritGuards, CT.security_need,
           SecurityGardInfo()),
     ];
@@ -658,106 +658,20 @@ class Home extends StatelessWidget {
                             false) {
                       homePageController.updateNullTime();
                     }
-                    else if(homePageController.hour.value<10 &&homePageController.selectedValue=='Dog Unit - K9'){
+                    else if(homePageController.hour.value<10 &&homePageController.selectedValue==CT.dog_unit){
                       showDialog(context: context, builder: (context) =>
-                          AlertDialog(
-
-                            backgroundColor: Colors.white,
-                         alignment: Alignment.center,
-
-                         title: Center(child: Text("Alert!"),),
-                            actions: [
-                              Center(child:
-
-
-                              Text("You should choose Minimum 10 Hours To book for Dog K9 Services",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(     fontSize: 13))),
-                              SizedBox(height: 10,),
-
-                              Center(
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: ThemeColortDark
-                                  ),
-
-                                    onPressed: (){
-                                    Get.back();
-                                    }, child: Text("Close",style: TextStyle(
-                                  color: Colors.white
-                                ),)),
-                              )
-                            ],
-                      ),);
+                          buildAlertDialog(CT.minimun_hour_dog),);
 
                     }
-                      else if(homePageController.hour.value<6 && homePageController.selectedValue=='SIA Door Supervisors')
+                      else if(homePageController.hour.value<6 && homePageController.selectedValue==CT.door_sia_supervisiors)
                       {
                       showDialog(context: context, builder: (context) =>
-                          AlertDialog(
-
-                            backgroundColor: Colors.white,
-                         alignment: Alignment.center,
-
-                         title: Center(child: Text("Alert!"),),
-                            actions: [
-                              Center(child:
-
-                              Text("You should choose Minimum 6 Hours To book for SIA services",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(     fontSize: 13))),
-                              SizedBox(height: 10,),
-
-                              Center(
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: ThemeColortDark
-                                  ),
-
-                                    onPressed: (){
-                                    Get.back();
-                                    }, child: Text("Close",style: TextStyle(
-                                  color: Colors.white
-                                ),)),
-                              )
-                            ],
-                      ),);
+                          buildAlertDialog(CT.minimun_hour_supervisor),);
 
                     }
-                      else if(homePageController.hour.value<8 && homePageController.selectedValue=='SIA Security Guards'){
+                      else if(homePageController.hour.value<8 && homePageController.selectedValue==CT.security_sia_guard){
                       showDialog(context: context, builder: (context) =>
-                          AlertDialog(
-
-                            backgroundColor: Colors.white,
-                         alignment: Alignment.center,
-
-                         title: Center(child: Text("Alert!"),),
-                            actions: [
-                              Center(child:
-
-                              Text("You should choose Minimum 8 Hours To book for Security Guard",
-                                  textAlign: TextAlign.center,
-
-                                  style: TextStyle(
-                                    fontSize: 13
-                                  )
-                              )),
-                              SizedBox(height: 10,),
-
-                              Center(
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: ThemeColortDark
-                                  ),
-
-                                    onPressed: (){
-                                    Get.back();
-                                    }, child: Text("Close",style: TextStyle(
-                                  color: Colors.white
-                                ),)),
-                              )
-                            ],
-                      ),);
+                          buildAlertDialog(CT.minimun_hour_guard),);
 
                     }
 
@@ -889,6 +803,37 @@ class Home extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  AlertDialog buildAlertDialog(String message) {
+    return AlertDialog(
+
+                          backgroundColor: Colors.white,
+                       alignment: Alignment.center,
+
+                       title: Center(child: Text(CT.alert),),
+                          actions: [
+                            Center(child:
+
+                            Text(message,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(     fontSize: 13))),
+                            SizedBox(height: 10,),
+
+                            Center(
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: ThemeColortDark
+                                ),
+
+                                  onPressed: (){
+                                  Get.back();
+                                  }, child: Text(CT.close,style: TextStyle(
+                                color: Colors.white
+                              ),)),
+                            )
+                          ],
+                    );
   }
 
   Container buildContainer(BuildContext context, buttontext, hour, value) {

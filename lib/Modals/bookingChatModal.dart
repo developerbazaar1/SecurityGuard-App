@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:myapp/routes/app_routes.dart';
 
 import '../core/utils/utils.dart';
-import '../modules/bookingDetails.dart';
+import '../modules/bookingDetails/view/bookingDetails.dart';
 
 class bookingChatModal extends StatelessWidget {
   const bookingChatModal({
@@ -29,7 +32,9 @@ class bookingChatModal extends StatelessWidget {
     return TextButton(
       // component11jhT (605:1869)
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>bookingDetails(name: name, image: image,) ,));
+        Get.toNamed(AppRoutes.bookingDetails,arguments: [name,image]);
+       // Get.to(()=>BookingDetails(name: name, image: image));
+       // Navigator.push(context, MaterialPageRoute(builder: (context) =>BookingDetails(name: name, image: image,) ,));
       },
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,

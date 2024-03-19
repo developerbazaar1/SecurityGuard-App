@@ -181,10 +181,10 @@ class TextThemes {
 class ColorSchemes {
   static final primaryColorScheme = ColorScheme.light(
     // Primary colors
-    primary: Color(0XFF00AAD8),
-    secondary:Color(0Xff007899) ,
-    primaryContainer: Color(0XFF333333),
-    secondaryContainer: Color(0XFF989692),
+    primary: Color(0XFF005271),
+    secondary:Color(0Xffdff4ff) ,
+    primaryContainer: Color(0XFFdff4ff),
+    secondaryContainer: Color(0XFFdff4ff),
     background:Color.fromRGBO(51, 51, 51, 0.75),
     inversePrimary: Color.fromRGBO(250, 255, 10, 0.22),
     error: Color.fromRGBO(255, 0, 0, 1.0),
@@ -220,13 +220,13 @@ class PrimaryColors {
 
 
   // LightBlue
-  Color get lightBlue50 => Color(0XFFE3F9FF);
+  Color get lightBlue50 => Color(0XFF005271);
 
   // White
   Color get whiteA700 => Color(0XFFFAFEFF);
 
   // Yellow
-  Color get yellow100 => Color(0XFFFEF7D1);
+  Color get yellow100 => Color(0XFFdff4ff);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();

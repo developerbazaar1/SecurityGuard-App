@@ -100,7 +100,7 @@ class PaymentPage extends StatelessWidget {
                                   shape: BoxShape.circle,
                                     image: DecorationImage (
                                       image: AssetImage (
-                                        'assets/modules/images/roundProfileSmall.png',
+                                        'assets/images/roundProfileSmall.png',
 
                                       ),
 

@@ -1,16 +1,18 @@
 import 'package:get/get.dart';
+import 'package:myapp/modules/homePage/view/home-page.dart';
 
-import '../controller/chatController.dart';
-
-
-
+import '../controller/bookingDetailsController.dart';
 
 
 
-class ChatBinding implements Bindings {
+
+
+
+
+class BookingDetailsBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(ChatController());
+    Get.put(BookingDetailsController());
   }
 }
 

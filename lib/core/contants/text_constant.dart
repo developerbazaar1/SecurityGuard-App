@@ -5,9 +5,12 @@ class CT{
 
   ///HOME PAGE
   static const security_need = 'Where do you need security?';
-  static const dog_unit = 'Dog Units -K9';
-  static const dog_supervisiors = 'Door Supervisors';
+  static const dog_unit = 'Dog Unit - K9';
+  static const dog_units = 'Dog Units -K9';
+  static const door_supervisiors = 'Door Supervisors';
+  static const door_sia_supervisiors = 'SIA Door Supervisors';
   static const security_guard = 'Security Guards';
+  static const security_sia_guard = 'SIA Security Guards';
   static const please_choose_service = '* Please choose service';
   static const choose_service = 'Choose Service';
   static const close = 'Close';
@@ -19,6 +22,11 @@ class CT{
   static const our_mission = 'Our Mission Is To Protect';
   static const choose = 'Choose';
   static const choose_date = 'Choose Date';
+  static const alert = 'Alert!';
+  static const minimun_hour_dog = 'You should choose minimum 10 Hours to book for Dog K9 Services';
+  static const minimun_hour_supervisor = 'You should choose minimum 6 Hours to book for SIA Door Supervisors services';
+  static const minimun_hour_guard = 'You should choose minimum 8 Hours to book for SIA Security Guard Service';
+
 
   ///LOGIN SCREEN
   static const login_customer = 'LOGIN AS A CUSTOMER';

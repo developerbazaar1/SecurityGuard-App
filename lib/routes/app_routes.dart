@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:myapp/modules/HomeScreen/binding/homeBinding.dart';
+import 'package:myapp/modules/bookingDetails/view/bookingDetails.dart';
 
 import '../modules/AppSetting/binding/appSettingBinding.dart';
 import '../modules/AppSetting/view/appSetting.dart';
@@ -16,6 +17,8 @@ import '../modules/Registration/binding/RegisterBinding.dart';
 import '../modules/Registration/view/registration.dart';
 import '../modules/Splash_Screen/binding/splashBinding.dart';
 import '../modules/Splash_Screen/view/splashScreen.dart';
+
+import '../modules/bookingDetails/binding/bookingDetailsBinding.dart';
 import '../modules/notification/binding/notificationBinding.dart';
 import '../modules/notification/view/notification-list.dart';
 import '../modules/editProfile/binding/editBinding.dart';
@@ -46,6 +49,7 @@ class AppRoutes {
   static const String updateProfile= '/ProfileUpdated';
   static const String appSetting= '/AppSetting';
   static const String notificationList= '/NotificationList';
+  static const String bookingDetails= '/BookingDetails';
 
   static const String forgetScreen = '/ForgotPasswordScreen';
 
@@ -149,6 +153,14 @@ class AppRoutes {
       page: () => NotificationList(),
       bindings: [
         NotificationhBinding(),
+      ],
+    ),
+    GetPage(
+      name: bookingDetails,
+      page: () => BookingDetails(),
+      binding: BookingDetailsBinding(),
+      bindings: [
+        BookingDetailsBinding(),
       ],
     ),
 
