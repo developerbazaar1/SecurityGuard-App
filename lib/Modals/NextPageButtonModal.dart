@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/utils.dart';
+
+import '../core/utils/utils.dart';
+
 class NextPageButton extends StatelessWidget {
   const NextPageButton({
     super.key,

@@ -3,9 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:myapp/page-2/homePage/controller.dart';
-import 'package:myapp/utils.dart';
 
+
+import '../core/utils/utils.dart';
+import '../modules/homePage/controller/homeController.dart';
 import 'constants.dart';
 class BottomsheetSecurity extends StatelessWidget {
   BottomsheetSecurity({

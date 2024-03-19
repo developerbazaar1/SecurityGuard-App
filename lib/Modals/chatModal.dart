@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/Modals/constants.dart';
-import 'package:myapp/page-2/userChats.dart';
-import 'package:myapp/utils.dart';
+
+import '../core/utils/utils.dart';
+import '../modules/userChats.dart';
+
 class ChatTap extends StatelessWidget {
   const ChatTap({
     super.key,

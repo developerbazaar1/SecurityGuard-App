@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/Background.dart';
 import 'package:myapp/Modals/constants.dart';
-import 'package:myapp/utils.dart';
+import '../core/utils/utils.dart';
 
 import 'login.dart';
 
@@ -65,7 +65,7 @@ class SignUp extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       InputBoxHeading(
-                          "Full Name", 'assets/page-2/images/mingcute-pen.png'),
+                          "Full Name", 'assets/modules/images/mingcute-pen.png'),
                       TextFormField(
                         keyboardType: TextInputType.name,
                         controller: nameController,
@@ -85,7 +85,7 @@ class SignUp extends StatelessWidget {
 
                       ),
                       InputBoxHeading(
-                          "Email Address", 'assets/page-2/images/alternate-email-.png'),
+                          "Email Address", 'assets/modules/images/alternate-email-.png'),
 
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
@@ -111,14 +111,14 @@ class SignUp extends StatelessWidget {
                         },
                       ),
                       InputBoxHeading(
-                          "Phone No.", 'assets/page-2/images/mingcute-cellphone.png'),
+                          "Phone No.", 'assets/modules/images/mingcute-cellphone.png'),
 
                       TextFormField(
                         keyboardType: TextInputType.number,
                         controller: phoneController,
                       ),
                       InputBoxHeading(
-                          "Password", 'assets/page-2/images/mingcute-key.png'),
+                          "Password", 'assets/modules/images/mingcute-key.png'),
 
                       TextFormField(
                         keyboardType: TextInputType.visiblePassword,

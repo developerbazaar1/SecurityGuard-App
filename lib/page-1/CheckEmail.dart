@@ -6,9 +6,9 @@ import 'package:myapp/Modals/Background.dart';
 import 'package:myapp/Modals/Logo.dart';
 import 'package:myapp/Modals/buttonModal.dart';
 import 'package:myapp/Modals/heading.dart';
-import 'package:myapp/page-2/Login/login.dart';
-import 'package:myapp/utils.dart';
+import '../core/utils/utils.dart';
 
+import '../modules/Login/view/LoginScreen.dart';
 import 'login.dart';
 
 class CheckEmail extends StatelessWidget {

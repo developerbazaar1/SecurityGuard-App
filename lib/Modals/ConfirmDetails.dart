@@ -6,11 +6,12 @@ import 'package:myapp/Modals/DashedBorderPainter.dart';
 import 'package:myapp/Modals/NextPageButtonModal.dart';
 import 'package:myapp/Modals/chatModal.dart';
 import 'package:myapp/Modals/constants.dart';
-import 'package:myapp/page-2/HomeScreen/HomeScreen.dart';
-import 'package:myapp/page-2/Payment/payment-page.dart';
-import 'package:myapp/page-2/guard-description-page.dart';
-import 'package:myapp/page-2/notification-list.dart';
-import 'package:myapp/utils.dart';
+
+import '../core/utils/utils.dart';
+import '../modules/HomeScreen/view/HomeScreen.dart';
+import '../modules/guard-description-page.dart';
+import '../modules/notification/view/notification-list.dart';
+
 
 class ConfirmDetails extends StatelessWidget {
   @override
@@ -355,7 +356,7 @@ class ConfirmDetails extends StatelessWidget {
       leading: Container(
         margin: EdgeInsets.only(left: 0, top: 5, bottom: 5),
         child: Image(
-          image: AssetImage('assets/page-2/images/logo.png'),
+          image: AssetImage('assets/images/logo.png'),
           height: 40,
           width: 52.35,
         ),
@@ -367,7 +368,7 @@ class ConfirmDetails extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => NotificationList()));
           },
           icon: Image(
-            image: AssetImage('assets/page-2/images/notification.png'),
+            image: AssetImage('assets/images/notification.png'),
             height: 30,
             width: 30,
           ),

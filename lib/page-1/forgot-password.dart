@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/Background.dart';
 import 'package:myapp/Modals/constants.dart';
 import 'package:myapp/page-1/CheckEmail.dart';
-import 'package:myapp/utils.dart';
+import '../core/utils/utils.dart';
 
 import 'login.dart';
 
@@ -56,7 +56,7 @@ class ForgetPassword extends StatelessWidget {
                   ),
                 ),
                 InputBoxHeading(
-                    "Email Address", 'assets/page-2/images/alternate-email-.png'),
+                    "Email Address", 'assets/modules/images/alternate-email-.png'),
                 TextFormField(
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,

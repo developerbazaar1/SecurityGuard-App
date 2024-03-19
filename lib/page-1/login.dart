@@ -5,10 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/Background.dart';
 import 'package:myapp/Modals/constants.dart';
 import 'package:myapp/page-1/sign-up.dart';
-import 'package:myapp/page-2/Registration/registration.dart';
-import 'package:myapp/utils.dart';
+
+import '../core/utils/utils.dart';
 
 import '../Modals/InputHeading.dart';
+import '../modules/Registration/view/registration.dart';
 import 'forgot-password.dart';
 
 class Login extends StatelessWidget {
@@ -80,7 +81,7 @@ class Login extends StatelessWidget {
                               CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                InputBoxHeading("Email Address",'assets/page-2/images/alternate-email-.png' ),
+                                InputBoxHeading("Email Address",'assets/modules/images/alternate-email-.png' ),
 
 
                                 TextFormField(
@@ -101,7 +102,7 @@ class Login extends StatelessWidget {
 
                                 ),
 
-                                InputBoxHeading("Password",'assets/page-2/images/mingcute-key.png',),
+                                InputBoxHeading("Password",'assets/modules/images/mingcute-key.png',),
 
 
                                 TextFormField(

@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+
+import '../core/contants/image_constant.dart';
 class BackGround extends StatefulWidget {
   const BackGround({super.key, required this.content});
   final Widget content;
@@ -20,7 +22,7 @@ class _BackGroundState extends State<BackGround> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/page-1/images/rectangle-7-bg-sbP.png',
+            CI.imgBackground,
 
         
 

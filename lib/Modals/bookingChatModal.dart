@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/page-2/booking-details.dart';
-import 'package:myapp/page-2/bookingDetails.dart';
-import 'package:myapp/utils.dart';
+
+import '../core/utils/utils.dart';
+import '../modules/bookingDetails.dart';
+
 class bookingChatModal extends StatelessWidget {
   const bookingChatModal({
     super.key,

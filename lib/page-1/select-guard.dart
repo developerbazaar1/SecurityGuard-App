@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/utils.dart';
+import '../core/utils/utils.dart';
 
 class SelectGuaed extends StatelessWidget {
   @override
