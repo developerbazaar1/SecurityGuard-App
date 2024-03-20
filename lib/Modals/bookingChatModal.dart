@@ -1,10 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:myapp/routes/app_routes.dart';
+import 'package:myapp/theme/theme_helper.dart';
 
 
 import 'package:myapp/utils.dart';
 
-import '../Moduls/Booking_Details/bookingDetails.dart';
-class bookingChatModal extends StatelessWidget {
+import '../Moduls/Booking_Details/controller/bookingDetailsController.dart';
+import '../Moduls/Booking_Details/view/bookingDetails.dart';
+import '../app/theme/constant/constants.dart';
+class bookingChatModal extends GetView<BookingDetailsController> {
   const bookingChatModal({
     super.key,
     required this.fem,
@@ -27,26 +36,29 @@ class bookingChatModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RxBool switchValue = false.obs;
     return TextButton(
       // component11jhT (605:1869)
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>bookingDetails(name: name, image: image,) ,));
+        Get.to(()=>BookingDetails(),arguments: [name,image]);
+       // Navigator.push(context, MaterialPageRoute(builder: (context) =>bookingDetails(name: name, image: image,) ,));
       },
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,
       ),
       child: Container(
         padding: EdgeInsets.fromLTRB(20 * fem, 10 * fem, 20 * fem, 9 * fem),
-        width: double.infinity,
+        width: MediaQuery.sizeOf(context).width,
         height: 87 * fem,
+
         decoration: BoxDecoration(),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               // frame67ZgV (I605:1869;605:302)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 21 * fem, 0 * fem),
+              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 0 * fem),
               height: double.infinity,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,7 +100,8 @@ class bookingChatModal extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // mondayoct242iV (I605:1869;605:306)
+
+
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 0 * fem, 4 * fem),
                           child: Text(
@@ -122,14 +135,17 @@ class bookingChatModal extends StatelessWidget {
             Container(
               // frame66HuK (I605:1869;605:308)
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 1 * fem),
-              width: statusheight * fem,
+              width: MediaQuery.sizeOf(context).width *0.23,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+
                 children: [
                   Container(
                     // mminsbeforeSGR (I605:1869;605:309)
                     margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 28 * fem),
+                        0 * fem, 0 * fem, 0 * fem, 2 * fem),
                     child: Text(
                       date,
                       style: SafeGoogleFont(
@@ -141,6 +157,41 @@ class bookingChatModal extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Obx(() =>
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+
+                        children: <Widget>[
+                          Center(
+                            child: Text(
+                              switchValue.value ? 'ON' : 'OFF',
+                              style: TextStyle(fontSize: 14.0,color: Colors.black),
+                            ),
+                          ),
+                          SizedBox(width: 3.0),
+
+                          Transform.scale(
+                            scale: 0.9,
+
+                            child: Switch(
+
+                              value: switchValue.value,
+                              trackOutlineWidth: MaterialStateProperty.all(1),
+
+                              onChanged: (value) {
+
+                                switchValue.value = value;
+
+                              },
+                              activeTrackColor:kBackgroundSelectSecurity,
+                              inactiveTrackColor: theme.secondaryHeaderColor,
+                              inactiveThumbColor: Colors.grey,
+                              trackOutlineColor: MaterialStateProperty.all(Colors.grey),
+                              activeColor:kThemeColorDark,
+                            ),
+                          ),
+                        ],
+                      )),
                   // Container(
                   //   // frame66AiD (I605:1869;605:310)
                   //   padding: EdgeInsets.fromLTRB(

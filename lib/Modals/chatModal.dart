@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:myapp/app/theme/constant/constants.dart';
+import 'package:myapp/routes/app_routes.dart';
 
 import 'package:myapp/utils.dart';
 
-import '../Moduls/ChatScreen/userChats.dart';
+import '../Moduls/ChatScreen/view/userChats.dart';
 class ChatTap extends StatelessWidget {
   const ChatTap({
     super.key,
@@ -26,7 +28,7 @@ class ChatTap extends StatelessWidget {
     return TextButton(
       // frame61xtR (605:1135)
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => UserChats(userimage: image,username: name),));
+       Get.toNamed(AppRoutes.chat,arguments: [image, name]);
       },
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,

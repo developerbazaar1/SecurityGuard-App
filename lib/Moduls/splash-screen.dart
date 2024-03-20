@@ -9,8 +9,8 @@ import 'package:myapp/Moduls/UploadDocument/upload-your-picture.dart';
 
 import 'package:myapp/utils.dart';
 
-import 'HomeScreen/HomeScreen.dart';
-import 'login.dart';
+import 'HomeScreen/view/HomeScreen.dart';
+import 'LoginScreen/view/login.dart';
 
 
 

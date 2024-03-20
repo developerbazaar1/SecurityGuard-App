@@ -10,7 +10,7 @@ import 'package:myapp/Modals/heading.dart';
 
 import 'package:myapp/utils.dart';
 
-import 'login.dart';
+import 'LoginScreen/view/login.dart';
 
 class CheckEmail extends StatelessWidget {
   @override

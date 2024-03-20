@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:myapp/utils.dart';
 
-import 'HomeScreen/HomeScreen.dart';
+import 'HomeScreen/view/HomeScreen.dart';
 
 class PaymentDone extends StatelessWidget {
   @override

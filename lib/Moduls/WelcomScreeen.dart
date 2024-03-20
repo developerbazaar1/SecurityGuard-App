@@ -8,8 +8,8 @@ import '../Modals/buttonModal.dart';
 import '../app/theme/constant/constants.dart';
 import '../Modals/heading.dart';
 import '../utils.dart';
-import 'SignUp/sign-up.dart';
-import 'login.dart';
+import 'SignUp/view/signUp.dart';
+import 'LoginScreen/view/login.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

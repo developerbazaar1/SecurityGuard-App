@@ -13,7 +13,7 @@ import '../../Modals/UploadDocModal.dart';
 import '../../Modals/buttonModal.dart';
 import '../../app/theme/constant/constants.dart';
 import '../../Modals/heading.dart';
-import '../HomeScreen/HomeScreen.dart';
+import '../HomeScreen/view/HomeScreen.dart';
 
 class QualificationDetails extends StatelessWidget {
   @override

@@ -8,7 +8,7 @@ import 'package:myapp/app/theme/constant/constants.dart';
 
 import 'package:myapp/utils.dart';
 
-import 'HomeScreen/HomeScreen.dart';
+import 'HomeScreen/view/HomeScreen.dart';
 import 'notification-list.dart';
 
 class HelpSupport extends StatelessWidget {
