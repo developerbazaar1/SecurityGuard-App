@@ -7,6 +7,8 @@ import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
+import '../../api_constant/api_constant.dart';
+
 
 class CM{
   static Future<bool> internetConnectionCheckerMethod() async {
@@ -36,6 +38,23 @@ class CM{
     showToast(
       "Something went wrong!",
     );
+  }
+  static bool responseCheckForGetMethod(
+      {http.Response? response,
+        bool wantSuccessToast = false,
+        bool wantErrorToast = true}) {
+    Map<String, dynamic> responseMap = jsonDecode(response?.body ?? "");
+    if (response != null && response.statusCode == StatusCodeConstant.OK) {
+      if (wantSuccessToast) {
+        CM.showToast(responseMap[ApiKey.message]);
+      }
+      return true;
+    } else {
+      if (wantErrorToast) {
+        CM.showToast(responseMap[ApiKey.message]);
+      }
+      return false;
+    }
   }
   ///For Check Post Api Response
   static bool responseCheckForPostMethod({http.Response? response}) {

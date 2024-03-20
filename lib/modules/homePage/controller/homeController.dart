@@ -11,6 +11,11 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../core/apiDataModal/getServicesModal.dart';
+import '../../../core/api_constant/api_constant.dart';
+import '../../../core/data/Comman/common_method.dart';
+import '../../../core/http_methods/http_methods.dart';
+
 class HomePageController extends GetxController {
   final controller = Rx<DateRangePickerController?>(null);
   final selectDate = Rx<DateTime?>(null);
@@ -31,6 +36,7 @@ class HomePageController extends GetxController {
   Rx<TextEditingController> datecontroller = TextEditingController().obs;
   Rx<TextEditingController> searchController = TextEditingController().obs;
   var timeController = DateTime.now().obs;
+  final getServicesData = Rxn<ServicesModal>();
   var isLocationEmpty = false.obs;
   var isDateEmpty = false.obs;
 
@@ -314,6 +320,7 @@ class HomePageController extends GetxController {
   @override
   void onInit() {
     ServicesAPI();
+    getServiesAPICalling();
     super.onInit();
   }
   EnableText() {
@@ -328,6 +335,22 @@ class HomePageController extends GetxController {
   //   print(formattedDate);// Update the text value
   //    return formattedDate;
   // }
+  Future<void> getServiesAPICalling() async {
+    http.Response? response = await HttpMethod.instance.getRequest(
+      url: UriConstant.getServicesUrl,
+    );
+    if (CM.responseCheckForGetMethod(response: response)) {
+
+      if(response!.statusCode==200){
+        getServicesData.value = ServicesModal.fromJson(jsonDecode(response?.body ?? ""));
+        print(getServicesData.value!.services![0].serviceImage);
+      }
+   print("Server Error");
+
+    } else {
+
+    }
+  }
 
   void ServicesAPI() async {
     print(1);

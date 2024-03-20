@@ -46,12 +46,10 @@ class Home extends StatelessWidget {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
     List SecurityList = [
+      SecurityIcon(CI.imgDog, CT.dog_unit, DogSecurityInfo()),
       SecurityIcon(
-          CI.imgDog, CT.dog_unit, DogSecurityInfo()),
-      SecurityIcon(CI.imgDoorSupervisors,
-          CT.door_supervisiors, SuprevisorInfo()),
-      SecurityIcon(CI.imgSecuritGuards, CT.security_need,
-          SecurityGardInfo()),
+          CI.imgDoorSupervisors, CT.door_supervisiors, SuprevisorInfo()),
+      SecurityIcon(CI.imgSecuritGuards, CT.security_need, SecurityGardInfo()),
     ];
 
     final DateController dateController = Get.put(DateController());
@@ -61,7 +59,9 @@ class Home extends StatelessWidget {
     double ffem = fem * 0.97;
     return Scaffold(
       appBar: Appbar(context, fem),
-      body: homePageController.ServicesData.value == null
+      body: Obx(() {
+        return homePageController.getServicesData.value == null
+
           ? Center(
               child: CircularProgressIndicator(),
             )
@@ -76,8 +76,7 @@ class Home extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Container(
-                  child: Obx(
+              child: Container(child: Obx(
                 () {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,7 +100,6 @@ class Home extends StatelessWidget {
 
                                 onSaved: (value) {
                                   print(value);
-
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty || value == null) {
@@ -118,7 +116,8 @@ class Home extends StatelessWidget {
                                   if (homePageController.searchController.value
                                           .text.isEmpty ||
                                       homePageController
-                                              .searchController.value.text == null) {
+                                              .searchController.value.text ==
+                                          null) {
                                     if (_formKey.currentState!.validate()) {
                                       homePageController.textSubmitted.value =
                                           false;
@@ -186,8 +185,7 @@ class Home extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Image(
-                                      image: AssetImage(
-                                          CI.imgSecuritySymbol),
+                                      image: AssetImage(CI.imgSecuritySymbol),
                                       height: 20,
                                       width: 20,
                                       color: ThemeColortDark,
@@ -348,7 +346,11 @@ class Home extends StatelessWidget {
                                                           .value = true;
                                                     }
                                                   },
-                                                  child: Text(CT.ok,style: TextStyle(color: Colors.white),))
+                                                  child: Text(
+                                                    CT.ok,
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ))
                                             ],
                                           ),
                                         ),
@@ -370,8 +372,7 @@ class Home extends StatelessWidget {
                                         width: 12,
                                       ),
                                       Image(
-                                        image: AssetImage(
-                                            CI.imgCalenderIcon),
+                                        image: AssetImage(CI.imgCalenderIcon),
                                         height: 25,
                                         width: 25,
                                         color: ThemeColortDark,
@@ -415,8 +416,7 @@ class Home extends StatelessWidget {
                                         width: 12,
                                       ),
                                       Image(
-                                        image: AssetImage(
-                                            CI.imgClock),
+                                        image: AssetImage(CI.imgClock),
                                         height: 25,
                                         width: 25,
                                         color: ThemeColortDark,
@@ -445,99 +445,114 @@ class Home extends StatelessWidget {
                             alignment: Alignment.bottomCenter,
                             child: Container(
                               height: MediaQuery.of(context).size.height *
-                                  0.140 *
+                                  0.120 *
                                   fem,
+                              width: MediaQuery.sizeOf(context).width,
                               decoration: BoxDecoration(),
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount:
                                     homePageController.ServiceLength.value,
-                                itemBuilder: (context, index) =>
-                                    GestureDetector(
-                                  onTap: () {},
-                                  child: Container(
-                                    margin:
-                                        EdgeInsets.only(left: 10, right: 10),
-                                    padding:
-                                        EdgeInsets.only(left: 10, right: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.white,
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SizedBox(
-                                              width: 30,
-                                            ),
-                                            Center(
-                                              child: Container(
-                                                margin:
-                                                    EdgeInsets.only(top: 10),
-                                                child: Center(
-                                                    child: Image(
-                                                  image: AssetImage(
-                                                      CI.imgDog),
-                                                  width: 40,
-                                                  height: 40,
-                                                )),
+                                itemBuilder: (context, index) => Center(
+                                  child: GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.44,
+                                      margin:
+                                          EdgeInsets.only(left: 8, right: 8),
+                                      padding:
+                                          EdgeInsets.only(left: 8, right: 8),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.white,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                width: 30,
                                               ),
-                                            ),
-                                            Align(
-                                                alignment: Alignment.topRight,
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(0.0),
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      homePageController
-                                                          .isButtonTaped
-                                                          .value = true;
-                                                      Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                SecurityList[
-                                                                        index]
-                                                                    .function,
-                                                          ));
-                                                    },
-                                                    child: Container(
-                                                      height: 50,
-                                                      width: 50,
-                                                      margin: EdgeInsets.all(0),
-                                                      child: Center(
-                                                        child: Image(
-                                                          image: AssetImage(
-                                                              CI.imgInfo),
-                                                          width: 15,
-                                                          height: 15,
+
+                                            Obx(() {
+                                              return  homePageController
+                                                  .getServicesData.value!=null
+                                                  ? Center(
+                                                child: Container(
+                                                  margin:
+                                                  EdgeInsets.only(top: 10),
+                                                  child: Center(
+                                                      child: Image(
+                                                        image:
+                                                        NetworkImage('http://pragya.dbtechserver.online/security/public/${
+                                                            homePageController
+                                                                .getServicesData.value!.services!
+                                                            [index].serviceImage
+                                                        }'),
+                                                        width: 40,
+                                                        height: 40,
+                                                      )),
+                                                ),
+                                              ):
+                                              SizedBox();
+                                            }),
+                                              Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.all(0.0),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        homePageController
+                                                            .isButtonTaped
+                                                            .value = true;
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  SecurityList[
+                                                                          index]
+                                                                      .function,
+                                                            ));
+                                                      },
+                                                      child: Container(
+                                                        height: 50,
+                                                        width: 50,
+                                                        margin:
+                                                            EdgeInsets.all(0),
+                                                        child: Center(
+                                                          child: Image(
+                                                            image: AssetImage(
+                                                                CI.imgInfo),
+                                                            width: 15,
+                                                            height: 15,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ))
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          homePageController
-                                                  .ServicesData['services']
-                                              [index]['service_title'],
-                                          style: TextStyle(
+                                                  ))
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Obx(() {
+                                            return homePageController.getServicesData.value!=null?
+
+                                          Text(homePageController.getServicesData.value!.services![index].serviceTitle.toString(), style: TextStyle(
                                             color: ThemeColortDark,
                                             fontFamily: 'Nunito',
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
-                                          ),
-                                        )
-                                      ],
+                                          ),):SizedBox(); }),
+
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -550,7 +565,7 @@ class Home extends StatelessWidget {
                   );
                 },
               )),
-            ),
+            );  })
     );
   }
 
@@ -646,8 +661,9 @@ class Home extends StatelessWidget {
               height: 34,
               margin: EdgeInsets.only(top: 10),
               child: ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: ThemeColortDark,padding: EdgeInsets.all(10)),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: ThemeColortDark,
+                      padding: EdgeInsets.all(10)),
                   onPressed: () {
                     homePageController.updateCountTime();
                     print(
@@ -657,25 +673,30 @@ class Home extends StatelessWidget {
                         homePageController.isSecondTimeSelected.value ==
                             false) {
                       homePageController.updateNullTime();
-                    }
-                    else if(homePageController.hour.value<10 &&homePageController.selectedValue==CT.dog_unit){
-                      showDialog(context: context, builder: (context) =>
-                          buildAlertDialog(CT.minimun_hour_dog),);
-
-                    }
-                      else if(homePageController.hour.value<6 && homePageController.selectedValue==CT.door_sia_supervisiors)
-                      {
-                      showDialog(context: context, builder: (context) =>
-                          buildAlertDialog(CT.minimun_hour_supervisor),);
-
-                    }
-                      else if(homePageController.hour.value<8 && homePageController.selectedValue==CT.security_sia_guard){
-                      showDialog(context: context, builder: (context) =>
-                          buildAlertDialog(CT.minimun_hour_guard),);
-
-                    }
-
-                      else {
+                    } else if (homePageController.hour.value < 10 &&
+                        homePageController.selectedValue == CT.dog_unit) {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            buildAlertDialog(CT.minimun_hour_dog),
+                      );
+                    } else if (homePageController.hour.value < 6 &&
+                        homePageController.selectedValue ==
+                            CT.door_sia_supervisiors) {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            buildAlertDialog(CT.minimun_hour_supervisor),
+                      );
+                    } else if (homePageController.hour.value < 8 &&
+                        homePageController.selectedValue ==
+                            CT.security_sia_guard) {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            buildAlertDialog(CT.minimun_hour_guard),
+                      );
+                    } else {
                       homePageController.updateFormatedTime();
                       // if (homePageController.isTimeNull.value == false) {
                       Navigator.pop(context);
@@ -796,7 +817,10 @@ class Home extends StatelessWidget {
                   //   },
                   child: Text(
                     CT.submit,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16,color: Colors.white),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Colors.white),
                   )),
             )
           ],
@@ -807,33 +831,31 @@ class Home extends StatelessWidget {
 
   AlertDialog buildAlertDialog(String message) {
     return AlertDialog(
-
-                          backgroundColor: Colors.white,
-                       alignment: Alignment.center,
-
-                       title: Center(child: Text(CT.alert),),
-                          actions: [
-                            Center(child:
-
-                            Text(message,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(     fontSize: 13))),
-                            SizedBox(height: 10,),
-
-                            Center(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: ThemeColortDark
-                                ),
-
-                                  onPressed: (){
-                                  Get.back();
-                                  }, child: Text(CT.close,style: TextStyle(
-                                color: Colors.white
-                              ),)),
-                            )
-                          ],
-                    );
+      backgroundColor: Colors.white,
+      alignment: Alignment.center,
+      title: Center(
+        child: Text(CT.alert),
+      ),
+      actions: [
+        Center(
+            child: Text(message,
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 13))),
+        SizedBox(
+          height: 10,
+        ),
+        Center(
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: ThemeColortDark),
+              onPressed: () {
+                Get.back();
+              },
+              child: Text(
+                CT.close,
+                style: TextStyle(color: Colors.white),
+              )),
+        )
+      ],
+    );
   }
 
   Container buildContainer(BuildContext context, buttontext, hour, value) {

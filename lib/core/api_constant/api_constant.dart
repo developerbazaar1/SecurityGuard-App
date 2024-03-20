@@ -95,7 +95,14 @@ class ApiKey {
 
 }
 
+class UriConstant{
+  static const baseUrl = "http://pragya.dbtechserver.online/security";
 
+
+  ///Home page
+static const getServicesUrl = "$baseUrl/api/get-services";
+
+}
 
 class StatusCodeConstant {
   // Note: Only the widely used HTTP status codes are documented

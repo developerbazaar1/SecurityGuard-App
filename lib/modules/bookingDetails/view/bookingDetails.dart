@@ -447,7 +447,7 @@ class BookingDetails extends GetView<BookingDetailsController> {
                           border: InputBorder.none
                         ),
                         icon: const Icon(Icons.arrow_drop_down_outlined),
-                        hint: Text(CT.choose_service),
+                        hint: Text("Choose Job Status"),
                         elevation: 16,
                         isExpanded: true,
                         style: const TextStyle(color: Colors.black),

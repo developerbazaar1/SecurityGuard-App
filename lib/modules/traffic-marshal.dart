@@ -268,13 +268,13 @@ class SuprevisorInfo extends StatelessWidget {
         },
       ),
       title: Image(
-        image: AssetImage('assets/modules/images/logo.png'),
+        image: AssetImage('assets/images/logo.png'),
         height: 40,
         width: 52.35,
       ),
       actions: [
         Image(
-          image: AssetImage('assets/modules/images/notification.png'),
+          image: AssetImage('assets/images/notification.png'),
           height: 30,
           width: 30,
         ),
