@@ -7,21 +7,14 @@ import 'package:myapp/Modals/Logo.dart';
 import 'package:myapp/Modals/buttonModal.dart';
 import 'package:myapp/Modals/constants.dart';
 import 'package:myapp/Modals/heading.dart';
-import 'package:myapp/page-1/forgot-password.dart';
+import 'package:myapp/modules/forgetPassword/view/forgot-password.dart';
 import 'package:myapp/routes/app_routes.dart';
-
-
-
-
 import '../../../core/contants/image_constant.dart';
 import '../../../core/contants/text_constant.dart';
 import '../../../core/utils/utils.dart';
 import '../../Registration/view/registration.dart';
 import '../../forgetPassword/view/forgot-password.dart';
 import '../controller/loginController.dart';
-
-
-
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -33,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
     double baseWidth = 393;
@@ -44,14 +36,15 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-           Logo(fem: fem),
+            Logo(fem: fem),
             Container(
-              padding: EdgeInsets.fromLTRB(0 * fem, 120 * fem, 0 * fem, 0 * fem),
+              padding:
+                  EdgeInsets.fromLTRB(0 * fem, 120 * fem, 0 * fem, 0 * fem),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                Heading(fem: fem, ffem: ffem, text: CT.login_customer),
+                  Heading(fem: fem, ffem: ffem, text: CT.login_customer),
                   Container(
                     margin: EdgeInsets.fromLTRB(
                         30.5 * fem, 10 * fem, 27.5 * fem, 0 * fem),
@@ -62,12 +55,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(height: 10,),
-                          InputBoxHeading(CT.email,
-                              CI.imgAlternateEmail),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          InputBoxHeading(CT.email, CI.imgAlternateEmail),
                           TextFormField(
-
-                            controller: loginScreenController.emailController.value,
+                            controller:
+                                loginScreenController.emailController.value,
                             keyboardType: TextInputType.emailAddress,
                             decoration: customInputDecoration,
                             validator: (value) {
@@ -82,12 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
                           SizedBox(height: 20),
-                          InputBoxHeading(CT.password,CI.imgMingcutekey,),
-
+                          InputBoxHeading(
+                            CT.password,
+                            CI.imgMingcutekey,
+                          ),
                           TextFormField(
-                            controller: loginScreenController.passwordController.value,
+                            controller:
+                                loginScreenController.passwordController.value,
                             obscureText: true,
-
                             decoration: customInputDecoration,
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -98,60 +94,50 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
                           SizedBox(height: 10),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: TextButton(
-                            onPressed: () {
-                              Get.toNamed(
-                                  AppRoutes.forgetScreen
-                              );
-                                                 },
-                            child: Text(
-                              CT.forget_password,
-                              style: TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: 0,
-                                  color: Colors.black),
-                              textAlign: TextAlign.right,
-                            )),
-                      ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: TextButton(
+                                onPressed: () {
+                                  Get.toNamed(AppRoutes.forgetScreen);
+                                },
+                                child: Text(
+                                  CT.forget_password,
+                                  style: TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w700,
+                                      letterSpacing: 0,
+                                      color: Colors.black),
+                                  textAlign: TextAlign.right,
+                                )),
+                          ),
                           Center(
                             child: Obx(() {
-                              return loginScreenController.isLoading.value?Center(child: CircularProgressIndicator()):
-                                Container(
-
-                                // frame2Gy7 (50:156)
-                                margin: EdgeInsets.fromLTRB(
-                                    10 * fem, 0 * fem, 10 * fem, 20 * fem),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30)
-                                ),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    shadowColor: Colors.transparent,
-                                    padding: EdgeInsets.zero,
-                                  ),
-
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      loginScreenController.loginApi(context);
-
-
-
-                                    }
-                                  },
-                                  child: buttomModal(fem: fem, ffem: ffem, text: CT.login, margin: 44,),
-
-                                ),
-                              );
+                              return loginScreenController.isLoading.value
+                                  ? Center(child: CircularProgressIndicator())
+                                  : buttomModal(
+                                    fem: fem,
+                                    ffem: ffem,
+                                    text: CT.login,
+                                    onPressed: (){
+                                      if (_formKey.currentState!
+                                          .validate()) {
+                                        loginScreenController
+                                            .loginApi(context);
+                                      }
+                                    },
+                                    margin: 44,
+                                  );
                             }),
                           ),
-                          SizedBox(height: 10,),
-
-                          LoginwithGoogle(fem: fem, ffem: ffem,text: CT.login_google,),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          LoginwithGoogle(
+                            fem: fem,
+                            ffem: ffem,
+                            text: CT.login_google,
+                          ),
                           Container(
                             // frame45JH (86:130)
                             margin: EdgeInsets.fromLTRB(
@@ -179,7 +165,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 TextButton(
                                   // registernow7Vs (86:132)
                                   onPressed: () {
-
                                     Get.toNamed(AppRoutes.registrationScreen);
                                   },
                                   style: TextButton.styleFrom(
@@ -212,36 +197,27 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
   final InputDecoration customInputDecoration = InputDecoration(
-    errorStyle: TextStyle(
-      color: ThemeColorError,
+      errorStyle: TextStyle(
+        color: ThemeColorError,
 
-
-
-        fontFamily:' Nunito',
+        fontFamily: ' Nunito',
         fontSize: 12,
 
-    fontWeight: FontWeight.w700,
-    // Customize the error text font size
-    ),
+        fontWeight: FontWeight.w700,
+        // Customize the error text font size
+      ),
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: ThemeColorUnderline, // Customize the underline color
-          width: 1.0,           // Customize the underline width
+          width: 1.0, // Customize the underline width
         ),
       ),
-
-    errorBorder:   UnderlineInputBorder(
-    borderSide: BorderSide(
-    color: ThemeColorError, // Customize the underline color
-    width: 1.0,           // Customize the underline width
-  ),
-  )
-  );
-
+      errorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: ThemeColorError, // Customize the underline color
+          width: 1.0, // Customize the underline width
+        ),
+      ));
 }
-
-
-
-
-

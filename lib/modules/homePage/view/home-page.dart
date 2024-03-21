@@ -1,35 +1,26 @@
 import 'dart:ui';
-import 'package:customizable_datetime_picker/sources/i18n/date_picker_i18n.dart';
-import 'package:customizable_datetime_picker/sources/model/date_picker_divider_theme.dart';
-import 'package:customizable_datetime_picker/sources/model/date_picker_theme.dart';
-import 'package:customizable_datetime_picker/sources/widget/customizable_time_picker_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:interval_time_picker/interval_time_picker.dart';
 
-import 'package:intl/intl.dart';
-import 'package:myapp/Modals/BottomsheetSecurity.dart';
 import 'package:myapp/modules/Loading/searching.dart';
 
-import 'package:numberpicker/numberpicker.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../core/contants/image_constant.dart';
 import '../../../core/contants/text_constant.dart';
 import '../../../core/utils/utils.dart';
-import '../../dogSecurity.dart';
+import '../../dogSecurityDescription/view/dogSecurity.dart';
 import '../../notification/view/notification-list.dart';
-import '../../security-guard.dart';
-import '../../traffic-marshal.dart';
+import '../../securityGuard/view/securityGuard.dart';
+import '../../SupervisorDescription/view/supervisor.dart';
 import '../controller/homeController.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:myapp/Modals/SecurityList.dart';
 import 'package:myapp/Modals/constants.dart';
-
-import 'package:myapp/page-1/select-guard.dart';
 
 const TextStyle pickerTextStyle = TextStyle(
     color: Color(0xFF101010), fontSize: 20, fontWeight: FontWeight.w600);
@@ -42,531 +33,571 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _dateController = TextEditingController();
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-    List SecurityList = [
-      SecurityIcon(CI.imgDog, CT.dog_unit, DogSecurityInfo()),
-      SecurityIcon(
-          CI.imgDoorSupervisors, CT.door_supervisiors, SuprevisorInfo()),
-      SecurityIcon(CI.imgSecuritGuards, CT.security_need, SecurityGardInfo()),
-    ];
 
-    final DateController dateController = Get.put(DateController());
+
 
     double baseWidth = 393;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      appBar: Appbar(context, fem),
-      body: Obx(() {
-        return homePageController.getServicesData.value == null
-
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Container(
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 20 * fem),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    CI.imgBackgroundGIF,
+        appBar: Appbar(context, fem),
+        body: Obx(() {
+          return homePageController.getServicesData.value == null
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 20 * fem),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        CI.imgBackgroundGIF,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              child: Container(child: Obx(
-                () {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                  top: 25, left: 12, right: 12, bottom: 10),
-                              padding: EdgeInsets.only(left: 15),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  color: Colors.white),
-                              child: TextFormField(
-                                style: searchTextStyle,
-                                keyboardType: TextInputType.text,
+                  child: Container(child: Obx(
+                    () {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Form(
+                            key: homePageController.formKey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      top: 25, left: 12, right: 12, bottom: 10),
+                                  padding: EdgeInsets.only(left: 15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      color: Colors.white),
+                                  child: TextFormField(
+                                    style: searchTextStyle,
+                                    keyboardType: TextInputType.text,
 
-                                onSaved: (value) {
-                                  print(value);
-                                },
-                                validator: (value) {
-                                  if (value!.isEmpty || value == null) {
-                                    homePageController.isLocationEmpty.value =
-                                        true;
-                                  } else {
-                                    homePageController.isLocationEmpty.value =
-                                        false;
-                                  }
-                                  return null;
-                                },
+                                    onSaved: (value) {
+                                      print(value);
+                                    },
+                                    validator: (value) {
+                                      if (value!.isEmpty || value == null) {
+                                        homePageController
+                                            .isLocationEmpty.value = true;
+                                      } else {
+                                        homePageController
+                                            .isLocationEmpty.value = false;
+                                      }
+                                      return null;
+                                    },
 
-                                onFieldSubmitted: (value) {
-                                  if (homePageController.searchController.value
-                                          .text.isEmpty ||
-                                      homePageController
-                                              .searchController.value.text ==
-                                          null) {
-                                    if (_formKey.currentState!.validate()) {
-                                      homePageController.textSubmitted.value =
-                                          false;
-                                      homePageController.isLocationEmpty.value =
-                                          true;
-                                    }
-                                  } else {
-                                    homePageController.textSubmitted.value =
-                                        true;
-                                    homePageController.isLocationEmpty.value =
-                                        false;
-                                    // homePageController.ServicesAPI();
-                                  }
-                                },
-                                controller:
-                                    homePageController.searchController.value,
-                                textAlign: TextAlign.start,
-
-                                // controller: _searchController,
-                                // onChanged: _handleSearch,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(top: 13),
-                                  prefixIcon: Icon(
-                                    Icons.location_on_outlined,
-                                    color: ThemeColor,
-                                    weight: baseWidth,
-                                  ),
-                                  hintText: CT.security_need,
-                                  hintStyle: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      textBaseline: TextBaseline.alphabetic),
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                            Obx(
-                              () {
-                                return homePageController
-                                            .isLocationEmpty.value ==
-                                        true
-                                    ? Container(
-                                        margin: EdgeInsets.only(left: 30),
-                                        child: Text(
-                                          CT.choose_service,
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                            color: ThemeColorError,
-                                            fontFamily: 'Nunito',
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      )
-                                    : SizedBox();
-                              },
-                            ),
-                            if (homePageController.textSubmitted.value == true)
-                              Container(
-                                margin: EdgeInsets.only(
-                                    top: 0, left: 12, right: 12, bottom: 10),
-                                padding: EdgeInsets.only(left: 25, right: 5),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    color: Colors.white),
-                                child: Row(
-                                  children: [
-                                    Image(
-                                      image: AssetImage(CI.imgSecuritySymbol),
-                                      height: 20,
-                                      width: 20,
-                                      color: ThemeColortDark,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(left: 20),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.65 *
-                                          fem,
-                                      child: DropdownButtonFormField<String>(
-                                        dropdownColor: Colors.white,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                        ),
-                                        icon: const Icon(
-                                            Icons.arrow_drop_down_outlined),
-                                        hint: Text(CT.choose_service),
-                                        elevation: 16,
-                                        isExpanded: true,
-                                        style: const TextStyle(
-                                            color: Colors.black),
-                                        onChanged: (String? value) {
-                                          homePageController.selectedValue =
-                                              value!;
-                                          print(
-                                              homePageController.selectedValue);
+                                    onFieldSubmitted: (value) {
+                                      if (homePageController.searchController
+                                              .value.text.isEmpty ||
+                                          homePageController.searchController.value.text.isEmpty) {
+                                        if (homePageController.formKey.currentState!.validate()) {
                                           homePageController
-                                              .isSecurityChoosed.value = true;
-                                        },
-                                        value: homePageController.selectedValue,
-                                        items: homePageController.Items.value
-                                            .map<DropdownMenuItem<String>>(
-                                                (value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
+                                              .textSubmitted.value = false;
+                                          homePageController
+                                              .isLocationEmpty.value = true;
+                                        }
+                                      } else {
+                                        homePageController.textSubmitted.value =
+                                            true;
+                                        homePageController
+                                            .isLocationEmpty.value = false;
+                                        // homePageController.ServicesAPI();
+                                      }
+                                    },
+                                    controller: homePageController
+                                        .searchController.value,
+                                    textAlign: TextAlign.start,
+
+                                    // controller: _searchController,
+                                    // onChanged: _handleSearch,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.only(top: 13),
+                                      prefixIcon: Icon(
+                                        Icons.location_on_outlined,
+                                        color: ThemeColor,
+                                        weight: baseWidth,
                                       ),
+                                      hintText: CT.security_need,
+                                      hintStyle: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          textBaseline:
+                                              TextBaseline.alphabetic),
+                                      border: InputBorder.none,
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            if (homePageController.isSecurityChoosed.value ==
-                                true)
-                              GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return Center(
-                                        child: Container(
-                                          margin: EdgeInsets.all(20),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: Colors.white,
+                                Obx(
+                                  () {
+                                    return homePageController
+                                                .isLocationEmpty.value ==
+                                            true
+                                        ? Container(
+                                            margin: EdgeInsets.only(left: 30),
+                                            child: Text(
+                                              CT.choose_service,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                color: ThemeColorError,
+                                                fontFamily: 'Nunito',
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          )
+                                        : SizedBox();
+                                  },
+                                ),
+                                if (homePageController.textSubmitted.value ==
+                                    true)
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                        top: 0,
+                                        left: 12,
+                                        right: 12,
+                                        bottom: 10),
+                                    padding:
+                                        EdgeInsets.only(left: 25, right: 5),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: Colors.white),
+                                    child: Row(
+                                      children: [
+                                        Image(
+                                          image:
+                                              AssetImage(CI.imgSecuritySymbol),
+                                          height: 20,
+                                          width: 20,
+                                          color: ThemeColortDark,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(left: 20),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.65 *
+                                              fem,
+                                          child:
+                                              DropdownButtonFormField<String>(
+                                            dropdownColor: Colors.white,
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                            ),
+                                            icon: const Icon(
+                                                Icons.arrow_drop_down_outlined),
+                                            hint: Text(CT.choose_service),
+                                            elevation: 16,
+                                            isExpanded: true,
+                                            style: const TextStyle(
+                                                color: Colors.black),
+                                            onChanged: (String? value) {
+                                              homePageController.selectedValue =
+                                                  value!;
+                                              print(homePageController
+                                                  .selectedValue);
+                                              homePageController
+                                                  .isSecurityChoosed
+                                                  .value = true;
+                                            },
+                                            value: homePageController
+                                                .selectedValue,
+                                            items: homePageController
+                                                .Items
+                                                .map<DropdownMenuItem<String>>(
+                                                    (value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value.serviceTitle,
+                                                child: Text(value.serviceTitle!),
+                                              );
+                                            }).toList(),
                                           ),
-                                          height: 355 * fem,
-                                          child: Column(
-                                            children: <Widget>[
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Obx(
-                                                    () {
-                                                      return homePageController
-                                                                  .isDateEmpty
-                                                                  .value ==
-                                                              true
-                                                          ? Container(
-                                                              margin: EdgeInsets
-                                                                  .only(
-                                                                      left: 30),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (homePageController
+                                        .isSecurityChoosed.value ==
+                                    true)
+                                  GestureDetector(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Center(
+                                            child: Container(
+                                              margin: EdgeInsets.all(20),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.white,
+                                              ),
+                                              height: 355 * fem,
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Obx(
+                                                        () {
+                                                          return homePageController
+                                                                      .isDateEmpty
+                                                                      .value ==
+                                                                  true
+                                                              ? Container(
+                                                                  margin: EdgeInsets
+                                                                      .only(
+                                                                          left:
+                                                                              30),
+                                                                  child: Text(
+                                                                    CT.please_choose_service,
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color:
+                                                                          ThemeColorError,
+                                                                      fontFamily:
+                                                                          'Nunito',
+                                                                      fontSize:
+                                                                          12,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              : SizedBox();
+                                                        },
+                                                      ),
+                                                      Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  right: 15),
+                                                          child: TextButton(
+                                                              onPressed: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
                                                               child: Text(
-                                                                CT.please_choose_service,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
+                                                                CT.close,
                                                                 style:
-                                                                    TextStyle(
-                                                                  color:
-                                                                      ThemeColorError,
-                                                                  fontFamily:
-                                                                      'Nunito',
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                              ),
-                                                            )
-                                                          : SizedBox();
-                                                    },
+                                                                    searchTextStyle,
+                                                              ))),
+                                                    ],
                                                   ),
                                                   Container(
-                                                      margin: EdgeInsets.only(
-                                                          right: 15),
-                                                      child: TextButton(
-                                                          onPressed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          },
-                                                          child: Text(
-                                                            CT.close,
-                                                            style:
-                                                                searchTextStyle,
-                                                          ))),
-                                                ],
-                                              ),
-                                              Container(
-                                                color: Colors.white,
-                                                height: 240 * fem,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.8,
-                                                child: SfDateRangePicker(
-                                                  minDate: DateTime.now(),
-                                                  controller: homePageController
-                                                      .controller.value,
-                                                  onSelectionChanged:
-                                                      homePageController
-                                                          .onSelectionChanged,
-                                                  selectionMode:
-                                                      DateRangePickerSelectionMode
-                                                          .range,
-                                                  initialSelectedRange:
-                                                      PickerDateRange(
-                                                          DateTime.now()
-                                                              .subtract(
+                                                    color: Colors.white,
+                                                    height: 240 * fem,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.8,
+                                                    child: SfDateRangePicker(
+                                                      minDate: DateTime.now(),
+                                                      controller:
+                                                          homePageController
+                                                              .controller.value,
+                                                      onSelectionChanged:
+                                                          homePageController
+                                                              .onSelectionChanged,
+                                                      selectionMode:
+                                                          DateRangePickerSelectionMode
+                                                              .range,
+                                                      initialSelectedRange:
+                                                          PickerDateRange(
+                                                              DateTime.now().subtract(
                                                                   const Duration(
                                                                       days: 4)),
-                                                          DateTime.now().add(
-                                                              const Duration(
-                                                                  days: 3))),
-                                                ),
-                                              ),
-                                              ElevatedButton(
-                                                  onPressed: () {
-                                                    homePageController
-                                                        .updateDate();
-                                                    if (homePageController.range
-                                                        .value.isNotEmpty) {
-                                                      homePageController
-                                                          .isDateEmpty
-                                                          .value = false;
-
-                                                      homePageController
-                                                          .isDateSelected
-                                                          .value = true;
-                                                      Navigator.pop(context);
-                                                    } else {
-                                                      homePageController
-                                                          .isDateEmpty
-                                                          .value = true;
-                                                    }
-                                                  },
-                                                  child: Text(
-                                                    CT.ok,
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ))
-                                            ],
-                                          ),
-                                        ),
-                                      ); // Call the function to build the dialog
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(
-                                      left: 12, right: 12, bottom: 10),
-                                  padding: EdgeInsets.only(
-                                      left: 15, top: 10, bottom: 10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      color: Colors.white),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 12,
-                                      ),
-                                      Image(
-                                        image: AssetImage(CI.imgCalenderIcon),
-                                        height: 25,
-                                        width: 25,
-                                        color: ThemeColortDark,
-                                      ),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-
-                                      // Add some spacing
-                                      Obx(() => Text(
-                                            homePageController
-                                                .formattedDate.value
-                                                .toString(),
-                                            style: searchTextStyle,
-                                          )),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            if (homePageController.isDateSelected.value == true)
-                              GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return buildCustomizableTimePickerWidget(
-                                          context); // Call the function to build the dialog
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(left: 12, right: 12),
-                                  padding: EdgeInsets.only(
-                                      left: 15, top: 10, bottom: 10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      color: Colors.white),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 12,
-                                      ),
-                                      Image(
-                                        image: AssetImage(CI.imgClock),
-                                        height: 25,
-                                        width: 25,
-                                        color: ThemeColortDark,
-                                      ),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-
-                                      // Add some spacing
-                                      Obx(() {
-                                        return Text(
-                                          "${homePageController.formatedTime.value} ${CT.hours}",
-                                          style: searchTextStyle,
-                                        );
-                                      })
-                                    ],
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              height: MediaQuery.of(context).size.height *
-                                  0.120 *
-                                  fem,
-                              width: MediaQuery.sizeOf(context).width,
-                              decoration: BoxDecoration(),
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount:
-                                    homePageController.ServiceLength.value,
-                                itemBuilder: (context, index) => Center(
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          0.44,
-                                      margin:
-                                          EdgeInsets.only(left: 8, right: 8),
-                                      padding:
-                                          EdgeInsets.only(left: 8, right: 8),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.white,
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                width: 30,
-                                              ),
-
-                                            Obx(() {
-                                              return  homePageController
-                                                  .getServicesData.value!=null
-                                                  ? Center(
-                                                child: Container(
-                                                  margin:
-                                                  EdgeInsets.only(top: 10),
-                                                  child: Center(
-                                                      child: Image(
-                                                        image:
-                                                        NetworkImage('http://pragya.dbtechserver.online/security/public/${
-                                                            homePageController
-                                                                .getServicesData.value!.services!
-                                                            [index].serviceImage
-                                                        }'),
-                                                        width: 40,
-                                                        height: 40,
-                                                      )),
-                                                ),
-                                              ):
-                                              SizedBox();
-                                            }),
-                                              Align(
-                                                  alignment: Alignment.topRight,
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(0.0),
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        homePageController
-                                                            .isButtonTaped
-                                                            .value = true;
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  SecurityList[
-                                                                          index]
-                                                                      .function,
-                                                            ));
-                                                      },
-                                                      child: Container(
-                                                        height: 50,
-                                                        width: 50,
-                                                        margin:
-                                                            EdgeInsets.all(0),
-                                                        child: Center(
-                                                          child: Image(
-                                                            image: AssetImage(
-                                                                CI.imgInfo),
-                                                            width: 15,
-                                                            height: 15,
-                                                          ),
-                                                        ),
-                                                      ),
+                                                              DateTime.now().add(
+                                                                  const Duration(
+                                                                      days:
+                                                                          3))),
                                                     ),
-                                                  ))
-                                            ],
+                                                  ),
+                                                  ElevatedButton(
+                                                      onPressed: () {
+                                                        homePageController
+                                                            .updateDate();
+                                                        if (homePageController
+                                                            .range
+                                                            .value
+                                                            .isNotEmpty) {
+                                                          homePageController
+                                                              .isDateEmpty
+                                                              .value = false;
+
+                                                          homePageController
+                                                              .isDateSelected
+                                                              .value = true;
+                                                          Navigator.pop(
+                                                              context);
+                                                        } else {
+                                                          homePageController
+                                                              .isDateEmpty
+                                                              .value = true;
+                                                        }
+                                                      },
+                                                      child: Text(
+                                                        CT.ok,
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ))
+                                                ],
+                                              ),
+                                            ),
+                                          ); // Call the function to build the dialog
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                          left: 12, right: 12, bottom: 10),
+                                      padding: EdgeInsets.only(
+                                          left: 15, top: 10, bottom: 10),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: Colors.white),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 12,
+                                          ),
+                                          Image(
+                                            image:
+                                                AssetImage(CI.imgCalenderIcon),
+                                            height: 25,
+                                            width: 25,
+                                            color: ThemeColortDark,
                                           ),
                                           SizedBox(
-                                            height: 10,
+                                            width: 20,
                                           ),
-                                          Obx(() {
-                                            return homePageController.getServicesData.value!=null?
 
-                                          Text(homePageController.getServicesData.value!.services![index].serviceTitle.toString(), style: TextStyle(
-                                            color: ThemeColortDark,
-                                            fontFamily: 'Nunito',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),):SizedBox(); }),
-
+                                          // Add some spacing
+                                          Obx(() => Text(
+                                                homePageController
+                                                    .formattedDate.value
+                                                    .toString(),
+                                                style: searchTextStyle,
+                                              )),
                                         ],
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
+                                if (homePageController.isDateSelected.value ==
+                                    true)
+                                  GestureDetector(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return buildCustomizableTimePickerWidget(
+                                              context); // Call the function to build the dialog
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      margin:
+                                          EdgeInsets.only(left: 12, right: 12),
+                                      padding: EdgeInsets.only(
+                                          left: 15, top: 10, bottom: 10),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: Colors.white),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 12,
+                                          ),
+                                          Image(
+                                            image: AssetImage(CI.imgClock),
+                                            height: 25,
+                                            width: 25,
+                                            color: ThemeColortDark,
+                                          ),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+
+                                          // Add some spacing
+                                          Obx(() {
+                                            return Text(
+                                              "${homePageController.formatedTime.value} ${CT.hours}",
+                                              style: searchTextStyle,
+                                            );
+                                          })
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
-                          )
+                          ),
+                          Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.120 *
+                                      fem,
+                                  width: MediaQuery.sizeOf(context).width,
+                                  decoration: BoxDecoration(),
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: homePageController
+                                        .getServicesData
+                                        .value!
+                                        .services!
+                                        .length,
+                                    itemBuilder: (context, index) => Center(
+                                      child: GestureDetector(
+                                        onTap: () {},
+                                        child: Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.44,
+                                          margin: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: Colors.white,
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 30,
+                                                  ),
+                                                  Obx(() {
+                                                    return homePageController
+                                                                .getServicesData
+                                                                .value !=
+                                                            null
+                                                        ? Center(
+                                                            child: Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      top: 10),
+                                                              child: Center(
+                                                                  child: Image(
+                                                                image: NetworkImage(
+                                                                    'http://pragya.dbtechserver.online/security/public/${homePageController.getServicesData.value!.services![index].serviceImage}'),
+                                                                width: 40,
+                                                                height: 40,
+                                                              )),
+                                                            ),
+                                                          )
+                                                        : SizedBox();
+                                                  }),
+                                                  Align(
+                                                      alignment:
+                                                          Alignment.topRight,
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.all(0.0),
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            homePageController
+                                                                .isButtonTaped
+                                                                .value = true;
+                                                            Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder: (context) =>
+                                                                      homePageController.SecurityList[
+                                                                              index]
+                                                                          .function,
+                                                                ));
+                                                          },
+                                                          child: Container(
+                                                            height: 50,
+                                                            width: 50,
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    0),
+                                                            child: Center(
+                                                              child: Image(
+                                                                image: AssetImage(
+                                                                    CI.imgInfo),
+                                                                width: 15,
+                                                                height: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ))
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Obx(() {
+                                                return homePageController
+                                                            .getServicesData
+                                                            .value !=
+                                                        null
+                                                    ? Text(
+                                                        homePageController
+                                                            .getServicesData
+                                                            .value!
+                                                            .services![index]
+                                                            .serviceTitle
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          color:
+                                                              ThemeColortDark,
+                                                          fontFamily: 'Nunito',
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      )
+                                                    : SizedBox(
+                                                        child: Text(
+                                                            'value not comming'),
+                                                      );
+                                              }),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ],
-                      ),
-                    ],
-                  );
-                },
-              )),
-            );  })
-    );
+                      );
+                    },
+                  )),
+                );
+        }));
   }
 
   AppBar Appbar(BuildContext context, double fem) {
@@ -665,9 +696,8 @@ class Home extends StatelessWidget {
                       backgroundColor: ThemeColortDark,
                       padding: EdgeInsets.all(10)),
                   onPressed: () {
-                    homePageController.updateCountTime();
-                    print(
-                        ' thi s ${homePageController.hour}  sn ${homePageController.selectedValue}');
+
+
 
                     if (homePageController.isFirstTimeSelected.value == false ||
                         homePageController.isSecondTimeSelected.value ==
@@ -705,7 +735,7 @@ class Home extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         context: context,
                         builder: (BuildContext context) {
-                          homePageController.updateCountTime;
+
                           return Container(
                             padding: EdgeInsets.fromLTRB(
                                 15 * fem, 40.5 * fem, 15 * fem, 40.5 * fem),

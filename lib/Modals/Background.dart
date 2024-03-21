@@ -18,6 +18,7 @@ class _BackGroundState extends State<BackGround> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
+
       backgroundColor: Color(0x8cffffff),
       body: Stack(
         children: [

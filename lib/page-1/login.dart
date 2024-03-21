@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/Background.dart';
 import 'package:myapp/Modals/constants.dart';
 import 'package:myapp/page-1/sign-up.dart';
+import 'package:myapp/routes/app_routes.dart';
 
 import '../core/utils/utils.dart';
 
 import '../Modals/InputHeading.dart';
 import '../modules/Registration/view/registration.dart';
-import 'forgot-password.dart';
+import '../modules/forgetPassword/view/forgot-password.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -125,7 +128,8 @@ class Login extends StatelessWidget {
                                   alignment: Alignment.bottomRight,
                                   child: TextButton(
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) =>ForgetPassword(),));
+                                        Get.toNamed(AppRoutes.forgetScreen);
+                                        //Navigator.push(context, MaterialPageRoute(builder: (context) =>ForgetPassword(),));
                                       },
                                       child: Text(
                                         "Forgot Password?",

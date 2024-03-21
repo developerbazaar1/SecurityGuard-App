@@ -10,7 +10,7 @@ import 'package:myapp/Modals/constants.dart';
 
 import '../../core/utils/utils.dart';
 import '../notification/view/notification-list.dart';
-import '../payment-done.dart';
+import '../paymentDone/view/paymentDone.dart';
 import 'Controller.dart';
 
 class PaymentPage extends StatelessWidget {

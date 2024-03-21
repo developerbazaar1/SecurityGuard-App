@@ -35,8 +35,9 @@ class ProfileController extends GetxController {
 
 
         Get.snackbar('Log Out Successful', LogoutData.value['message'],colorText: ThemeColortDark);
+        _setKey('');
 
-        tokenStorage.removeToken();
+
         isLoading.value = false;
         Get.offAll(()=>LoginScreen());
 
@@ -53,15 +54,28 @@ class ProfileController extends GetxController {
 print(e);
     }
   }
+  void _getKey() async {
+
+    final prefs = await SharedPreferences.getInstance();
+    final key = prefs.get('token');
+
+    globalusertoken = key.toString();
+
+
+
+    print('YOUR KEY - "$globalusertoken"');
+  }
 
   @override
-  void onInit() {
-    ProfileAPI();
+  void onInit()async {
+    //_getKey();
+   await ProfileAPI();
+
 
 
     super.onInit();
   }
-  void ProfileAPI()async{
+  Future<void> ProfileAPI()async{
 
     try{
       var headers = {

@@ -9,7 +9,7 @@ import 'package:myapp/Modals/constants.dart';
 
 import '../core/utils/utils.dart';
 import '../modules/HomeScreen/view/HomeScreen.dart';
-import '../modules/guard-description-page.dart';
+import '../modules/GuardDescription/view/guardDescription.dart';
 import '../modules/notification/view/notification-list.dart';
 
 

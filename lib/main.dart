@@ -11,7 +11,7 @@ import 'TokenStorage.dart';
 import 'core/contants/text_constant.dart';
 import 'core/utils/initial_bindings.dart';
 import 'core/utils/logger.dart';
-var globalusertoken;
+String globalusertoken= '';
 
 
 

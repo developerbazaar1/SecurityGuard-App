@@ -10,25 +10,41 @@ class SplashController extends GetxController {
     super.onReady();
     // Delay for 2 seconds and then navigate to the next screen
     Future.delayed(Duration(seconds: 2), () {
-      if(globalusertoken==null)
-      Get.offNamed(AppRoutes.loginScreen);
-      else
+      print("here is globle key ${globalusertoken}");
+      if(globalusertoken!='' || globalusertoken.isNotEmpty){
         Get.offNamed(AppRoutes.homeScreen);
+      }
+
+      else{
+      Get.offNamed(AppRoutes.loginScreen);
+      }
+
     });
   }
+
+  void _setKey(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', key);
+    print('set key');
+  }
+
   @override
   void onInit() {
+
+
     _getKey();
+
     super.onInit();
   }
   void _getKey() async {
-    print('running');
+
     final prefs = await SharedPreferences.getInstance();
     final key = prefs.get('token');
 
-      globalusertoken = key;
+      globalusertoken = key.toString();
 
 
-    print('YOUR KEY - "$key"');
+
+    print('YOUR KEY - "$globalusertoken"');
   }
 }

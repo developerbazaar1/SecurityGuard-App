@@ -1,15 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:myapp/Modals/DashedBorderPainter.dart';
 import 'package:myapp/Modals/constants.dart';
-
 
 import '../../../core/utils/utils.dart';
 import '../../notification/view/notification-list.dart';
@@ -17,14 +16,11 @@ import '../../profileUpdate/view/profileUpdated.dart';
 import '../controller/EditProfileController.dart';
 
 class EditProfilePage extends StatelessWidget {
-  final ProfileImageController profileImageController = Get.put(ProfileImageController());
+  final ProfileImageController profileImageController =
+      Get.put(ProfileImageController());
 
-  var _image;
-  final picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
-
-
     double baseWidth = 393;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -43,13 +39,13 @@ class EditProfilePage extends StatelessWidget {
             children: [
               Container(
                 // frame63Mcm (303:2129)
-                margin: EdgeInsets.fromLTRB(14 * fem, 0 * fem, 14 * fem, 0 * fem),
+                margin:
+                    EdgeInsets.fromLTRB(14 * fem, 0 * fem, 14 * fem, 0 * fem),
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      // autogroupnnidtch (TskVCdh6sAqEbc1DysNNiD)
                       padding: EdgeInsets.fromLTRB(
                           6 * fem, 0 * fem, 6 * fem, 25 * fem),
                       width: double.infinity,
@@ -58,7 +54,6 @@ class EditProfilePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            // frame52CdP (303:2235)
                             margin: EdgeInsets.fromLTRB(
                                 0 * fem, 0 * fem, 0 * fem, 0 * fem),
                             padding: EdgeInsets.fromLTRB(
@@ -68,7 +63,6 @@ class EditProfilePage extends StatelessWidget {
                             decoration: BoxDecoration(),
                             child: Center(
                               child: Text(
-                                // editprofilewzH (303:2239)
                                 'Edit Profile',
                                 style: SafeGoogleFont(
                                   'Noto Sans',
@@ -106,17 +100,24 @@ class EditProfilePage extends StatelessWidget {
                                     width: 100 * fem,
                                     height: 100 * fem,
                                     child: Obx(() => Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(50 * fem),
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: profileImageController.profileImagePath.value.isEmpty?AssetImage('assets/page-1/images/ellipse-3-bg.png'):FileImage(File(profileImageController.profileImagePath.value)) as ImageProvider
-
-
-                                        ),
-                                      ),
-                                    )),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50 * fem),
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: profileImageController
+                                                        .profileImagePath
+                                                        .value
+                                                        .isEmpty
+                                                    ? AssetImage(
+                                                        'assets/page-1/images/ellipse-3-bg.png')
+                                                    : FileImage(File(
+                                                            profileImageController
+                                                                .profileImagePath
+                                                                .value))
+                                                        as ImageProvider),
+                                          ),
+                                        )),
                                   ),
                                 ),
                                 Container(
@@ -133,11 +134,14 @@ class EditProfilePage extends StatelessWidget {
                                                   child: Wrap(
                                                     children: [
                                                       ListTile(
-                                                        leading: Icon(
-                                                            Icons.photo_library),
+                                                        leading: Icon(Icons
+                                                            .photo_library),
                                                         title: Text('Gallery'),
                                                         onTap: () {
-                                                          profileImageController.pickImage(ImageSource.gallery);
+                                                          profileImageController
+                                                              .pickImage(
+                                                                  ImageSource
+                                                                      .gallery);
                                                           Get.back();
                                                         },
                                                       ),
@@ -146,7 +150,10 @@ class EditProfilePage extends StatelessWidget {
                                                             Icons.camera_alt),
                                                         title: Text('Camera'),
                                                         onTap: () {
-                                                          profileImageController.pickImage(ImageSource.camera);
+                                                          profileImageController
+                                                              .pickImage(
+                                                                  ImageSource
+                                                                      .camera);
                                                           Get.back();
                                                         },
                                                       ),
@@ -171,13 +178,10 @@ class EditProfilePage extends StatelessWidget {
                               ],
                             ),
                           ),
-
-
                         ],
                       ),
                     ),
                     Container(
-                      // frame2900Xr1 (303:2292)
                       margin: EdgeInsets.fromLTRB(
                           0 * fem, 0 * fem, 0 * fem, 20 * fem),
                       width: double.infinity,
@@ -185,13 +189,11 @@ class EditProfilePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            // component2Sxy (303:2253)
                             width: double.infinity,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  // namenmw (303:2257)
                                   margin: EdgeInsets.fromLTRB(
                                       10 * fem, 0 * fem, 0 * fem, 5 * fem),
                                   child: Text(
@@ -212,7 +214,8 @@ class EditProfilePage extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: Color(0xffdff4ff),
-                                    borderRadius: BorderRadius.circular(20 * fem),
+                                    borderRadius:
+                                        BorderRadius.circular(20 * fem),
                                   ),
                                   child: Text(
                                     'Allyson Rollins',
@@ -238,8 +241,6 @@ class EditProfilePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-
-
                                   margin: EdgeInsets.fromLTRB(
                                       10 * fem, 0 * fem, 0 * fem, 5 * fem),
                                   child: Text(
@@ -254,13 +255,13 @@ class EditProfilePage extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  // frame16Gad (303:2280)
                                   padding: EdgeInsets.fromLTRB(
                                       15 * fem, 10 * fem, 15 * fem, 10 * fem),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: Color(0xffdff4ff),
-                                    borderRadius: BorderRadius.circular(20 * fem),
+                                    borderRadius:
+                                        BorderRadius.circular(20 * fem),
                                   ),
                                   child: Text(
                                     'allyson@gmail.com',
@@ -307,7 +308,8 @@ class EditProfilePage extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: Color(0xffdff4ff),
-                                    borderRadius: BorderRadius.circular(20 * fem),
+                                    borderRadius:
+                                        BorderRadius.circular(20 * fem),
                                   ),
                                   child: Text(
                                     '90009-90009',
@@ -335,10 +337,10 @@ class EditProfilePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-
                                       margin: EdgeInsets.fromLTRB(
                                           10 * fem, 0 * fem, 0 * fem, 5 * fem),
                                       child: Text(
@@ -352,44 +354,20 @@ class EditProfilePage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    IconButton(onPressed: (){
-                                      showDialog(context: context, builder: (context) {
-                                        return AlertDialog(
-                                          title: Text("Enter Address :"),
-                                          actions: [
-
-                                            Container(
-                                                margin:EdgeInsets.only(bottom: 20),
-                                              padding:EdgeInsets.only(bottom: 0,left: 10),
-
-                                              decoration: BoxDecoration(
-
-                                                borderRadius: BorderRadius.circular(20 * fem),
-                                                color:ThemeColorBackgroundBottomsheet,
-                                              ),
-
-
-
-                                                child: TextFormField(
-                                                  controller: profileImageController.addressController.value,
-
-                                                  maxLines: 3,
-
-                                                  decoration: InputDecoration(
-                                                    border: InputBorder.none
-                                                  ),
-                                                )),
-                                            Center(child: ElevatedButton(onPressed: (){
-                                              profileImageController.updateAddress(profileImageController.addressController.value);
-                                              Navigator.pop(context);
-                                            }, child: Text('Submit')))
-                                          ],
-
-                                        );
-
-                                      },);
-                                    }, icon: Icon(Icons.edit_outlined,color: ThemeColortDark,)),
-
+                                    IconButton(
+                                        onPressed: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return buildAlertDialog(
+                                                  fem, context);
+                                            },
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.edit_outlined,
+                                          color: ThemeColortDark,
+                                        )),
                                   ],
                                 ),
                                 Container(
@@ -400,24 +378,34 @@ class EditProfilePage extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: Color(0xffdff4ff),
-                                    borderRadius: BorderRadius.circular(20 * fem),
+                                    borderRadius:
+                                        BorderRadius.circular(20 * fem),
                                   ),
-                                  child: Obx(() {
-
-
-                                    return Text(
-                                    profileImageController.addressController.value==null||profileImageController.addressController.value.text==''?
-                                    'Market Pl, Romsey SO51 8NB, United Kingdom':profileImageController.addressController.value.text,
-                                    style: SafeGoogleFont(
-                                      'Nunito',
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.3625 * ffem / fem,
-                                      color: Color(0xff000000),
-                                    ),
-                                  );},
-                                ),)
-
+                                  child: Obx(
+                                    () {
+                                      return Text(
+                                        profileImageController.addressController
+                                                        .value ==
+                                                    null ||
+                                                profileImageController
+                                                        .addressController
+                                                        .value
+                                                        .text ==
+                                                    ''
+                                            ? 'Market Pl, Romsey SO51 8NB, United Kingdom'
+                                            : profileImageController
+                                                .addressController.value.text,
+                                        style: SafeGoogleFont(
+                                          'Nunito',
+                                          fontSize: 16 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.3625 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -426,8 +414,8 @@ class EditProfilePage extends StatelessWidget {
                     ),
                     Container(
                       // frame30KUM (303:2296)
-                      margin:
-                          EdgeInsets.fromLTRB(6 * fem, 0 * fem, 6 * fem, 0 * fem),
+                      margin: EdgeInsets.fromLTRB(
+                          6 * fem, 0 * fem, 6 * fem, 0 * fem),
                       child: TextButton(
                         onPressed: () {
                           Navigator.pushReplacement(
@@ -477,6 +465,42 @@ class EditProfilePage extends StatelessWidget {
     );
   }
 
+  AlertDialog buildAlertDialog(double fem, BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Colors.white,
+      title: Text("Enter Address :"),
+      actions: [
+        Container(
+            margin: EdgeInsets.only(bottom: 20),
+            padding: EdgeInsets.only(bottom: 0, left: 10),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade400),
+              borderRadius: BorderRadius.circular(20 * fem),
+              color: ThemeColorBackgroundBottomsheet,
+            ),
+            child: TextFormField(
+              controller: profileImageController.addressController.value,
+              maxLines: 3,
+              decoration: InputDecoration(border: InputBorder.none),
+            )),
+        Center(
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 25, vertical: 20)),
+                onPressed: () {
+                  profileImageController.updateAddress(
+                      profileImageController.addressController.value);
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Submit',
+                  style: TextStyle(color: Colors.white),
+                )))
+      ],
+    );
+  }
+
   AppBar Appbar(BuildContext context, double fem) {
     return AppBar(
       bottom: PreferredSize(
@@ -484,42 +508,44 @@ class EditProfilePage extends StatelessWidget {
         child: Container(
             decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(
-                    color: ThemeColorAppbarUnderline, // Choose your border color
-                    width: 1.0, // Choose the border width
-                  ),
-                ))),
+          bottom: BorderSide(
+            color: ThemeColorAppbarUnderline, // Choose your border color
+            width: 1.0, // Choose the border width
+          ),
+        ))),
       ),
       backgroundColor: Colors.white,
       elevation: 8,
-      leadingWidth: 70*fem,
-      title:Container(
-        margin: EdgeInsets.only(left: 0,top: 5,bottom: 5),
+      leadingWidth: 70 * fem,
+      title: Container(
+        margin: EdgeInsets.only(left: 0, top: 5, bottom: 5),
         child: Image(
           image: AssetImage('assets/images/logo.png'),
           height: 40,
           width: 52.35,
-        ),),
-
-
+        ),
+      ),
       leading: IconButton(
-        onPressed: (){
+        onPressed: () {
           Navigator.pop(context);
-        }
-        ,icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
-      ) ,
-
-
-
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.black,
+        ),
+      ),
       actions: [
-        IconButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationList()));
-        }, icon:  Image(
-          image: AssetImage('assets/images/notification.png'),
-          height: 30,
-          width: 30,
-        ),),
-
+        IconButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NotificationList()));
+          },
+          icon: Image(
+            image: AssetImage('assets/images/notification.png'),
+            height: 30,
+            width: 30,
+          ),
+        ),
         SizedBox(
           width: 30 * fem,
         ),

@@ -20,7 +20,7 @@ class LoginController extends GetxController {
   void _setKey(String key) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('token', key);
-    print('set key');
+    print('set key $key');
   }
 
   void loginApi(BuildContext context) async {
@@ -65,15 +65,6 @@ class LoginController extends GetxController {
             colorText: ThemeColorError);
       }
 
-      // final response  = await post(Uri.parse(' http://pragya.dbtechserver.online/security/api/auth/login'),
-      //     body: {
-      //       'email': emailController.value.text,
-      //       'password': passwordController.value.text
-      //     }
-      // );
-      // var data = jsonDecode(response.body);
-      // print(response.statusCode);
-      // print(data);
     } catch (e) {
       print(e);
       Get.snackbar('Exception', e.toString());
