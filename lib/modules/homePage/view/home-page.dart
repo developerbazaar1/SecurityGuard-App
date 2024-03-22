@@ -521,17 +521,17 @@ class Home extends StatelessWidget {
                                                         padding:
                                                             EdgeInsets.all(0.0),
                                                         child: InkWell(
+                                                          
                                                           onTap: () {
+                                                            //print( homePageController.SecurityList[index][0]);
                                                             homePageController
                                                                 .isButtonTaped
                                                                 .value = true;
-                                                            Navigator.push(
-                                                                context,
+
+                                                            Navigator.push(context,
                                                                 MaterialPageRoute(
                                                                   builder: (context) =>
-                                                                      homePageController.SecurityList[
-                                                                              index]
-                                                                          .function,
+                                                                      homePageController.SecurityList[index][2].onTap,
                                                                 ));
                                                           },
                                                           child: Container(

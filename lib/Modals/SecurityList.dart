@@ -7,6 +7,11 @@ class SecurityIcon
   final dynamic function;
   final String text;
 
-  SecurityIcon(this.image, this.text, this.function);
+  SecurityIcon( this.image, this.text, this.function);
+
+  @override
+  String toString(){
+    return 'SecurityIcon{image: $image, text: $text, function:$function}';
+  }
 
 }

@@ -89,101 +89,92 @@ class AppRoutes {
     GetPage(
       name: initialRoute,
       page: () => SplashScreen(),
-      bindings: [
-        SplashBinding(),
-      ],
+      binding: SplashBinding(),
+
     ),
     GetPage(
       name: loginScreen,
       page: () => LoginScreen(),
-      bindings: [
-        LoginBinding(),
-      ],
+      binding:  LoginBinding(),
+
     ),
     GetPage(
       name: registrationScreen,
       page: () => Registeration(),
-      bindings: [
-        RegisterationBinding(),
-      ],
+      binding:    RegisterationBinding(),
+
     ),
     GetPage(
       name: forgetScreen,
       page: () => ForgotPasswordScreen(),
-      bindings: [
-        ForgetBinding(),
-      ],
+      binding:    ForgetBinding(),
+
     ),
     GetPage(
       name: homeScreen,
-      page: () => Homescreen(selectedIndexValue: 0,),
+      page: () => Homescreen(),
+      binding: HomeScreenBinding(),
       bindings: [
-        HomeScreenBinding(),
+        HomeBinding(),
+        ChatBinding(),
+        BookingBinding(),
+
+        ProfileBinding()
       ],
     ),
     GetPage(
       name: home,
       page: () => Home(),
-      bindings: [
-        HomeBinding(),
-      ],
+      binding: HomeBinding(),
+
     ),
     GetPage(
       name: chat,
       page: () => Chat(),
-      bindings: [
-        ChatBinding(),
-      ],
+      binding:   ChatBinding(),
+
     ),
     GetPage(
       name: booking,
       page: () => Booking(),
-      bindings: [
-        BookingBinding(),
-      ],
+      binding:   BookingBinding(),
+
     ),
     GetPage(
       name: profile,
       page: () => ProfilePage(),
-      bindings: [
-        ProfileBinding(),
-      ],
+      binding: ProfileBinding(),
+
     ),
     GetPage(
       name: edit,
       page: () => EditProfilePage(),
-      bindings: [
-        EditProfileBinding(),
-      ],
+      binding:  EditProfileBinding(),
+
     ),
     GetPage(
       name: updateProfile,
       page: () => ProfileUpdated(),
-      bindings: [
-        UpdateProfileBinding(),
-      ],
+      binding:   UpdateProfileBinding(),
+
     ),
     GetPage(
       name: appSetting,
       page: () => AppSetting(),
-      bindings: [
-        AppSettingBinding(),
-      ],
+      binding: AppSettingBinding(),
+
     ),
     GetPage(
       name: notificationList,
       page: () => NotificationList(),
-      bindings: [
-        NotificationhBinding(),
-      ],
+      binding:    NotificationhBinding(),
+
     ),
     GetPage(
       name: bookingDetails,
       page: () => BookingDetails(),
       binding: BookingDetailsBinding(),
-      bindings: [
-        BookingDetailsBinding(),
-      ],
+
     ),
     GetPage(
       name: dogSecurity,

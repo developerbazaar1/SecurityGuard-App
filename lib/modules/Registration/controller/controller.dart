@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../TokenStorage.dart';
 import '../../../main.dart';
+import '../../../routes/app_routes.dart';
 import '../../HomeScreen/view/HomeScreen.dart';
 class RegistrationController extends GetxController{
   Rx<TextEditingController> nameController = TextEditingController().obs;
@@ -52,8 +53,8 @@ class RegistrationController extends GetxController{
           _setKey(registrationData.value['token']);
       
           Get.snackbar('Registration Successful', registrationData.value['message'],colorText: ThemeColortDark);
-
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen(selectedIndexValue: 0,),));
+          Get.toNamed(AppRoutes.homeScreen,arguments: 0);
+         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen(selectedIndexValue: 0,),));
         }
       }
       else {

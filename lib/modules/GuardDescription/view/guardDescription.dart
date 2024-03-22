@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/NextPageButtonModal.dart';
 import 'package:myapp/Modals/constants.dart';
 import '../../../core/utils/utils.dart';
+import '../../../routes/app_routes.dart';
 import '../../HomeScreen/view/HomeScreen.dart';
 import '../../Payment/payment-page.dart';
 import '../../notification/view/notification-list.dart';
@@ -824,8 +827,8 @@ class GuardDescription extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
 
-                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Cancel',function: Homescreen(selectedIndexValue: 0),BGColor: ThemeColorChatColor,),
-                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Hire Now',function: PaymentPage(),BGColor: ThemeColortDark,),
+                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Cancel',onTap: (){      Get.toNamed(AppRoutes.homeScreen);},BGColor: ThemeColorChatColor,),
+                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Hire Now',onTap:  (){    Get.toNamed(AppRoutes.paymentDone);},BGColor: ThemeColortDark,),
                   ],
                 ),
               ),

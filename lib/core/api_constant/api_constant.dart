@@ -102,6 +102,11 @@ class UriConstant{
   ///Home page
 static const getServicesUrl = "$baseUrl/api/get-services";
 
+
+  ///Profile page
+static const getUserUrl = "$baseUrl/api/get-user";
+static const logoutUrl = "$baseUrl/api/auth/logout";
+
 }
 
 class StatusCodeConstant {

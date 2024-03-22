@@ -21,6 +21,7 @@ import '../../../core/contants/text_constant.dart';
 import '../../../core/data/Comman/common_method.dart';
 import '../../../core/http_methods/http_methods.dart';
 import '../../../main.dart';
+import '../../Splash_Screen/controller/SplashScreenController.dart';
 import '../../dogSecurityDescription/view/dogSecurity.dart';
 import '../../securityGuard/view/securityGuard.dart';
 import '../../SupervisorDescription/view/supervisor.dart';
@@ -83,7 +84,7 @@ class HomePageController extends GetxController {
   RxBool isSecurityButtonSelected = false.obs;
 
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final  formKey = GlobalKey<FormState>();
 
   List SecurityList = [
     SecurityIcon(CI.imgDog, CT.dog_unit, DogSecurityInfo()),

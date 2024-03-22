@@ -6,13 +6,13 @@ class NextPageButton extends StatelessWidget {
   const NextPageButton({
     super.key,
     required this.fem,
-    required this.ffem, required this.buttonText, this.function, required this.BGColor,
+    required this.ffem, required this.buttonText, required this.onTap, required this.BGColor,
   });
 
   final double fem;
   final double ffem;
   final String buttonText;
-  final dynamic function;
+  final VoidCallback onTap;
   final Color BGColor;
 
   @override
@@ -24,10 +24,10 @@ class NextPageButton extends StatelessWidget {
       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5 * fem),
 
       child: TextButton(
-        onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => function,));
+        onPressed: onTap,
+         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => function,));
 
-        },
+
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
         ),

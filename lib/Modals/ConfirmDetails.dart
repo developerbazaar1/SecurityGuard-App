@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/DashedBorderPainter.dart';
 import 'package:myapp/Modals/NextPageButtonModal.dart';
 import 'package:myapp/Modals/chatModal.dart';
 import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/modules/HomeScreen/controller/HomeScreenController.dart';
 
 import '../core/utils/utils.dart';
 import '../modules/HomeScreen/view/HomeScreen.dart';
 import '../modules/GuardDescription/view/guardDescription.dart';
 import '../modules/notification/view/notification-list.dart';
+import '../routes/app_routes.dart';
 
 
 class ConfirmDetails extends StatelessWidget {
@@ -325,8 +329,13 @@ class ConfirmDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
 
-                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Cancel',function: Homescreen(selectedIndexValue: 0),BGColor: ThemeColorChatColor,),
-                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Confirm',function: GuardDescription(),BGColor: ThemeColortDark,),
+                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Cancel',
+                      onTap: (){    Get.toNamed(AppRoutes.homeScreen);
+                      currentIndex.value = 0;
+                      },
+                      BGColor: ThemeColorChatColor,),
+                    NextPageButton(fem: fem, ffem: ffem,buttonText: 'Confirm',onTap:   (){
+                      Get.toNamed(AppRoutes.guard);},BGColor: ThemeColortDark,),
                   ],
                 ),
               ),

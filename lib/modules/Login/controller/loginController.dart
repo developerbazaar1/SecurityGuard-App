@@ -5,11 +5,14 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../TokenStorage.dart';
+import '../../../core/data/localStorage/localStoragedata.dart';
 import '../../../main.dart';
 import '../../HomeScreen/view/HomeScreen.dart';
+import '../../Splash_Screen/controller/SplashScreenController.dart';
 
 class LoginController extends GetxController {
   Rx<TextEditingController> emailController = TextEditingController().obs;
@@ -17,11 +20,7 @@ class LoginController extends GetxController {
   RxBool isLoading = false.obs;
   RxMap LoginData = Map().obs;
 
-  void _setKey(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('token', key);
-    print('set key $key');
-  }
+
 
   void loginApi(BuildContext context) async {
     isLoading.value = true;
@@ -44,18 +43,17 @@ class LoginController extends GetxController {
         isLoading.value = false;
 
         if (LoginData.value['status'] == true) {
-          _setKey(LoginData.value['token']);
+          globalusertoken = LoginData.value['token'].toString();
+          await LocalStorage.setKey(LoginData.value['token']);
+
+          print("this is $globalusertoken");
 
           Get.snackbar('Login Successful', LoginData.value['message'],
               colorText: ThemeColortDark);
 
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Homescreen(
-                  selectedIndexValue: 0,
-                ),
-              ));
+          Get.offAll(()=>Homescreen());
+
+
         }
       } else {
         isLoading.value = false;

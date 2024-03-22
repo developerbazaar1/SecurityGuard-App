@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/DashedBorderPainter.dart';
@@ -8,6 +10,7 @@ import '../../../core/utils/utils.dart';
 
 import '../../../core/utils/utils.dart';
 
+import '../../../routes/app_routes.dart';
 import '../../HomeScreen/view/HomeScreen.dart';
 import '../../notification/view/notification-list.dart';
 
@@ -235,7 +238,8 @@ class HelpSupport extends StatelessWidget {
                                 TextButton(
                                   // frame32h6H (471:234)
                                   onPressed: () {
-                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen(selectedIndexValue: 0),));
+                                    Get.toNamed(AppRoutes.homeScreen,arguments: 0);
+                                   // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen(selectedIndexValue: 0),));
                                   },
                                   style: TextButton.styleFrom (
                                     padding: EdgeInsets.zero,

@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/modules/HomeScreen/controller/HomeScreenController.dart';
 import 'package:myapp/modules/PrivacyPolicy/view/privacyPolicy-.dart';
 
 import '../../../core/contants/image_constant.dart';
 import '../../../core/contants/text_constant.dart';
 import '../../../core/utils/utils.dart';
+import '../../../routes/app_routes.dart';
 import '../../AppSetting/view/appSetting.dart';
 import '../../HomeScreen/view/HomeScreen.dart';
 import '../../helpSupport/view/helpSupport.dart';
@@ -17,302 +19,317 @@ import '../../termCondition/view/termsCondition.dart';
 import '../../editProfile/view/editProfilePage.dart';
 import '../controller/ProfileController.dart';
 
-class ProfilePage extends StatelessWidget {
-  ProfileController _controller = Get.put(ProfileController());
+class ProfilePage extends GetView<ProfileController> {
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 393;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Scaffold(
+    return
+
+
+      Scaffold(
       appBar: Appbar(context, fem),
-      body: _controller.ProfileData.value.isEmpty
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xffffffff),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      // frame63wx5 (264:584)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 15 * fem, 0 * fem, 78 * fem),
-                      width: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            // component54Wu (285:686)
-                            padding: EdgeInsets.fromLTRB(
-                                25 * fem, 0 * fem, 68 * fem, 0 * fem),
-                            width: double.infinity,
-                            height: 102 * fem,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30 * fem),
+      body: Obx((){
+        if (controller.getUserData.value == null) {
+          return Center(
+          child: CircularProgressIndicator(),
+        );
+        } else {
+          return Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Color(0xffffffff),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  // frame63wx5 (264:584)
+                  margin: EdgeInsets.fromLTRB(
+                      0 * fem, 15 * fem, 0 * fem, 78 * fem),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        // component54Wu (285:686)
+                        padding: EdgeInsets.fromLTRB(
+                            25 * fem, 0 * fem, 68 * fem, 0 * fem),
+                        width: double.infinity,
+                        height: 102 * fem,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30 * fem),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // ellipse3AK3 (303:2127)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 25 * fem, 0 * fem),
+                              width: 100 * fem,
+                              height: 100 * fem,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(50 * fem),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      controller.getUserData.value!.user!.profileImage != null
+                                          ? controller.getUserData.value!.user!.profileImage!
+                                          : CI.imgDummyProfile
+                                  ),
+                                ),
+                              ),
                             ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  // ellipse3AK3 (303:2127)
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 25 * fem, 0 * fem),
-                                  width: 100 * fem,
-                                  height: 100 * fem,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.circular(50 * fem),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(
-                                        _controller.ProfileData.value['user']
-                                                    ['profile_image'] ==
-                                                null
-                                            ? CI.imgDummyProfile
-                                            : _controller.ProfileData
-                                                .value['user']['profile_image'],
+                            Container(
+                              // frame71oso (285:687)
+                              width: 175 * fem,
+                              height: double.infinity,
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    // frame78mJq (288:710)
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                                    width: double.infinity,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          // allysonrollinsuvq (285:690)
+                                          margin: EdgeInsets.fromLTRB(
+                                              0 * fem,
+                                              0 * fem,
+                                              0 * fem,
+                                              0 * fem),
+                                          child: Text(
+                                            controller.getUserData
+                                                .value!.user!.name!,
+                                            style: SafeGoogleFont(
+                                              'Noto Sans',
+                                              fontSize: 24 * ffem,
+                                              fontWeight: FontWeight.w700,
+                                              height: 1.3625 * ffem / fem,
+                                              color: Color(0xff005271),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          // allysongmailcomBtM (288:709)
+                                          width: double.infinity,
+                                          child: Text(
+                                            controller.getUserData
+                                                .value!.user!.email!,
+                                            textAlign: TextAlign.left,
+                                            style: SafeGoogleFont(
+                                              'Nunito',
+                                              fontSize: 16 * ffem,
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.3625 * ffem / fem,
+                                              color: Color(0xff000000),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    // frame3282u (285:691)
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                EditProfilePage(),
+                                          ));
+                                    },
+                                    style: TextButton.styleFrom(
+                                      padding: EdgeInsets.zero,
+                                    ),
+                                    child: Container(
+                                      width: 123 * fem,
+                                      height: 32 * fem,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Color(0xff005271)),
+                                        borderRadius:
+                                        BorderRadius.circular(10 * fem),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          CT.edit_profile,
+                                          textAlign: TextAlign.center,
+                                          style: SafeGoogleFont(
+                                            'Nunito',
+                                            fontSize: 16 * ffem,
+                                            fontWeight: FontWeight.w700,
+                                            height: 1.3625 * ffem / fem,
+                                            color: Color(0xff005271),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  // frame71oso (285:687)
-                                  width: 175 * fem,
-                                  height: double.infinity,
-                                  child: Column(
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        // autogroupez8zPjX (TskYkXn2MXejJAjk4vEz8Z)
+                        padding: EdgeInsets.fromLTRB(
+                            20 * fem, 20 * fem, 20 * fem, 0 * fem),
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ProfileSettingModal(
+                              fem: fem,
+                              ffem: ffem,
+                              text: CT.my_bookings,
+                              onTap:() {
+                                currentIndex.value= 2;
+                               // Get.offNamed(AppRoutes.homeScreen,arguments: 2);
+                              }
+                            ),
+                            SizedBox(
+                              height: 20 * fem,
+                            ),
+                            ProfileSettingModal(
+                              fem: fem,
+                              ffem: ffem,
+                              text: CT.my_chats,
+                              onTap:  () {
+                                currentIndex.value= 1;
+                              //  Get.offNamed(AppRoutes.homeScreen,arguments: 1);
+                              }
+                            ),
+                            SizedBox(
+                              height: 20 * fem,
+                            ),
+                            ProfileSettingModal(
+                              fem: fem,
+                              ffem: ffem,
+                              text: CT.app_settings,
+                              onTap:   () {  Get.toNamed(AppRoutes.appSetting);}
+                            ),
+                            SizedBox(
+                              height: 20 * fem,
+                            ),
+                            ProfileSettingModal(
+                              fem: fem,
+                              ffem: ffem,
+                              text: CT.tnc,
+                              onTap: () {Get.toNamed(AppRoutes.termsCondition);}
+                            ),
+                            SizedBox(
+                              height: 20 * fem,
+                            ),
+                            ProfileSettingModal(
+                              fem: fem,
+                              ffem: ffem,
+                              text: CT.privacy_policy,
+                              onTap: () {Get.toNamed(AppRoutes.privacyPolicy);}
+                            ),
+                            SizedBox(
+                              height: 20 * fem,
+                            ),
+                            ProfileSettingModal(
+                              fem: fem,
+                              ffem: ffem,
+                              text: CT.hns,
+                              onTap:() {Get.toNamed(AppRoutes.helpSupport);}
+                            ),
+                            SizedBox(
+                              height: 20 * fem,
+                            ),
+                            Obx(() {
+                              return controller.isLoading.value
+                                  ? Center(
+                                  child: CircularProgressIndicator())
+                                  : TextButton(
+                                onPressed: () {
+                                  controller.logoutApiCalling();
+                                },
+                                child: Container(
+                                  // frame372am (288:774)
+                                  padding: EdgeInsets.fromLTRB(
+                                      20 * fem,
+                                      5.83 * fem,
+                                      26.67 * fem,
+                                      5.83 * fem),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xff000000),
+                                    borderRadius:
+                                    BorderRadius.circular(
+                                        10 * fem),
+                                  ),
+                                  child: Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .spaceBetween,
                                     children: [
                                       Container(
-                                        // frame78mJq (288:710)
                                         margin: EdgeInsets.fromLTRB(
-                                            0 * fem, 0 * fem, 0 * fem, 0 * fem),
-                                        width: double.infinity,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              // allysonrollinsuvq (285:690)
-                                              margin: EdgeInsets.fromLTRB(
-                                                  0 * fem,
-                                                  0 * fem,
-                                                  0 * fem,
-                                                  0 * fem),
-                                              child: Text(
-                                                _controller.ProfileData
-                                                    .value['user']['name'],
-                                                style: SafeGoogleFont(
-                                                  'Noto Sans',
-                                                  fontSize: 24 * ffem,
-                                                  fontWeight: FontWeight.w700,
-                                                  height: 1.3625 * ffem / fem,
-                                                  color: Color(0xff005271),
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              // allysongmailcomBtM (288:709)
-                                              width: double.infinity,
-                                              child: Text(
-                                                _controller.ProfileData
-                                                    .value['user']['email'],
-                                                textAlign: TextAlign.left,
-                                                style: SafeGoogleFont(
-                                                  'Nunito',
-                                                  fontSize: 16 * ffem,
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 1.3625 * ffem / fem,
-                                                  color: Color(0xff000000),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      TextButton(
-                                        // frame3282u (285:691)
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    EditProfilePage(),
-                                              ));
-                                        },
-                                        style: TextButton.styleFrom(
-                                          padding: EdgeInsets.zero,
-                                        ),
-                                        child: Container(
-                                          width: 123 * fem,
-                                          height: 32 * fem,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Color(0xff005271)),
-                                            borderRadius:
-                                                BorderRadius.circular(10 * fem),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              CT.edit_profile,
-                                              textAlign: TextAlign.center,
-                                              style: SafeGoogleFont(
-                                                'Nunito',
-                                                fontSize: 16 * ffem,
-                                                fontWeight: FontWeight.w700,
-                                                height: 1.3625 * ffem / fem,
-                                                color: Color(0xff005271),
-                                              ),
-                                            ),
+                                            0 * fem,
+                                            0 * fem,
+                                            0 * fem,
+                                            0 * fem),
+                                        child: Text(
+                                          CT.logout,
+                                          textAlign: TextAlign.center,
+                                          style: SafeGoogleFont(
+                                            'Nunito',
+                                            fontSize: 24 * ffem,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            height:
+                                            1.3625 * ffem / fem,
+                                            color: Color(0xffffffff),
                                           ),
                                         ),
                                       ),
+                                      Container(
+                                        // uilsignoutzR7 (292:781)
+
+                                          child: Icon(
+                                            Icons.logout,
+                                            size: 40.33 * fem,
+                                            color: Colors.white,
+                                          )),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            // autogroupez8zPjX (TskYkXn2MXejJAjk4vEz8Z)
-                            padding: EdgeInsets.fromLTRB(
-                                20 * fem, 20 * fem, 20 * fem, 0 * fem),
-                            width: double.infinity,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                ProfileSettingModal(
-                                  fem: fem,
-                                  ffem: ffem,
-                                  text: CT.my_bookings,
-                                  function: Homescreen(selectedIndexValue: 2),
-                                ),
-                                SizedBox(
-                                  height: 20 * fem,
-                                ),
-                                ProfileSettingModal(
-                                  fem: fem,
-                                  ffem: ffem,
-                                  text: CT.my_chats,
-                                  function: Homescreen(selectedIndexValue: 1),
-                                ),
-                                SizedBox(
-                                  height: 20 * fem,
-                                ),
-                                ProfileSettingModal(
-                                  fem: fem,
-                                  ffem: ffem,
-                                  text: CT.app_settings,
-                                  function: AppSetting(),
-                                ),
-                                SizedBox(
-                                  height: 20 * fem,
-                                ),
-                                ProfileSettingModal(
-                                  fem: fem,
-                                  ffem: ffem,
-                                  text: CT.tnc,
-                                  function: TermsCondition(),
-                                ),
-                                SizedBox(
-                                  height: 20 * fem,
-                                ),
-                                ProfileSettingModal(
-                                  fem: fem,
-                                  ffem: ffem,
-                                  text: CT.privacy_policy,
-                                  function: PrivacyPolicy(),
-                                ),
-                                SizedBox(
-                                  height: 20 * fem,
-                                ),
-                                ProfileSettingModal(
-                                  fem: fem,
-                                  ffem: ffem,
-                                  text: CT.hns,
-                                  function: HelpSupport(),
-                                ),
-                                SizedBox(
-                                  height: 20 * fem,
-                                ),
-                                Obx(() {
-                                  return _controller.isLoading.value
-                                      ? Center(
-                                          child: CircularProgressIndicator())
-                                      : TextButton(
-                                          onPressed: () {
-                                            _controller.LogOutAPI();
-                                          },
-                                          child: Container(
-                                            // frame372am (288:774)
-                                            padding: EdgeInsets.fromLTRB(
-                                                20 * fem,
-                                                5.83 * fem,
-                                                26.67 * fem,
-                                                5.83 * fem),
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xff000000),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      10 * fem),
-                                            ),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.fromLTRB(
-                                                      0 * fem,
-                                                      0 * fem,
-                                                      0 * fem,
-                                                      0 * fem),
-                                                  child: Text(
-                                                    CT.logout,
-                                                    textAlign: TextAlign.center,
-                                                    style: SafeGoogleFont(
-                                                      'Nunito',
-                                                      fontSize: 24 * ffem,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      height:
-                                                          1.3625 * ffem / fem,
-                                                      color: Color(0xffffffff),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                    // uilsignoutzR7 (292:781)
-
-                                                    child: Icon(
-                                                  Icons.logout,
-                                                  size: 40.33 * fem,
-                                                  color: Colors.white,
-                                                )),
-                                              ],
-                                            ),
-                                          ),
-                                        );
-                                }),
-                              ],
-                            ),
-                          ),
-                        ],
+                              );
+                            }),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
+          ),
+        );
+        }
+      })
+
+
+
+
+
     );
   }
 
@@ -366,26 +383,20 @@ class ProfileSettingModal extends StatelessWidget {
     required this.fem,
     required this.ffem,
     required this.text,
-    this.function,
+    required this.onTap,
   });
 
   final double fem;
   final double ffem;
   final String text;
-  final dynamic function;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(1.5 * fem, 0 * fem, 1.5 * fem, 0 * fem),
       child: TextButton(
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => function,
-              ));
-        },
+        onPressed: onTap,
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
         ),

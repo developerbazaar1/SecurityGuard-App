@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:myapp/modules/Splash_Screen/controller/SplashScreenController.dart';
 
 import '../../main.dart';
 import '../api_constant/api_constant.dart';
@@ -27,14 +28,14 @@ class HttpMethod {
 
     if (kDebugMode) print("CALLING:: $url$endValue");
     if (kDebugMode) print("BODYPARAMS:: $bodyParams");
-    if (kDebugMode) print("TOKEN:: ${tokenStorage.token}");
+    if (kDebugMode) print("TOKEN:: ${globalusertoken}");
     if (await CM.internetConnectionCheckerMethod()) {
       try {
 
         http.Response? response =
             await http.post(Uri.parse(url), body: bodyParams, headers: {
           ApiKey.accept: ApiKey.applicationJson,
-              ApiKey.authorization: '${ApiKey.bearer} ${tokenStorage.token}',
+              ApiKey.authorization: '${ApiKey.bearer} ${globalusertoken}',
         });
         getResponseCode?.call(response.statusCode??0);
 
@@ -63,11 +64,11 @@ class HttpMethod {
         http.Response? response = await http.get(
           Uri.parse(url),
           headers: {
-            ApiKey.authorization: '${ApiKey.bearer} ${tokenStorage.token}',
+            ApiKey.authorization: '${ApiKey.bearer} ${globalusertoken}',
           },
         );
        if (kDebugMode) print("CALLING:: ${response.body}");
-        if (kDebugMode) print("TOKEN:: ${tokenStorage.token}");
+        if (kDebugMode) print("TOKEN:: ${globalusertoken}");
         return response;
       } catch (e) {
         CM.error();

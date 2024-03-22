@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../core/utils/utils.dart';
+import '../../../routes/app_routes.dart';
 import '../../HomeScreen/view/HomeScreen.dart';
 
 class PaymentDone extends StatelessWidget {
@@ -79,7 +82,8 @@ class PaymentDone extends StatelessWidget {
                     margin: EdgeInsets.fromLTRB(16.5*fem, 0*fem, 16.5*fem, 0*fem),
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen(selectedIndexValue: 1),));
+                        Get.toNamed(AppRoutes.homeScreen,arguments: 0);
+                        //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen(selectedIndexValue: 1),));
                       },
                       style: TextButton.styleFrom (
                         padding: EdgeInsets.zero,

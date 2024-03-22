@@ -10,22 +10,18 @@ import '../../Chat/view/chats.dart';
 import '../../homePage/view/home-page.dart';
 import '../controller/HomeScreenController.dart';
 
-class Homescreen extends StatefulWidget {
-  Homescreen({super.key, required this.selectedIndexValue});
-  var selectedIndexValue;
-
+class Homescreen extends GetView<HomeScreenController> {
+  Homescreen({super.key});
   @override
-  State<Homescreen> createState() => _HomescreenState();
-}
+  // TODO: implement controller
 
-class _HomescreenState extends State<Homescreen> {
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
 
-  void _onItemTapped(int index) {
-    setState(() {
-      widget.selectedIndexValue = index;
-    });
-  }
+
+
+
+
+
+
 
   static List<Widget> _pages = <Widget>[
     Home(),
@@ -35,6 +31,7 @@ class _HomescreenState extends State<Homescreen> {
   ];
   @override
   Widget build(BuildContext context) {
+
     return StreamBuilder<Object>(
         stream: null,
         builder: (context, snapshot) {
@@ -83,11 +80,13 @@ class _HomescreenState extends State<Homescreen> {
                           height: 30, width: 30)),
                 ],
                 type: BottomNavigationBarType.fixed,
-                currentIndex: widget.selectedIndexValue,
+                currentIndex: currentIndex.value,
                 selectedItemColor: ThemeColor,
-                onTap: _onItemTapped,
+                onTap: (index){
+                  controller.onItemTapped(index);
+                },
                 elevation: 5),
-            body: _pages.elementAt(widget.selectedIndexValue),
+            body: Obx(() => _pages[currentIndex.value])
           );
         });
   }
