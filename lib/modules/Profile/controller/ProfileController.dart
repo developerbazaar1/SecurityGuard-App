@@ -38,11 +38,14 @@ class ProfileController extends GetxController {
 
 
   Future<void> getProfileCalling() async {
+
     http.Response? response = await HttpMethod.instance.getRequest(
       url: UriConstant.getUserUrl,
     );
-    if (response!.statusCode == 200 &&
-        CM.responseCheckForGetMethod(response: response)) {
+
+    if (response!.statusCode == 200 && CM.responseCheckForGetMethod(response: response)) {
+
+      print(response.body);
       getUserData.value =
           await GetUserData.fromJson(jsonDecode(response.body ?? ""));
 

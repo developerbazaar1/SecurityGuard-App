@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/modules/HomeScreen/controller/HomeScreenController.dart';
 import 'package:myapp/routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -51,7 +52,9 @@ class LoginController extends GetxController {
           Get.snackbar('Login Successful', LoginData.value['message'],
               colorText: ThemeColortDark);
 
-          Get.offAll(()=>Homescreen());
+          //Get.offAll(()=>Homescreen());
+          Get.offAllNamed(AppRoutes.homeScreen);
+          currentIndex.value= 0;
 
 
         }

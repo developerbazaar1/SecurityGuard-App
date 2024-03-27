@@ -10,17 +10,22 @@ import 'package:image_picker/image_picker.dart';
 import 'package:myapp/Modals/DashedBorderPainter.dart';
 import 'package:myapp/Modals/constants.dart';
 
+import '../../../Modals/buttonModal.dart';
+import '../../../core/contants/text_style.dart';
+import '../../../core/data/Comman/common_widget/common_widget.dart';
 import '../../../core/utils/utils.dart';
+import '../../../theme/theme_helper.dart';
 import '../../notification/view/notification-list.dart';
 import '../../profileUpdate/view/profileUpdated.dart';
 import '../controller/EditProfileController.dart';
 
-class EditProfilePage extends StatelessWidget {
-  final ProfileImageController profileImageController =
-      Get.put(ProfileImageController());
+class EditProfilePage extends GetView<ProfileImageController> {
 
+  var arguments = Get.arguments;
   @override
   Widget build(BuildContext context) {
+
+
     double baseWidth = 393;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -105,16 +110,17 @@ class EditProfilePage extends StatelessWidget {
                                                 BorderRadius.circular(50 * fem),
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
-                                                image: profileImageController
+                                                image: controller
                                                         .profileImagePath
                                                         .value
                                                         .isEmpty
-                                                    ? AssetImage(
-                                                        'assets/page-1/images/ellipse-3-bg.png')
+                                                    ? arguments['image']!= null?NetworkImage("http://pragya.dbtechserver.online/security/public/${arguments['image']}"):AssetImage(
+                                                        'assets/page-1/images/ellipse-3-bg.png') as ImageProvider
                                                     : FileImage(File(
-                                                            profileImageController
+                                                               controller
                                                                 .profileImagePath
-                                                                .value))
+                                                                .value)
+                                                )
                                                         as ImageProvider),
                                           ),
                                         )),
@@ -138,7 +144,7 @@ class EditProfilePage extends StatelessWidget {
                                                             .photo_library),
                                                         title: Text('Gallery'),
                                                         onTap: () {
-                                                          profileImageController
+                                                             controller
                                                               .pickImage(
                                                                   ImageSource
                                                                       .gallery);
@@ -150,7 +156,7 @@ class EditProfilePage extends StatelessWidget {
                                                             Icons.camera_alt),
                                                         title: Text('Camera'),
                                                         onTap: () {
-                                                          profileImageController
+                                                             controller
                                                               .pickImage(
                                                                   ImageSource
                                                                       .camera);
@@ -207,26 +213,13 @@ class EditProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  // frame16tKB (303:2275)
-                                  padding: EdgeInsets.fromLTRB(
-                                      15 * fem, 10 * fem, 15 * fem, 10 * fem),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xffdff4ff),
-                                    borderRadius:
-                                        BorderRadius.circular(20 * fem),
-                                  ),
-                                  child: Text(
-                                    'Allyson Rollins',
-                                    style: SafeGoogleFont(
-                                      'Nunito',
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.3625 * ffem / fem,
-                                      color: Color(0xff000000),
-                                    ),
-                                  ),
+                                CW.commonTextFieldForLoginSignUP(
+                                  controller: controller.nameController,
+                                    borderRadius: 20*fem,
+                                    wantBorder: false,
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                                    fillColor: ColorSchemes.primaryColorScheme.secondary,
+                                    style:  TextThemeStyle.bodyMedium(Colors.black)
                                 ),
                               ],
                             ),
@@ -254,25 +247,14 @@ class EditProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(
-                                      15 * fem, 10 * fem, 15 * fem, 10 * fem),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xffdff4ff),
-                                    borderRadius:
-                                        BorderRadius.circular(20 * fem),
-                                  ),
-                                  child: Text(
-                                    'allyson@gmail.com',
-                                    style: SafeGoogleFont(
-                                      'Nunito',
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.3625 * ffem / fem,
-                                      color: Color(0xff000000),
-                                    ),
-                                  ),
+                                CW.commonTextFieldForLoginSignUP(
+                                  readOnly: true,
+                                  controller: controller.emailController,
+                                    borderRadius: 20*fem,
+                                    wantBorder: false,
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                                    fillColor: ColorSchemes.primaryColorScheme.secondary,
+                                    style:  TextThemeStyle.bodyMedium(Colors.black)
                                 ),
                               ],
                             ),
@@ -301,26 +283,14 @@ class EditProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  // frame16ajj (303:2285)
-                                  padding: EdgeInsets.fromLTRB(
-                                      15 * fem, 10 * fem, 15 * fem, 10 * fem),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xffdff4ff),
-                                    borderRadius:
-                                        BorderRadius.circular(20 * fem),
-                                  ),
-                                  child: Text(
-                                    '90009-90009',
-                                    style: SafeGoogleFont(
-                                      'Nunito',
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.3625 * ffem / fem,
-                                      color: Color(0xff000000),
-                                    ),
-                                  ),
+                                CW.commonTextFieldForLoginSignUP(
+                                  controller: controller.phoneController,
+                                
+                                    borderRadius: 20*fem,
+                                    wantBorder: false,
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                                    fillColor: ColorSchemes.primaryColorScheme.secondary,
+                                    style:  TextThemeStyle.bodyMedium(Colors.black)
                                 ),
                               ],
                             ),
@@ -381,19 +351,19 @@ class EditProfilePage extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.circular(20 * fem),
                                   ),
-                                  child: Obx(
-                                    () {
-                                      return Text(
-                                        profileImageController.addressController
+
+                                    child:
+                                        Text(
+                                           controller.addressController
                                                         .value ==
                                                     null ||
-                                                profileImageController
+                                                   controller
                                                         .addressController
                                                         .value
                                                         .text ==
                                                     ''
                                             ? 'Market Pl, Romsey SO51 8NB, United Kingdom'
-                                            : profileImageController
+                                            :    controller
                                                 .addressController.value.text,
                                         style: SafeGoogleFont(
                                           'Nunito',
@@ -402,9 +372,8 @@ class EditProfilePage extends StatelessWidget {
                                           height: 1.3625 * ffem / fem,
                                           color: Color(0xff000000),
                                         ),
-                                      );
-                                    },
-                                  ),
+                                      )
+
                                 )
                               ],
                             ),
@@ -412,17 +381,16 @@ class EditProfilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      // frame30KUM (303:2296)
-                      margin: EdgeInsets.fromLTRB(
-                          6 * fem, 0 * fem, 6 * fem, 0 * fem),
-                      child: TextButton(
+                    Obx(() {
+                      return    controller.isLoading.value?Center(child:  CircularProgressIndicator(),): TextButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProfileUpdated(),
-                              ));
+                          controller.updateProfileApiCalling();
+                          // print(arguments["name"]);
+                          // Navigator.pushReplacement(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) => ProfileUpdated(),
+                          //     ));
                         },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -453,8 +421,10 @@ class EditProfilePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    })
+
+
                   ],
                 ),
               ),
@@ -479,7 +449,7 @@ class EditProfilePage extends StatelessWidget {
               color: ThemeColorBackgroundBottomsheet,
             ),
             child: TextFormField(
-              controller: profileImageController.addressController.value,
+              controller:    controller.addressController,
               maxLines: 3,
               decoration: InputDecoration(border: InputBorder.none),
             )),
@@ -489,8 +459,8 @@ class EditProfilePage extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 25, vertical: 20)),
                 onPressed: () {
-                  profileImageController.updateAddress(
-                      profileImageController.addressController.value);
+                     controller.updateAddress(
+                         controller.addressController.value);
                   Navigator.pop(context);
                 },
                 child: Text(

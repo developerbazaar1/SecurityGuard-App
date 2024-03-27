@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../core/utils/pref_utils.dart';
+import '../core/utils/utils.dart';
 
 
 /// Helper class for managing themes and colors.
@@ -118,6 +119,7 @@ class ThemeHelper {
 
 /// Class containing the supported text theme styles.
 class TextThemes {
+
   static TextTheme textTheme(ColorScheme colorScheme) => TextTheme(
         bodyLarge: TextStyle(
           color: appTheme.black900,
@@ -125,13 +127,21 @@ class TextThemes {
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w400,
         ),
-        bodyMedium: TextStyle(
-          color: appTheme.black900,
-          fontSize: 14,
-          fontFamily: 'Poppins',
+
+
+
+
+        bodyMedium:  SafeGoogleFont(
+          'Nunito',
+          fontSize: 14 ,
           fontWeight: FontWeight.w400,
 
+          color: Color(0xff000000),
         ),
+
+
+
+
         bodySmall: TextStyle(
           color: appTheme.black900,
           fontSize: 12,

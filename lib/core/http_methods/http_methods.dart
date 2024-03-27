@@ -154,14 +154,18 @@ class HttpMethod {
     if (kDebugMode) print("BODYPARAMS:: $bodyParams");
     http.Response? res;
     if (await CM.internetConnectionCheckerMethod()) {
+      print("this is  ${image}");
       if (image != null) {
         try {
+          print("this is image ${image}");
           http.MultipartRequest multipartRequest =
               http.MultipartRequest(multipartRequestType, Uri.parse(url));
           bodyParams.forEach((key, value) {
+
             multipartRequest.fields[key] = value;
           });
           multipartRequest.headers['Authorization'] = token;
+
           multipartRequest.files.add(
             http.MultipartFile.fromBytes(
               imageKey,
@@ -184,7 +188,8 @@ class HttpMethod {
         } else {
           return null;
         }
-      } else {
+      }
+      else {
         try {
           res = await http.post(
             Uri.parse(url),

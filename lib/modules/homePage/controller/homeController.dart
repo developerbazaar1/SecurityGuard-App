@@ -8,6 +8,7 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:interval_time_picker/interval_time_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:myapp/Modals/constants.dart';
+import 'package:myapp/routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -86,11 +87,11 @@ class HomePageController extends GetxController {
 
   final  formKey = GlobalKey<FormState>();
 
-  List SecurityList = [
-    SecurityIcon(CI.imgDog, CT.dog_unit, DogSecurityInfo()),
+  List<SecurityIcon> SecurityList = [
+    SecurityIcon(CI.imgDog, CT.dog_unit, AppRoutes.dogSecurity),
     SecurityIcon(
-        CI.imgDoorSupervisors, CT.door_supervisiors, SuprevisorInfo()),
-    SecurityIcon(CI.imgSecuritGuards, CT.security_need, SecurityGardInfo()),
+        CI.imgDoorSupervisors, CT.door_supervisiors, AppRoutes.suprevisor),
+    SecurityIcon(CI.imgSecuritGuards, CT.security_need, AppRoutes.securityGard),
   ];
   void _getKey() async {
 

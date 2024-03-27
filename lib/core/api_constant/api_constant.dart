@@ -31,38 +31,27 @@ class ApiKey {
   static const isRequired = "is_required";
   static const password = "password";
 
+///Edit Profile
+   static const name = "name";
+  static var phone="phone";
+  static var address="address";
+  static var document="document";
+  static var document_old="document_old";
+
 
   ///Dashboard
-  static var isDashboard="is_dashboard";
 
-  static const authors = "authors";
-  static const isAudio = "is_audio";
-  static const greeting = "greeting";
   static const user = "user";
 
 
 
-/// Document
-  static const apikey = "apikey";
-  static const apikeyvalue = "f08f2b3c48ad4134b4ef62abd4aa721d";
-  static const CaseID = "CaseID";
-  static const Comment = "Comment";
-  static const file = "File";
-
-
-  /// Get In Touch
-  static const name = "name";
-  static const subject = "subject";
 
 
 
-  /// Appionment Screen
-  static const date = "date";
-  static const timezone = "timezone";
-  static const Comments = "Comments";
-  static const TimeZone = "TimeZone";
-  static const Date = "Date";
-  static const AgentEmail = "AgentEmail";
+
+
+
+
 
 
 
@@ -106,6 +95,10 @@ static const getServicesUrl = "$baseUrl/api/get-services";
   ///Profile page
 static const getUserUrl = "$baseUrl/api/get-user";
 static const logoutUrl = "$baseUrl/api/auth/logout";
+
+
+///Edit Profile
+  static const updateProfileUrl = "$baseUrl/api/update-profile";
 
 }
 

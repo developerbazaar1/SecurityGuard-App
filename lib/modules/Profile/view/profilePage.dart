@@ -77,11 +77,11 @@ class ProfilePage extends GetView<ProfileController> {
                                 BorderRadius.circular(50 * fem),
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: AssetImage(
-                                      controller.getUserData.value!.user!.profileImage != null
-                                          ? controller.getUserData.value!.user!.profileImage!
-                                          : CI.imgDummyProfile
-                                  ),
+                                  image:  controller.getUserData.value!.user!.profileImage != null
+                                      ?NetworkImage(
+                                      "http://pragya.dbtechserver.online/security/public/${controller.getUserData.value!.user!.profileImage!}"
+
+                                  ):AssetImage(CI.imgDummyProfile) as ImageProvider,
                                 ),
                               ),
                             ),
@@ -121,6 +121,7 @@ class ProfilePage extends GetView<ProfileController> {
                                             ),
                                           ),
                                         ),
+                                        SizedBox(height: 4,),
                                         Container(
                                           // allysongmailcomBtM (288:709)
                                           width: double.infinity,
@@ -140,15 +141,33 @@ class ProfilePage extends GetView<ProfileController> {
                                       ],
                                     ),
                                   ),
+
                                   TextButton(
                                     // frame3282u (285:691)
                                     onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditProfilePage(),
-                                          ));
+                                      if(controller.getUserData
+                                          .value!=null) {
+                                        Get.toNamed(AppRoutes.edit,
+                                          arguments: {
+                                        "name":controller.getUserData
+                                            .value!.user!.name!.toString(),
+                                        "email":controller.getUserData
+                                          .value!.user!.email.toString(),
+                                        "phone":controller.getUserData
+                                          .value!.user!.phone!.toString(),
+                                        "address":controller.getUserData
+                                            .value!.user!.address!.toString(),
+                                            if(controller.getUserData
+                                                .value!.user!.profileImage!=null)
+                                            "image":controller.getUserData
+                                                .value!.user!.profileImage!.toString()??''
+
+
+
+
+                                      }
+                                      );
+                                      }
                                     },
                                     style: TextButton.styleFrom(
                                       padding: EdgeInsets.zero,

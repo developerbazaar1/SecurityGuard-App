@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:interval_time_picker/interval_time_picker.dart';
 
 import 'package:myapp/modules/Loading/searching.dart';
+import 'package:myapp/theme/theme_helper.dart';
 
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
@@ -305,6 +306,9 @@ class Home extends StatelessWidget {
                                                                 .width *
                                                             0.8,
                                                     child: SfDateRangePicker(
+                                                      selectionTextStyle: TextStyle(color: Colors.white),
+
+
                                                       minDate: DateTime.now(),
                                                       controller:
                                                           homePageController
@@ -523,16 +527,10 @@ class Home extends StatelessWidget {
                                                         child: InkWell(
                                                           
                                                           onTap: () {
-                                                            //print( homePageController.SecurityList[index][0]);
-                                                            homePageController
-                                                                .isButtonTaped
-                                                                .value = true;
 
-                                                            Navigator.push(context,
-                                                                MaterialPageRoute(
-                                                                  builder: (context) =>
-                                                                      homePageController.SecurityList[index][2].onTap,
-                                                                ));
+                                                          Get.toNamed(  homePageController.SecurityList[index].function);
+
+
                                                           },
                                                           child: Container(
                                                             height: 50,
@@ -891,8 +889,36 @@ class Home extends StatelessWidget {
   Container buildContainer(BuildContext context, buttontext, hour, value) {
     void selectTime() async {
       final TimeOfDay? newTime = await showIntervalTimePicker(
+
         context: context,
         initialTime: hour,
+
+        builder: (BuildContext context, Widget? child) {
+          return Theme(
+            data: ThemeData.light().copyWith(
+              colorScheme: ColorScheme.light().copyWith(
+                onBackground: Colors.black,
+                onPrimary: Colors.white,
+                onSecondary: ColorSchemes.primaryColorScheme.secondary,
+               inversePrimary: ColorSchemes.primaryColorScheme.secondary,
+                background: Colors.white.withAlpha(1),
+
+                
+
+                shadow: Colors.white,
+
+
+                  primary:  theme.primaryColor, // Change primary color to white
+               // Change text color to black
+                  surface: Colors.white,
+
+ // Change selected color to white
+              ),
+            ),
+            child: child!,
+          );
+        },
+
         interval: homePageController.interval.value,
         visibleStep: homePageController.visibleStep.value,
       );
