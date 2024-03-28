@@ -17,14 +17,16 @@ class bookingChatModal extends StatelessWidget {
     required this.status,
     required this.statusColor,
     required this.image,
-    required this.date,   required this.statusheight, required this.textColor,
+    required this.statusheight,
+    required this.textColor,
+    required this.booking_id,
 
   });
 
   final double fem;
   final double ffem;
   final int statusheight;
-  final String name, duration, time, status, image, date;
+  final String name, duration, time, status, image,booking_id;
   final Color statusColor,textColor;
 
   @override
@@ -32,7 +34,7 @@ class bookingChatModal extends StatelessWidget {
     return TextButton(
       // component11jhT (605:1869)
       onPressed: () {
-        Get.toNamed(AppRoutes.bookingDetails,arguments: [name,image]);
+        Get.toNamed(AppRoutes.bookingDetails,arguments: [name,image,booking_id]);
        // Get.to(()=>BookingDetails(name: name, image: image));
        // Navigator.push(context, MaterialPageRoute(builder: (context) =>BookingDetails(name: name, image: image,) ,));
       },
@@ -92,7 +94,7 @@ class bookingChatModal extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // mondayoct242iV (I605:1869;605:306)
+
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 0 * fem, 4 * fem),
                           child: Text(
@@ -130,21 +132,21 @@ class bookingChatModal extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Container(
-                    // mminsbeforeSGR (I605:1869;605:309)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 28 * fem),
-                    child: Text(
-                      date,
-                      style: SafeGoogleFont(
-                        'Noto Sans',
-                        fontSize: 10 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3625 * ffem / fem,
-                        color: Color(0xff898989),
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   // mminsbeforeSGR (I605:1869;605:309)
+                  //   margin: EdgeInsets.fromLTRB(
+                  //       0 * fem, 0 * fem, 0 * fem, 28 * fem),
+                  //   child: Text(
+                  //     date,
+                  //     style: SafeGoogleFont(
+                  //       'Noto Sans',
+                  //       fontSize: 10 * ffem,
+                  //       fontWeight: FontWeight.w400,
+                  //       height: 1.3625 * ffem / fem,
+                  //       color: Color(0xff898989),
+                  //     ),
+                  //   ),
+                  // ),
 
                 ],
               ),

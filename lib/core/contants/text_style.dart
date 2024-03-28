@@ -17,33 +17,52 @@ class TextThemeStyle {
       'Nunito',
       fontSize: 16 ,
       fontWeight: FontWeight.w400,
+      color: Color(0xff000000),
+    );
+  }
+  static TextStyle headlineLarge( {double? FontSize}) {
+    return SafeGoogleFont(
+      'Noto Sans',
+      fontSize: FontSize,
+      fontWeight: FontWeight.w700,
 
       color: Color(0xff000000),
     );
   }
+  static TextStyle displayLarge( {double? fontSize}) {
+    return SafeGoogleFont(
+      'Nunito',
+      fontSize: fontSize,
+      fontWeight: FontWeight.w700,
+
+      color: theme.primaryColor,
+    );
+  }
+  static TextStyle bodyLarge( {double? fontSize}) {
+    return SafeGoogleFont(
+      'Nunito',
+      fontSize: fontSize,
+      fontWeight:
+      FontWeight.w600,
+
+
+    );
+  }
+
+  static TextStyle displayMedium( {double? fontSize}) {
+    return SafeGoogleFont(
+      'Nunito',
+      fontSize: fontSize,
+      fontWeight: FontWeight.w700,
+
+      color: Color(0xff3a3a3a),
+    );
+  }
   ///Custom text
 
-  static TextStyle displayLarge(Color color, {String? fontFamily}) {
-    return TextStyle(
-      fontSize: 20,
-      fontFamily: fontFamily,
-      fontWeight: FontWeight.w700,
-      inherit: true,
-      color: color,
-      decoration: TextDecoration.none,
-    );
-  }
 
-  static TextStyle displayMedium(Color color, {String? fontFamily}) {
-    return TextStyle(
-      fontSize: 20,
-      fontFamily: fontFamily,
-      fontWeight: FontWeight.w600,
-      inherit: true,
-      color: color,
-      decoration: TextDecoration.none,
-    );
-  }
+
+
 
   static TextStyle displaySmall(Color color, {String? fontFamily}) {
     return TextStyle(
@@ -89,16 +108,7 @@ class TextThemeStyle {
     );
   }
 
-  static TextStyle bodyLarge(Color color, {String? fontFamily}) {
-    return TextStyle(
-      fontSize: 16   ,
-      fontFamily: fontFamily,
-      fontWeight: FontWeight.w700,
-      inherit: true,
-      color: color,
-      decoration: TextDecoration.none,
-    );
-  }
+
 
 
 
@@ -113,16 +123,7 @@ class TextThemeStyle {
     );
   }
 
-  static TextStyle headlineLarge(Color color, {String? fontFamily}) {
-    return TextStyle(
-      fontSize: 24   ,
-      fontFamily: fontFamily,
-      fontWeight: FontWeight.w400,
-      inherit: true,
-      color: color,
-      decoration: TextDecoration.none,
-    );
-  }
+
 
   static TextStyle headlineMedium(Color color, {String? fontFamily}) {
     return TextStyle(
@@ -190,12 +191,10 @@ class MyTextThemeLight {
     String bold = "${fontFamily}Bold";*/
     return TextTheme(
       displayLarge: TextThemeStyle.displayLarge(
-        Colors.black,
-        fontFamily: fontFamily,
+
       ),
       displayMedium: TextThemeStyle.displayMedium(
-        Colors.black,
-        fontFamily: fontFamily,
+
       ),
       displaySmall: TextThemeStyle.displaySmall(
            Colors.black,
@@ -221,16 +220,14 @@ class MyTextThemeLight {
            Colors.black,
       ),
       bodyLarge: TextThemeStyle.bodyLarge(
-           Colors.black,
-        fontFamily: fontFamily,
+
       ),
       headlineSmall: TextThemeStyle.headlineSmall(
         theme.primaryColor,
         fontFamily: fontFamily,
       ),
       headlineLarge: TextThemeStyle.headlineLarge(
-           Colors.black,
-        fontFamily: fontFamily,
+
       ),
       headlineMedium: TextThemeStyle.headlineMedium(
         theme.primaryColor,

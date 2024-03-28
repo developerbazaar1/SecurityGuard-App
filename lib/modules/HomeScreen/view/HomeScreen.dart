@@ -15,14 +15,6 @@ class Homescreen extends GetView<HomeScreenController> {
   @override
   // TODO: implement controller
 
-
-
-
-
-
-
-
-
   static List<Widget> _pages = <Widget>[
     Home(),
     Chat(),

@@ -52,4 +52,7 @@ static const imgNotification = '$baseUrl/notification.png';
   static const imgchat = '$baseUrl/chat.png';
   static const imgDummyProfile = '$baseUrl/dummyProfile.png';
 
+//Booking Screen
+  static const imgNotePepper = '$baseUrl/paper_line.png';
+
 }

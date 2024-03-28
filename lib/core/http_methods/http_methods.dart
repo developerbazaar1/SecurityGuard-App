@@ -94,11 +94,11 @@ class HttpMethod {
         );
         if (kDebugMode) print("CALLING:: $uri");
         if (kDebugMode) print("QUERYPARAMETERS:: $queryParameters");
-        if (kDebugMode) print("TOKEN::  ${tokenStorage.token}");
+        if (kDebugMode) print("TOKEN::  ${globalusertoken}");
         http.Response? response = await http.get(
           uri,
           headers: {
-            ApiKey.authorization: '${ApiKey.bearer} ${tokenStorage.token}',
+            ApiKey.authorization: '${ApiKey.bearer} ${globalusertoken}',
           },
         );
         if (kDebugMode) print("CALLING:: ${response.body}");

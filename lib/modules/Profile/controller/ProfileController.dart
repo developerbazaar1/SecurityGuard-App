@@ -33,37 +33,26 @@ class ProfileController extends GetxController {
     super.onInit();
   }
 
-
-
-
-
   Future<void> getProfileCalling() async {
-
     http.Response? response = await HttpMethod.instance.getRequest(
       url: UriConstant.getUserUrl,
     );
 
-    if (response!.statusCode == 200 && CM.responseCheckForGetMethod(response: response)) {
-
+    if (response!.statusCode == 200 &&
+        CM.responseCheckForGetMethod(response: response)) {
       print(response.body);
       getUserData.value =
           await GetUserData.fromJson(jsonDecode(response.body ?? ""));
-
-
     }
   }
 
-
   Future<bool> logoutApiCalling() async {
-    bodyParamsForLogout = {
-
-    };
+    bodyParamsForLogout = {};
     http.Response? response = await HttpMethod.instance.postRequest(
-        url: UriConstant.logoutUrl,
-        bodyParams: bodyParamsForLogout);
+        url: UriConstant.logoutUrl, bodyParams: bodyParamsForLogout);
     if (CM.responseCheckForPostMethod(response: response)) {
       bodyParamsForLogout.clear();
-      if(response!.statusCode==200){
+      if (response!.statusCode == 200) {
         LogoutData.value = jsonDecode(response.body);
         Get.snackbar('Log Out Successful', LogoutData.value[ApiKey.message],
             colorText: ThemeColortDark);
@@ -76,13 +65,11 @@ class ProfileController extends GetxController {
       }
       CM.showToast("Server Error");
       return false;
-
     } else {
       bodyParamsForLogout.clear();
       return false;
     }
   }
-
 
   void LogOutAPI() async {
     try {

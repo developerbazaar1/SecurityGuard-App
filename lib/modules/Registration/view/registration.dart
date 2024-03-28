@@ -194,7 +194,7 @@ class _RegisterationState extends State<Registeration> {
                       controller.passwordController.value.text = value!;
                     },
                   ),
-                  SizedBox(height: 16.0),
+                  SizedBox(height: 20.0),
 
                   Obx(() {
                     return controller.isLoading.value
@@ -211,6 +211,7 @@ class _RegisterationState extends State<Registeration> {
                       },
                     );
                   }),
+                  SizedBox(height: 16.0),
                   LoginwithGoogle(
                     fem: fem,
                     ffem: ffem,

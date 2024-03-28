@@ -21,12 +21,12 @@ class Heading extends StatelessWidget {
       width: 394 * fem,
       child: Center(
         child: Text(
-          // signupasacustomerVh3 (561:172)
+
           text,
           style: SafeGoogleFont(
 
             'Noto Sans',
-            fontSize: 32 * ffem,
+            fontSize: MediaQuery.sizeOf(context).width*0.065,
             fontWeight: FontWeight.w700,
             height: 1.3625 * ffem / fem,
             color: Color(0xff000000),

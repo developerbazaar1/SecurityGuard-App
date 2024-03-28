@@ -1,17 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/Modals/DashedBorderPainter.dart';
 import 'package:myapp/Modals/bookingChatModal.dart';
 import 'package:myapp/Modals/constants.dart';
 
-
+import '../../../Modals/DateTimeMethods.dart';
+import '../../../core/contants/image_constant.dart';
 import '../../../core/contants/text_constant.dart';
+import '../../../core/contants/text_style.dart';
 import '../../../core/utils/utils.dart';
 import '../../notification/view/notification-list.dart';
+import '../controller/bookingController.dart';
 
-class Booking extends StatelessWidget {
+class Booking extends GetView<bookingController> {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 393;
@@ -54,20 +59,16 @@ class Booking extends StatelessWidget {
                                 width: 30 * fem,
                                 height: 30 * fem,
                                 child: Image.asset(
-                                  'assets/images/mingcute-paper-line-XhT.png',
+                                  CI.imgNotePepper,
                                   width: 30 * fem,
                                   height: 30 * fem,
                                 ),
                               ),
                               Text(
                                 CT.booking,
-                                style: SafeGoogleFont(
-                                  'Noto Sans',
-                                  fontSize: 24 * ffem,
-                                  fontWeight: FontWeight.w700,
-                                  height: 1.3625 * ffem / fem,
-                                  color: Color(0xff000000),
-                                ),
+                                style: TextThemeStyle.headlineLarge(
+                                    FontSize: MediaQuery.sizeOf(context).width *
+                                        0.06),
                               ),
                             ],
                           ),
@@ -81,63 +82,107 @@ class Booking extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(top: 20),
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              bookingChatModal(
-                                fem: fem,
-                                ffem: ffem,
-                                name: 'Allyson Rollins',
-                                image:
-                                    'assets/images/ellipse-2-bg-8cR.png',
-                                duration: 'Monday, Oct 24',
-                                time: '10:45 AM',
-                                date: '30 mins before',
-                                status: 'Payment in process',
-                                statusColor: Color(0xffdff4ff),
-                                statusheight: 135,
-                                textColor: ThemeColortDark,
-                              ),
-                              Divider(
-                                thickness: 0.5,
-                                color: ThemeColorDivide,
-                              ),
-                              bookingChatModal(
+
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.75,
+                          child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                controller.formateTime.value =
+                                    DateTimeMethods.TimeFormate(controller
+                                        .getBookingsData
+                                        .value!
+                                        .bookings![index]
+                                        .bookingStartTime!
+                                        .toString());
+                                controller.formateDate.value =
+                                    DateTimeMethods.DateFormate(controller
+                                        .getBookingsData
+                                        .value!
+                                        .bookings![index]
+                                        .bookingStartDate!
+                                        .toString());
+
+                                return bookingChatModal(
                                   fem: fem,
                                   ffem: ffem,
                                   name: 'Alba Montgomery',
-                                  duration: 'Sunday, Aug 24',
-                                  time: '08:22 PM',
+                                  duration:  controller.formateDate.value,
+                                  time: controller.formateTime.value,
                                   status: 'Canceled',
                                   statusColor: Color(0xff898989),
                                   textColor: Colors.white,
-                                  image:
-                                      'assets/images/ellipse-2-bg-7Eh.png',
-                                  date: '12/08/2023',
-                                  statusheight: 73),
-                              Divider(
-                                thickness: 0.5,
-                                color: ThemeColorDivide,
-                              ),
-                              bookingChatModal(
-                                textColor: ThemeColortDark,
-                                  fem: fem,
-                                  ffem: ffem,
-                                  name: 'Reuben Rios',
-                                  duration: 'Thursday, July 22',
-                                  time: '03:59 PM',
-                                  status: 'Confirmed',
-                                  statusColor: Color(0xff00ff19),
-                                  image:
-                                      'assets/images/ellipse-2-bg-ved.png',
-                                  date: '20/07/2023',
-                                  statusheight: 81)
-                            ],
-                          ),
+                                  image: 'assets/images/ellipse-2-bg-7Eh.png',
+                                  statusheight: 73,
+                                  booking_id: controller.getBookingsData.value!
+                                      .bookings![index].bookingId!,
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return Divider(
+                                  thickness: 0.5,
+                                  color: ThemeColorDivide,
+                                );
+                              },
+                              itemCount: controller
+                                  .getBookingsData.value!.bookings!.length),
                         ),
+                        // Container(
+                        //   margin: EdgeInsets.only(top: 20),
+                        //   width: double.infinity,
+                        //   child: Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //     children: [
+                        //       bookingChatModal(
+                        //         fem: fem,
+                        //         ffem: ffem,
+                        //         name: 'Allyson Rollins',
+                        //         image:
+                        //             'assets/images/ellipse-2-bg-8cR.png',
+                        //         duration: 'Monday, Oct 24',
+                        //         time: '10:45 AM',
+                        //         date: '30 mins before',
+                        //         status: 'Payment in process',
+                        //         statusColor: Color(0xffdff4ff),
+                        //         statusheight: 135,
+                        //         textColor: ThemeColortDark,
+                        //       ),
+                        //       Divider(
+                        //         thickness: 0.5,
+                        //         color: ThemeColorDivide,
+                        //       ),
+                        //       bookingChatModal(
+                        //           fem: fem,
+                        //           ffem: ffem,
+                        //           name: 'Alba Montgomery',
+                        //           duration: 'Sunday, Aug 24',
+                        //           time: '08:22 PM',
+                        //           status: 'Canceled',
+                        //           statusColor: Color(0xff898989),
+                        //           textColor: Colors.white,
+                        //           image:
+                        //               'assets/images/ellipse-2-bg-7Eh.png',
+                        //           date: '12/08/2023',
+                        //           statusheight: 73),
+                        //       Divider(
+                        //         thickness: 0.5,
+                        //         color: ThemeColorDivide,
+                        //       ),
+                        //       bookingChatModal(
+                        //         textColor: ThemeColortDark,
+                        //           fem: fem,
+                        //           ffem: ffem,
+                        //           name: 'Reuben Rios',
+                        //           duration: 'Thursday, July 22',
+                        //           time: '03:59 PM',
+                        //           status: 'Confirmed',
+                        //           statusColor: Color(0xff00ff19),
+                        //           image:
+                        //               'assets/images/ellipse-2-bg-ved.png',
+                        //           date: '20/07/2023',
+                        //           statusheight: 81)
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

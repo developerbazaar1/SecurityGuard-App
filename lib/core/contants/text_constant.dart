@@ -85,5 +85,11 @@ class CT{
   static const logout = 'Logout';
 
 
+///BOOKING DETAILS
+  static const booking_details = 'Booking Details';
+  static const startDnT = 'Start Date & Time:';
+  static const endDnT = 'End Date & Time:';
+  static const total = 'Total:';
+
 
 }

@@ -43,6 +43,13 @@ class ApiKey {
 
   static const user = "user";
 
+  ///Booking Details
+
+  static const booking_id = "booking_id";
+  static const customer_status = "customer_status";
+  static const customer_rating = "customer_rating";
+  static const customer_feedback = "customer_feedback";
+
 
 
 
@@ -100,6 +107,12 @@ static const logoutUrl = "$baseUrl/api/auth/logout";
 ///Edit Profile
   static const updateProfileUrl = "$baseUrl/api/update-profile";
 
+///Booking
+  static const getBookingsUrl = "$baseUrl/api/get-bookings";
+
+  ///Booking Details
+  static const getBookingDetailsUrl = "$baseUrl/api/get-booking";
+  static const getCustomerStatusUrl = "$baseUrl/api/update-customer-status";
 }
 
 class StatusCodeConstant {
